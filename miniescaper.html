@@ -1,18 +1,19 @@
 <meta charset=utf-8>
-<input id=p> Plain text<br><br>
-<input id=a readonly> \uXXXX (JS)<br>
-<input id=b readonly> &#DDDD; (HTML)<br>
-<input id=c readonly> &#xXXXX; (HTML)<br>
-<input id=d readonly> \xXX (UTF-8)<br>
-<input id=e readonly> \OOO (UTF-8)<br>
-<input id=f readonly> Base64 (UTF-8)<br>
-<input id=g readonly> URL<br>
-<input id=h readonly> selector (CSS)<br>
-<input id=i readonly> querySelector (JS)
+<input id=p size=30> Plain text<br><br>
+<input id=a readonly size=30> \uXXXX (JS)<br>
+<input id=b readonly size=30> &#DDDD; (HTML)<br>
+<input id=c readonly size=30> &#xXXXX; (HTML)<br>
+<input id=d readonly size=30> \xXX (UTF-8)<br>
+<input id=e readonly size=30> \OOO (UTF-8)<br>
+<input id=f readonly size=30> Base64 (UTF-8)<br>
+<input id=g readonly size=30> URL<br>
+<input id=h readonly size=30> selector (CSS)<br>
+<input id=i readonly size=30> querySelector (JS)
 <script>
 
 // Convert plain text in other formats for the web
 // todo: finish astral unicode support (xXX, OOO, base64) -- 𝌆
+// todo: avoid to escape EVERYTHING in css/js selectors.
 
 oninput=function(){
   

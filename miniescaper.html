@@ -1,67 +1,22 @@
 <meta charset=utf-8>
-<input id=p size=30> Plain text<br><br>
-<input id=a readonly size=30> \uXXXX (JS)<br>
-<input id=b readonly size=30> &#DDDD; (HTML)<br>
-<input id=c readonly size=30> &#xXXXX; (HTML)<br>
-<input id=d readonly size=30> \xXX (UTF-8)<br>
-<input id=e readonly size=30> \OOO (UTF-8)<br>
-<input id=f readonly size=30> Base64 (UTF-8)<br>
-<input id=g readonly size=30> URL<br>
-<input id=h readonly size=30> selector (CSS)<br>
-<input id=i readonly size=30> querySelector (JS)
+<input id=i1 size=30> Plain text<br><br>
+<input id=i2 readonly size=30> &#DDDD; (HTML)<br>
+<input id=i3 readonly size=30> &#xXXXX; (HTML)<br>
+<input id=ii4 readonly size=30> \uXXXX (JS)<br>
+<input id=i5 readonly size=30> \u{XXXXX} (ES6)<br>
+<input id=i6 readonly size=30> selector (CSS)<br>
+<input id=i7 readonly size=30> querySelector (JS)
+<input id=i8 readonly size=30> URL-encoded<br>
+<input id=i9 readonly size=30> \xXX (UTF-8)<br>
+<input id=i10 readonly size=30> \OOO (UTF-8)<br>
+<input id=i11 readonly size=30> Base64 (UTF-8)<br>
+<input id=i12 readonly size=30> Quoted-printable (UTF-8)<br>
+<input id=i13 readonly size=30> \xXX (ISO-8859-1)<br>
+<input id=i14 readonly size=30> \OOO (ISO-8859-1)<br>
+<input id=i15 readonly size=30> Base64 (ISO-8859-1)<br>
+<input id=i16 readonly size=30> Quoted-printable (ISO-8859-1)<br>
 <script>
-
-// Convert plain text in other formats for the web
-// todo: finish astral unicode support (xXX, OOO, base64) -- 𝌆
-// todo: avoid to escape EVERYTHING in css/js selectors.
-
 oninput=function(){
-  
-  // Initialize converted strings
-  A=B=C=D=E=F=G=H=I='';
-  
-  // Initialize hex (x), minihex (m), surrogate-free minihex (sfm), surrogate-free integer (sfn), integer (n) and octal (o) values for each char
-  x=[];m=[];n=[];sfm=[];sfn=[];o=[];
-  
-  // Loop on chars
-  for(z in v=p.value){
-    
-    // Update x, m, n, o, s, sfn, sfm
-    x[z]=(("000"+(m[z]=(n[z]=v.charCodeAt(z)).toString(16))).slice(-4));
-    o[z]=n[z].toString(8);
-    
-    // Gather surrogate pairs into unique code points
-    if(n[z]>=0xD800&&n[z]<=0xDBFF){
-      tmp=(n[z]-0xD800)*0x400+v.charCodeAt(z+1)-0xDC00+0x10000;
-      sfn.push(tmp);
-      sfm.push(tmp.toString(16));
-    }
-    else if((n[z]&0xFC00)!=0xDC00){
-      sfn.push(n[z]);
-      sfm.push(m[z]);
-    }
-    
-    // Update inputs values
-    A+="\\u"+x[z];
-    if(sfn[z])B+="&#"+sfn[z]+";";
-    if(sfm[z])C+="&#x"+sfm[z]+";";
-    D+="\\x"+m[z];
-    E+="\\"+o[z];
-    // F todo
-    // G not todo
-    H+="#\\"+m[z]+" ";
-    I+="#\\\\"+m[z]+" ";
-  }
-  
-  // Update inputs
-  a.value=A;
-  b.value=B;
-  c.value=C;
-  d.value=D;
-  e.value=E;
-  try{f.value=btoa(v)}catch(e){};
-  g.value=encodeURIComponent(v);
-  h.value=H + "{ }";
-  i.value='"' + I + '"';
+  // To code golf :)
 }
 </script>

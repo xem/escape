@@ -1,12 +1,165 @@
 <meta charset=utf-8>
+<style>
+h1{font-size:5em;margin:0}
+th{text-align:right}
+abbr{cursor:help;border-bottom:1px dashed}
+input{width:400px}
+</style>
 <a href=//github.com/xem/miniEscaper><img style="position:absolute;top:0;right:0;border:0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 <center>
-<h1>MiniEscaper</h1>
-String escaper for the Web
+<h1>␛🐒</h1>
+A tiny string escaper for the Web
 <br>inspired by <a href=//0xcc.net/jsescape/>jsescapes</a> and <a href=//mothereff.in/css-escapes>cssescapes</a>
 <br>more info in <a href=//gist.github.com/xem/b33906eaf62388ee7b1c>this article</a>
 <br>
 <br>
-<iframe width=450 height=450 src=miniescaper.html frameBorder=0></iframe>
+<table>
+<tr><th>Plain text<td><input id=i1>
+<tr><th>&nbsp;
+<tr><th><abbr title="String escaped in decimal for HTML/XML">&#DDDD;<td><input id=i2 readonly>
+<tr><th><abbr title="String escaped in hexadecimal for HTML/XML">&#xXXXX;<td><input id=i3 readonly>
+<tr><th><abbr title="String escaped in hexadecimal for JavaScript">\uXXXX<td><input id=i4 readonly>
+<tr><th><abbr title="String escaped in hexadecimal for JavaScript (ES6)">\u{XXXXX}<td><input id=i5 readonly>
+<tr><th><abbr title="String escaped for ids and classes in CSS selectors">#\XXXX&nbsp;<td><input id=i6 readonly>
+<tr><th><abbr title="String escaped for ids and classes in JavaScript querySelector() / querySelectorAll()">#\\XXXX&nbsp;<td><input id=i7 readonly>
+<tr><th><abbr title="UTF-8 byte-sequence escaped for URLs/URIs">%XX<td><input id=i8 readonly>
+<tr><th><abbr title="UTF-8 byte-sequence escaped in hexadecimal for JavaScript">\xXX<td><input id=i9 readonly>
+<tr><th><abbr title="UTF-8 byte-sequence escaped in octal for for JavaScript">\OOO<td><input id=i10 readonly>
+<tr><th><abbr title="UTF-8 byte-sequence escaped in quoted-printable characters for HTTP headers">=XX<td><input id=i11 readonly>
+<tr><th><abbr title="UTF-8 byte-sequence escaped in base64 for JavaScript, data-URIs and HTTP headers">Base64<td><input id=i12 readonly>
+<!--tr><td><input id=i13 readonly><td>\xXX (ISO-8859-1)
+<tr><td><input id=i14 readonly><td>\OOO (ISO-8859-1)
+<tr><td><input id=i15 readonly><td>Base64 (ISO-8859-1)
+<tr><td><input id=i16 readonly><td>Quoted-printable (ISO-8859-1)-->
+</table>
+<script>
+
+// Focus on the first input
+i1.focus();
+
+
+// Byte array to base64 converter (https://gist.github.com/jonleighton/958841)
+function base64(array) {
+var base64 = ''
+var encodings = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+
+var byteLength = array.length
+var byteRemainder = byteLength % 3
+var mainLength = byteLength - byteRemainder
+ 
+var a, b, c, d
+var chunk
+ 
+// Main loop deals with bytes in chunks of 3
+for (var i = 0; i < mainLength; i = i + 3) {
+// Combine the three bytes into a single integer
+chunk = (array[i] << 16) | (array[i + 1] << 8) | array[i + 2]
+ 
+// Use bitmasks to extract 6-bit segments from the triplet
+a = (chunk & 16515072) >> 18 // 16515072 = (2^6 - 1) << 18
+b = (chunk & 258048) >> 12 // 258048 = (2^6 - 1) << 12
+c = (chunk & 4032) >> 6 // 4032 = (2^6 - 1) << 6
+d = chunk & 63 // 63 = 2^6 - 1
+ 
+// Convert the raw binary segments to the appropriate ASCII encoding
+base64 += encodings[a] + encodings[b] + encodings[c] + encodings[d]
+}
+ 
+// Deal with the remaining bytes and padding
+if (byteRemainder == 1) {
+chunk = array[mainLength]
+ 
+a = (chunk & 252) >> 2 // 252 = (2^6 - 1) << 2
+ 
+// Set the 4 least significant bits to zero
+b = (chunk & 3) << 4 // 3 = 2^2 - 1
+ 
+base64 += encodings[a] + encodings[b] + '=='
+} else if (byteRemainder == 2) {
+chunk = (array[mainLength] << 8) | array[mainLength + 1]
+ 
+a = (chunk & 64512) >> 10 // 64512 = (2^6 - 1) << 10
+b = (chunk & 1008) >> 4 // 1008 = (2^6 - 1) << 4
+ 
+// Set the 2 least significant bits to zero
+c = (chunk & 15) << 2 // 15 = 2^4 - 1
+ 
+base64 += encodings[a] + encodings[b] + encodings[c] + '='
+}
+return base64
+}
+
+
+// Convert the input in 11 other formats
+oninput=function(){
+  
+  // Reset inputs 4, 6, 7
+  i4.value=i6.value=i7.value="";
+  
+  // Initialize charCode (cc), charCode hex (x), charCode hex with padding (p), codePoint decimal for HTML (d), codePoint hex for HTML (c), codePoint hex for JS (c2), and byte-sequence-as-URL (b) values for each char of the input
+  var cc=[],x=[],p=[],d="",c="",c2="",b="";
+  
+  // Tmp vars
+  var a,i,t,u,v,w;
+  
+  // Loop on the input chars
+  for(i in v=i1.value){
+
+    // Update n, x and p
+    p[i]=(1e3+(x[i]=(u=v[a="charCodeAt"](i)).toString(16))).slice(-4);
+    
+    // Gather surrogate pairs into unique code points, update d, c, b
+    if(u>=0xD800&&u<=0xDBFF){
+      t=(u-0xD800)*0x400+v[a](i+1)-0xDC00+0x10000;
+      d+="&#"+t+";";
+      w=t.toString(16);
+      c+="&#x"+w+";";
+      c2+="\\u{"+w+"}";
+      console.log(String.fromCharCode(u,v[a](i+1)));
+      b+=encodeURI(String.fromCharCode(u,v[a](i+1)));
+    }
+    else if((u&0xFC00)!=0xDC00){
+      d+="&#"+u+";";
+      c+="&#x"+x[i]+";";
+      c2+="\\u{"+x[i]+"}";
+      b+=u<0x7f?"%"+(10+x[i]).slice(-2):encodeURI(v[i]);
+    }
+    
+    // String escape (charCodes, hex, JS)
+    i4.value+="\\u"+p[i];
+    
+    // String escape (charCodes, hex, CSS selectors)
+    i6.value+="#\\"+p[i]+" ";
+    
+    // String escape (charCodes, hex, JS selectors)
+    i7.value+="#\\\\"+p[i]+" ";
+    
+  }
+  
+  // String escape (codePoints, decimal, HTML)
+  i2.value=d;
+  
+  // String escape (codePoints, hex, HTML)
+  i3.value=c;
+  
+  // String escape (codePoints, hex, JS)
+  i5.value=c2;
+  
+  // Byte-sequence escape (URL)
+  i8.value=b;
+  
+  // Byte-sequence escape (hex)
+  i9.value=b.replace(/%/g,"\\x");
+  
+  // Byte-sequence escape (octal)
+  i10.value=b.replace(/%/g,"\\").replace(/(\w\w)/g,function(a){cc.push(t=parseInt(a,16));return t.toString(8)});
+  
+  // Byte-sequence escape (quote-printable)
+  i11.value=b.replace(/%/g,"=");
+  
+  // Byte-sequence escape (base64)
+  i12.value=base64(cc);
+}
+</script>
 <br>
 © 2014 - <a href=//xem.github.io>xem</a>

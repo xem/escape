@@ -1,1 +1,1 @@
-http://xem.github.io/miniEscaper
+http://xem.github.io/escape

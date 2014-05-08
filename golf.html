@@ -1,0 +1,115 @@
+<input id=a> Plain text<form id=f><script>
+
+// ids:
+// a: input string
+// f: form 
+
+// Load input from hash
+a.value=location.hash.slice(1);
+
+// Add the new fields in the form
+// Temp vars: b, i
+// ids: i0 - i9
+for(i in b=[
+  '<abbr title="String escaped in decimal for HTML/XML">&#DDDDD;',
+  '<abbr title="String escaped in hexadecimal for HTML/XML">&#xXXXX;',
+  '<abbr title="String escaped in hexadecimal for JavaScript">\\uXXXX',
+  '<abbr title="String escaped in hexadecimal for JavaScript (ES6)">\\u{XXXXX}',
+  '<abbr title="String escaped for ids and classes in CSS selectors">#\\XXXX',
+  '<abbr title="UTF-8 byte-sequence escaped in hexadecimal for URIs">%XX',
+  '<abbr title="UTF-8 byte-sequence escaped in hexadecimal for JavaScript">\\xXX',
+  '<abbr title="UTF-8 byte-sequence escaped in octal for for JavaScript">\\OOO',
+  '<abbr title="UTF-8 byte-sequence escaped in quoted-printable characters for HTTP headers">=XX',
+  "Base64"]){
+  f.innerHTML+="<br><input id=i"+i+" readonly> "+b[i];
+}
+
+// On load, on input: convert
+(oninput=function(){
+
+  // Reset the form
+  f.reset();
+  
+  // Store input string in b
+  // Update the hash
+  location.hash=b=a.value;
+  
+  // j is the string that will be converted to base64 (i9)
+  j="";
+  
+  // Loop on the chars of the input string
+  for(i=0;i<b.length;i++){
+  
+    // Store current charCode in c
+    // Store "charCodeAt" in d
+    // Store 4-char current charCode zero-padded hex value in e
+    // Store current codePoint in g
+    e=(1e3+((g=c=b[d="charCodeAt"](i)).toString(16))).slice(-4);
+    
+    // Store current unicode char in k
+    k=b[i];
+    
+    // Update i2 and i4 with g
+    i2.value+="\\u"+e;
+    i4.value+="#\\"+e+" ";
+    
+    // If current char is a high surrogate
+    if((c&64512)==55296){
+      
+      // Update codePoint
+      g=(g-55296)*1024+b[d](i+1)+9216;
+      
+      // Update unicode char
+      k+=b[i+1];
+    }
+    
+    // If current char is not a low surrogate
+    if((c&64512)!=56320){
+    
+      // Update i0 with the codePoint
+      i0.value+="&#"+g+";";
+      
+      // Update i1 and i3 with h (g in hexadecimal)
+      i1.value+="&#x"+(h=g.toString(16))+";";
+      i3.value+="\\u{"+(h)+"}";
+      
+      // n: the bytes array for the current codePoint
+      n=[];
+      
+      // If the current charCode takes one byte
+      if(g<255){
+        n=[g];
+      }
+      
+      // for 2,3,4 bytes
+      else{
+        encodeURI(k).replace(/(\w\w)/g,function(a){n.push(parseInt(a,16))});
+      }
+      
+      // Loop on the bytes array
+      for(l in n){
+      
+        // Update i5, i6, i8
+        // Store 2-char zero-padded hex byte in m
+        i5.value+="%"+(m=(0+(n[l].toString(16))).slice(-2));
+        i6.value+="\\x"+m;
+        i8.value+="="+m;
+        
+        // Update i7
+        i7.value+="\\"+n[l].toString(8);
+        
+        // Update j
+        j+=String.fromCharCode(n[l]);
+      }
+    }
+  }
+  
+  // Update i9
+  //i9.value=j;
+  i9.value=btoa(j);
+  
+  // Focus on the input so we can continue typing
+  a.focus();
+  
+})()
+</script>

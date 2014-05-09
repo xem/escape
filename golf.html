@@ -1,4 +1,4 @@
-<input id=a> Plain text<form id=f><script>
+<input id=a size=50> Plain text<form id=f><script>
 
 // ids:
 // a: input string
@@ -11,17 +11,17 @@ a.value=location.hash.slice(1);
 // Temp vars: b, i
 // ids: i0 - i9
 for(i in b=[
-  '<abbr title="String escaped in decimal for HTML/XML">&#DDDDD;',
-  '<abbr title="String escaped in hexadecimal for HTML/XML">&#xXXXX;',
-  '<abbr title="String escaped in hexadecimal for JavaScript">\\uXXXX',
-  '<abbr title="String escaped in hexadecimal for JavaScript (ES6)">\\u{XXXXX}',
-  '<abbr title="String escaped for ids and classes in CSS selectors">#\\XXXX',
-  '<abbr title="UTF-8 byte-sequence escaped in hexadecimal for URIs">%XX',
-  '<abbr title="UTF-8 byte-sequence escaped in hexadecimal for JavaScript">\\xXX',
-  '<abbr title="UTF-8 byte-sequence escaped in octal for for JavaScript">\\OOO',
-  '<abbr title="UTF-8 byte-sequence escaped in quoted-printable characters for HTTP headers">=XX',
+  '&#DDDDD; <abbr title="String escaped in decimal for HTML/XML">?',
+  '&#xXXXX; <abbr title="String escaped in hexadecimal for HTML/XML">?',
+  '\\uXXXX <abbr title="String escaped in hexadecimal for JavaScript">?',
+  '\\u{XXXXX} <abbr title="String escaped in hexadecimal for JavaScript (ES6)">?',
+  '#\\XXXX <abbr title="String escaped for ids and classes in CSS selectors">?',
+  '%XX <abbr title="UTF-8 byte-sequence escaped in hexadecimal for URIs">?',
+  '\\xXX <abbr title="UTF-8 byte-sequence escaped in hexadecimal for JavaScript">?',
+  '\\OOO <abbr title="UTF-8 byte-sequence escaped in octal for for JavaScript">?',
+  '=XX <abbr title="UTF-8 byte-sequence escaped in quoted-printable characters for HTTP headers">?',
   "Base64"]){
-  f.innerHTML+="<br><input id=i"+i+" readonly> "+b[i];
+  f.innerHTML+="<br><input size=50 id=i"+i+" readonly> "+b[i];
 }
 
 // On load, on input: convert

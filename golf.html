@@ -54,7 +54,9 @@ for(i in b=[
     i4.value+="#\\"+e+" ";
     
     // If current char is a high surrogate
-    if((c&64512)==55296){
+    // and next char is a low surrogate
+    if((c&64512)==55296&&((b[d](i+1)&64512)==56320)){
+      
       
       // Update codePoint
       g=(g-55296)*1024+b[d](i+1)+9216;

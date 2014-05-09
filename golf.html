@@ -47,26 +47,38 @@ for(i in b=[
     e=(1e3+((g=c=b[d="charCodeAt"](i)).toString(16))).slice(-4);
     
     // Store current unicode char in k
-    k=b[i];
+    k=k2=k3=b[i];
     
     // Update i2 and i4 with g
     i2.value+="\\u"+e;
     i4.value+="#\\"+e+" ";
     
     // If current char is a high surrogate
-    // and next char is a low surrogate
-    if((c&64512)==55296&&((b[d](i+1)&64512)==56320)){
+    if((c&64512)==55296){
+    
+      // and next char is a low surrogate
+      if((b[d](i+1)&64512)==56320){
       
+        // Update codePoint
+        g=(g-55296)*1024+b[d](i+1)+9216;
+        
+        // Update unicode char
+        k+=b[i+1];
+      }
       
-      // Update codePoint
-      g=(g-55296)*1024+b[d](i+1)+9216;
-      
-      // Update unicode char
-      k+=b[i+1];
+      // If next char is not a low surrogate, use a dummy low surrogate
+      else{
+        k2=k+"\uDC00";
+      }
     }
     
-    // If current char is not a low surrogate
-    if((c&64512)!=56320){
+    // If current char is a low surrogate and previous char is not a high surrogate, use a dummy high surrogate
+    else if(((c&64512)==56320&&b[d](i-1)&64512)!=55296){
+      k3=String.fromCharCode(0xD800,c);
+    }
+    
+    // ignore low surrogate following a high surrogate
+    if(!((c&64512)==56320&&(b[d](i-1)&64512)==55296)){
     
       // Update i0 with the codePoint
       i0.value+="&#"+g+";";
@@ -85,7 +97,21 @@ for(i in b=[
       
       // for 2,3,4 bytes
       else{
-        encodeURI(k).replace(/(\w\w)/g,function(a){n.push(parseInt(a,16))});
+        
+        // Lone high surrogate
+        if(k!=k2){
+          encodeURI(k2).slice(6).replace(/(\w\w)/g,function(a){n.push(parseInt(a,16))});
+        }
+        
+        // Lone low surrogate
+        else if(k!=k3){
+          encodeURI(k3).slice(-6).replace(/(\w\w)/g,function(a){n.push(parseInt(a,16))});
+        }
+        
+        // Surrogate pair
+        else{
+          encodeURI(k).replace(/(\w\w)/g,function(a){n.push(parseInt(a,16))});
+        }
       }
       
       // Loop on the bytes array

@@ -1,43 +1,137 @@
 <meta charset=utf-8>
 <title>EscApe</title>
 <style>
-h1{font-size:5em;margin:0}
-h2{margin:0}
-th{text-align:right}
-abbr{cursor:help;border-bottom:1px dashed}
-input{width:400px}
+h1 { font-size: 70px; margin: 0; }
+h2 { font-size: 20px; margin: 0; }
+body { font-family: arial; width: 90%; margin: 0 auto }
+table { width: 100%; border-collapse: collapse; }
+td { width: 300px; text-align: center; padding: 5px; background: #f0f0f0; font-size: 12px; vertical-align: top; }
+input, textarea { width: 100%; height: 60%; }
 </style>
 <a href=//github.com/xem/escape><img style="position:absolute;top:0;right:0;border:0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 <center>
 <h1>&#9243;&#128018;</h1>
 <h2>(EscApe)</h2>
-A tiny string escaper for the Web
-<br>Golfed by <b>xem</b> and <b>Nickdouille</b>
-<br>inspired by <a href=//0xcc.net/jsescape/>jsescapes</a> and <a href=//mothereff.in/css-escapes>cssescapes</a>
-<br>more info in <a href=//gist.github.com/xem/b33906eaf62388ee7b1c>this article (still a draft)</a>
+<br>
+<b>A <a href=//gist.github.com/xem/1d646596b2d9c80f2769>code-golfed</a> tool converting any Unicode string in 22 different formats in real time.</b>
 <br>
 <br>
-<br>
-<br>
-<b>Demo:</b>
-<br>
-<br>
-<iframe src="golf.html#try me!" frameborder=no width=450 height=350></iframe>
-<br>
-<br>
-<b>Source:</b>
-<br>
-<br>
-<a href=golf.html>Commented and full-featured (4kb)</a>
-<br>
-<br>
-<a href=golf.min.html>Golfed (825b)</a>
-<br>
-<br>
-<a href=golf.min.pack.html>Packed (633b)</a>
-<br>
-<br>
-<br>
+<table border>
+  <tr>
+    <th>Source
+    <th>Intermediate formats
+    <th>Target formats
+  <tr>
+    <td rowspan=18>Plain text<br><textarea rows=18 id=i1 oninput='charcodes=i2.value=A(value);i5.value=D(charcodes);codepoints=i3.value=B(value);i6.value=E(codepoints);i7.value=F(codepoints);i8.value=G(codepoints);i9.value=H(codepoints);i10.value=I(codepoints);i11.value=J(value);i12.value=K(value);i13.value=L(value);i14.value=M(value);bytes=i4.value=C(value);i15.value=N(bytes);i16.value=O(bytes);i17.value=P(bytes);i18.value=Q(bytes);i19.value=R(bytes);i20.value=S(bytes);i21.value=T(bytes);i22.value=U(bytes)'>a©€💩</textarea>
+    <td>UTF-16 charCodes<br><textarea readonly id=i2 rows=1></textarea>
+    <td>Escaped JS string<br><textarea readonly id=i5 rows=1></textarea>
+  <tr>
+    <td rowspan=9>Unicode code points<br><textarea readonly rows=9 id=i3></textarea>
+    <td>Decimal HTML entities<br><textarea readonly id=i6 rows=1></textarea>
+  <tr>
+    <td>Hexadecimal HTML entities<br><textarea readonly id=i7 rows=1></textarea>
+  <tr>
+    <td>CSS selector / font-family<br><textarea readonly id=i8 rows=1></textarea>
+  <tr>
+    <td>CSS unicode-range<br><textarea readonly id=i9 rows=1></textarea>
+  <tr>
+    <td>JS string (ES6)<br><textarea readonly id=i10 rows=1></textarea>
+  <tr>
+    <td>Punycode<br><textarea readonly id=i11 rows=1></textarea>
+  <tr>
+    <td>IDN<br><textarea readonly id=i12 rows=1></textarea>
+  <tr>
+    <td>UTF-7 <br><textarea readonly id=i13 rows=1></textarea>
+  <tr>
+    <td>UTF-7 (IMAP)<br><textarea readonly id=i14 rows=1></textarea>
+  <tr>
+    <td rowspan=8>UTF-8 bytes<br><textarea readonly rows=9 id=i4></textarea>
+    <td>Hexadecimal<br><textarea readonly id=i15 rows=1></textarea>
+  <tr>
+    <td>Octal<br><textarea readonly id=i16 rows=1></textarea>
+  <tr>
+    <td>URL<br><textarea readonly id=i17 rows=1></textarea>
+  <tr>
+    <td>Q / Quoted-printable<br><textarea readonly id=i18 rows=1></textarea>
+  <tr>
+    <td>MIME + Q<br><textarea readonly id=i19 rows=1></textarea>
+  <tr>
+    <td>Base64<br><textarea readonly id=i20 rows=1></textarea>
+  <tr>
+    <td>MIME + Base64<br><textarea readonly id=i21 rows=1></textarea>
+  <tr>
+    <td>DataURI + base64<br><textarea readonly id=i22 rows=1></textarea>
 </table>
+<script src=//raw.githubusercontent.com/bestiejs/punycode.js/master/punycode.min.js></script>
+<script src=//raw.githubusercontent.com/whiteout-io/utf7/master/src/utf7.js></script>
+<script>
+// Demo
+onload=function(){i1.oninput()}
+
+// Plain text => array of charCodes
+A=function(b,a,c){a=[];for(c in b)a[c]=b.charCodeAt(c);return a};
+
+// Plain text => array of codePoints
+B=function(b,a,c){a=[];for(c=0;c<b.length;c++)55296==(b.charCodeAt(c)&64512)?(a.push(1024*(b.charCodeAt(c)-55296)+b.charCodeAt(c+1)+9216),c++):a.push(b.charCodeAt(c));return a};
+
+// Plain text => array of UTF-8 bytes
+C=function(b,a,c,n){a=[];for(c=0;c<b.length;c++)256>b.charCodeAt(c)?a.push(b.charCodeAt(c)):(n=b.charAt(c),55296==(b.charCodeAt(c)&64512)&&(n=b.substr(c,2),c++),encodeURI(n).replace(/\w+/g,function(b){a.push(parseInt(b,16))}));return a};
+
+// Array of CharCodes => JS string
+D=function(b,a,c){a="";for(c in b)a+="\\u"+(1E3+b[c].toString(16)).slice(-4);return a};
+
+// Array of CodePoints => Decimal HTML entities
+E=function(b,a,c){a="";for(c in b)a+="&#"+b[c]+";";return a};
+
+// Array of CodePoints => Hexadecimal HTML entities
+F=function(b,a,c){a="";for(c in b)a+="&#x"+b[c].toString(16)+";";return a};
+
+// Array of CodePoints => CSS selector / font-family
+G=function(b,a,c){a="";for(c in b)a+="\\"+b[c].toString(16)+" ";return a};
+
+// Array of CodePoints => CSS unicode-range
+H=function(b,a,c){a="";for(c in b)a+="U+"+b[c].toString(16)+",";return a.slice(0,-1)};
+
+// Array of CodePoints => ES6 string
+I=function(b,a,c){a="";for(c in b)a+="\\u{"+b[c].toString(16)+"}";return a};
+
+// Array of CodePoints => Punycode
+J=function(b){return punycode.encode(b)};
+
+// Array of CodePoints => IDN
+K=function(b){return punycode.toASCII(b)};
+
+// Array of CodePoints => UTF-7
+L=function(b){return utf7.encode(b)};
+
+// Array of CodePoints => UTF-7 (IMAP)
+M=function(b){return utf7.imap.encode(b)};
+
+// Array of UTF-8 bytes => Hexadecimal
+N=function(b,a,c){a="";for(c in b)a+="\\x"+b[c].toString(16);return a};
+
+// Array of UTF-8 bytes => Octal
+O=function(b,a,c){a="";for(c in b)a+="\\"+b[c].toString(8);return a};
+
+// Array of UTF-8 bytes => URL encode
+P=function(b,a,c){a="";for(c in b)a+="%"+b[c].toString(16);return a};
+
+// Array of UTF-8 bytes => Q / Quoted-printable
+Q=function(b,a,c){a="";for(c in b)a+="="+b[c].toString(16);return a};
+
+// Array of UTF-8 bytes => MIME + Q / Quoted-printable
+R=function(b,a,c){a="=?UTF-8?Q?";for(c in b)a+="="+b[c].toString(16);return a+"?="};
+
+// Array of UTF-8 bytes => Base64
+S=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)};
+
+// Array of UTF-8 bytes => MIME + Base64
+T=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return"=?UTF-8?B?"+btoa(a)+"?="};
+
+// Array of UTF-8 bytes => data-URI + Base64
+U=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return"data:;charset=utf-8;base64,"+btoa(a)};
+</script>
 <br>
 &#169; 2014 - <a href=//xem.github.io>xem</a>
+<br>
+<br>

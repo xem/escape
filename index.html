@@ -27,10 +27,10 @@ input, textarea { width: 100%; height: 60%; }
     <th>Target formats
   <tr>
     <td rowspan=19>Plain text<br><textarea rows=18 id=i1 oninput='charcodes=i2.value=A(value);i5.value=D(charcodes);codepoints=i3.value=B(value);i6.value=E(codepoints);i7.value=F(codepoints);i8.value=G(codepoints);i9.value=H(codepoints);i10.value=I(codepoints);i11.value=J(codepoints);i12.value=K(value);i13.value=L(value);i14.value=M(value);bytes=i4.value=C(value);i15.value=N(value);i16.value=O(bytes);i17.value=P(bytes);i18.value=Q(bytes);i19.value=R(bytes);i20.value=S(bytes);i21.value=T(bytes);i22.value=U(bytes);i23.value=V(bytes)'>a©€💩</textarea>
-    <td>UTF-16 charCodes<br><textarea readonly id=i2 rows=2></textarea>
-    <td>Escaped JS string<br><textarea readonly id=i5 rows=2></textarea>
+    <td>UTF-16 charCodes<br><textarea id=i2 rows=2 oninput='i1.value=a(eval("["+value+"]"));i1.oninput()'></textarea>
+    <td>Escaped JS string<br><textarea id=i5 rows=2></textarea>
   <tr>
-    <td rowspan=10>Unicode code points<br><textarea readonly rows=9 id=i3></textarea>
+    <td rowspan=10>Unicode code points<br><textarea rows=9 id=i3 oninput='i1.value=b(eval("["+value+"]"));i1.oninput()'></textarea>
     <td>Decimal HTML entities<br><textarea readonly id=i6 rows=2></textarea>
   <tr>
     <td>Hexadecimal HTML entities<br><textarea readonly id=i7 rows=2></textarea>
@@ -51,7 +51,7 @@ input, textarea { width: 100%; height: 60%; }
   <tr>
     <td>UTF-7 (IMAP)<br><textarea readonly id=i15 rows=2></textarea>
   <tr>
-    <td rowspan=8>UTF-8 bytes<br><textarea readonly rows=9 id=i4></textarea>
+    <td rowspan=8>UTF-8 bytes<br><textarea rows=9 id=i4 oninput='i1.value=c(eval("["+value+"]"));i1.oninput()'></textarea>
     <td>Hexadecimal<br><textarea readonly id=i16 rows=2></textarea>
   <tr>
     <td>Octal<br><textarea readonly id=i17 rows=2></textarea>
@@ -73,6 +73,8 @@ input, textarea { width: 100%; height: 60%; }
 // Demo
 onload=function(){i1.oninput()}
 
+/** Encoders **/
+
 // Plain text => array of charCodes
 A=function(b,a,c){a=[];for(c in b)a[c]=b.charCodeAt(c);return a}
 
@@ -80,7 +82,7 @@ A=function(b,a,c){a=[];for(c in b)a[c]=b.charCodeAt(c);return a}
 B=function(b,a,c,d){a=[];for(c=0;c<b.length;c++)54==(b[d="charCodeAt"](c)>>10)?(a.push(1024*(b[d](c)-55296)+b[d](c+1)+9216),c++):a.push(b[d](c));return a}
 
 // Plain text => array of UTF-8 bytes
-C=function(b,a,c,d,n){a=[];for(c=0;c<b.length;c++)256>b[d="charCodeAt"](c)?a.push(b[d](c)):(n=b[c],55296==(b[d](c)&64512)&&(n=b.substr(c,2),c++),encodeURI(n).replace(/\w+/g,function(b){a.push(parseInt(b,16))}));return a}
+C=function(b,a,c,d,n){a=[];for(c=0;c<b.length;c++)128>b[d="charCodeAt"](c)?a.push(b[d](c)):(n=b[c],55296==(b[d](c)&64512)&&(n=b.substr(c,2),c++),encodeURI(n).replace(/\w+/g,function(b){a.push(parseInt(b,16))}));return a}
 
 // Array of CharCodes => JS string
 D=function(b,a,c){a="";for(c in b)a+="\\u"+(1E3+b[c].toString(16)).slice(-4);return a}
@@ -138,6 +140,79 @@ U=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return"=?UTF-8?B?
 
 // Array of UTF-8 bytes => data-URI + Base64
 V=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return"data:;charset=utf-8;base64,"+btoa(a)}
+
+
+/** Decoders **/
+
+// Array of charCodes => Plain text
+a=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return a}
+
+// Array of codePoints => Plain text
+b=function(b,a,c){a="";for(c in b)if(b[c]>0xFFFF){a+=String.fromCharCode(Math.floor((b[c]-0x10000)/0x400)+0xD800);a+=String.fromCharCode((b[c]-0x10000)%0x400+0xDC00)}else{a+=String.fromCharCode(b[c])}return a}
+
+// Array of UTF-8 bytes => Plain text
+c=function(b,a,c){a="";for(c in b)a+="%"+b[c].toString(16);console.log(a);return decodeURI(a)}
+
+// JS string => Array of CharCodes
+d=function(b,a,c){}
+
+// Decimal HTML entities => Array of CodePoints 
+e=function(b,a,c){}
+
+// Hexadecimal HTML entities => Array of CodePoints 
+f=function(b,a,c){}
+
+// CSS selector / font-family => Array of CodePoints 
+g=function(b,a,c){}
+
+// CSS selector / font-family => Array of CodePoints 
+h=function(b,a,c){}
+
+// CSS unicode-range =>Array of CodePoints 
+i=function(b,a,c){}
+
+// ES6 string => Array of CodePoints 
+j=function(b,a,c){}
+
+// Punycode => Array of CodePoints 
+k=function(b){}
+
+// IDN => Array of CodePoints 
+l=function(b){}
+
+// UTF-7 => Array of CodePoints 
+m=function(b){}
+
+// UTF-7 (IMAP) => Array of CodePoints 
+n=function(b){}
+
+// Hexadecimal => Array of UTF-8 bytes 
+o=function(b,a,c){}
+
+// Octal => Array of UTF-8 bytes 
+p=function(b,a,c){}
+
+// URL encode => Array of UTF-8 bytes 
+q=function(b,a,c){}
+
+// Q / Quoted-printable => Array of UTF-8 bytes 
+r=function(b,a,c){}
+
+// MIME + Q / Quoted-printable => Array of UTF-8 bytes 
+s=function(b,a,c){}
+
+// Base64 => Array of UTF-8 bytes 
+t=function(b,a,c){}
+
+// MIME + Base64 => Array of UTF-8 bytes 
+u=function(b,a,c){}
+
+// data-URI + Base64 => Array of UTF-8 bytes 
+v=function(b,a,c){}
+
+
+
+
 </script>
 <br>
 &#169; 2014 - <a href=//xem.github.io>xem</a>

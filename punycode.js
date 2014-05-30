@@ -1,6 +1,5 @@
-/**
- * Bias adaptation function
- */
+/*
+// Bias adaptation function
 function z(delta, numPoints, firstTime) {
   var k = 0;
   delta = firstTime ? Math.floor(delta / 700) : delta >> 1;
@@ -9,7 +8,7 @@ function z(delta, numPoints, firstTime) {
     delta = Math.floor(delta / 35);
   }
   return Math.floor(k + (35 + 1) * delta / (delta + 38));
-}
+}*/
 
 //Converts a Punycode string of ASCII-only symbols to a array of Unicode codepoints
 /*
@@ -102,39 +101,20 @@ function k(input) {
 */
 
 // Converts a array of Unicode codepoints to a Punycode string of ASCII-only symbols.
-function K(input) {
-  var n,
-      delta,
-      handledCPCount,
-      basicLength,
-      bias,
-      j,
-      m,
-      q,
-      k,
-      t,
-      currentValue,
-      output = [],
-      // `inputLength` will hold the number of code points in `input`.
-      inputLength,
-      // Cached calculation results
-      handledCPCountPlusOne,
-      baseMinusT,
-      qMinusT;
+window.K=function(input,n,delta,handledCPCount,basicLength,bias,j,m,q,k,t,currentValue,output,inputLength,handledCPCountPlusOne,baseMinusT,qMinusT,z,digit,a,b) {
 
-  // Cache the length
-  inputLength = input.length;
+  a=String.fromCharCode;
+  b=Math.floor;
+  output = [];
 
   // Initialize the state
   n = 128;
-  delta = 0;
   bias = 72;
 
   // Handle the basic code points
-  for (j = 0; j < inputLength; ++j) {
-    currentValue = input[j];
-    if (currentValue < 0x80) {
-      output.push(String.fromCharCode(currentValue));
+  for (j = delta = 0; j < (inputLength = input.length); ++j) {
+    if ((currentValue = input[j]) < 0x80) {
+      output.push(a(currentValue));
     }
   }
 
@@ -153,41 +133,43 @@ function K(input) {
 
     // All non-basic code points < n have been handled already. Find the next
     // larger one:
-    for (m = 0x7FFFFFFF, j = 0; j < inputLength; ++j) {
-      currentValue = input[j];
-      if (currentValue >= n && currentValue < m) {
+    for (m = 1e9, j = 0; j < inputLength; ++j) {
+      if ((currentValue = input[j]) >= n && currentValue < m) {
         m = currentValue;
       }
     }
 
     // Increase `delta` enough to advance the decoder's <n,i> state to <m,0>,
     // but guard against overflow
-    handledCPCountPlusOne = handledCPCount + 1;
 
-    delta += (m - n) * handledCPCountPlusOne;
+    delta += (m - n) * (handledCPCountPlusOne = handledCPCount + 1);
     n = m;
 
     for (j = 0; j < inputLength; ++j) {
-      currentValue = input[j];
 
-      if (currentValue < n) ++delta;
+      if ((currentValue = input[j]) < n) ++delta;
 
       if (currentValue == n) {
         // Represent delta as a generalized variable-length integer
         for (q = delta, k = 36; ; k += 36) {
-          t = k <= bias ? 1 : (k >= bias + 26 ? 26 : k - bias);
-          if (q < t) {
+          if (q < (t = k <= bias ? 1 : (k >= bias + 26 ? 26 : k - bias))) {
             break;
           }
-          qMinusT = q - t;
-          baseMinusT = 36 - t;
-          digit = t + qMinusT % baseMinusT;
-          output.push(String.fromCharCode(digit + 22 + 75 * (digit < 26)));
-          q = Math.floor(qMinusT / baseMinusT);
+          digit = t + (qMinusT = q - t) % (baseMinusT = 36 - t);
+          output.push(a(digit + 22 + 75 * (digit < 26)));
+          q = b(qMinusT / baseMinusT);
         }
 
-        output.push(String.fromCharCode(q + 22 + 75 * (q < 26)));
-        bias = z(delta, handledCPCountPlusOne, handledCPCount == basicLength);
+        output.push(a(q + 22 + 75 * (q < 26)));
+
+        z = 0;
+        delta = (handledCPCount == basicLength) ? b(delta / 700) : delta >> 1;
+        delta += b(delta / handledCPCountPlusOne);
+        for (; delta > 455; z += 36) {
+          delta = b(delta / 35);
+        }
+        bias = b(z + (35 + 1) * delta / (delta + 38));
+
         delta = 0;
         ++handledCPCount;
       }

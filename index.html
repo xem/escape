@@ -26,9 +26,9 @@ input, textarea { width: 100%; height: 60%; }
     <th>Intermediate formats
     <th>Target formats
   <tr>
-    <td rowspan=19>Plain text<br><textarea rows=18 id=i1 oninput='charcodes=i2.value=A(value);i5.value=D(charcodes);codepoints=i3.value=B(value);i6.value=E(codepoints);i7.value=F(codepoints);i8.value=G(codepoints);i9.value=H(codepoints);i10.value=I(codepoints);i11.value=J(codepoints);i12.value=K(value);i13.value=L(value);i14.value=M(value);bytes=i4.value=C(value);i15.value=N(value);i16.value=O(bytes);i17.value=P(bytes);i18.value=Q(bytes);i19.value=R(bytes);i20.value=S(bytes);i21.value=T(bytes);i22.value=U(bytes);i23.value=V(bytes)'>a©€💩</textarea>
+    <td rowspan=19>Plain text<br><textarea rows=18 id=i1 oninput='charcodes=i2.value=A(value);i5.value=D(charcodes);codepoints=i3.value=B(value);i6.value=E(codepoints);i7.value=F(codepoints);i8.value=G(codepoints);i9.value=H(codepoints);i10.value=I(codepoints);i11.value=J(codepoints);i12.value=K(codepoints);i13.value=L(codepoints);i14.value=M(value);bytes=i4.value=C(value);i15.value=N(value);i16.value=O(bytes);i17.value=P(bytes);i18.value=Q(bytes);i19.value=R(bytes);i20.value=S(bytes);i21.value=T(bytes);i22.value=U(bytes);i23.value=V(bytes)'>a©€💩</textarea>
     <td>UTF-16 charCodes<br><textarea id=i2 rows=2 oninput='i1.value=a(eval("["+value+"]"));i1.oninput()'></textarea>
-    <td>Escaped JS string<br><textarea id=i5 rows=2></textarea>
+    <td>Escaped JS string / regex<br><textarea id=i5 rows=2></textarea>
   <tr>
     <td rowspan=10>Unicode code points<br><textarea rows=9 id=i3 oninput='i1.value=b(eval("["+value+"]"));i1.oninput()'></textarea>
     <td>Decimal HTML entities<br><textarea readonly id=i6 rows=2></textarea>
@@ -106,10 +106,11 @@ I=function(b,a,c){a="";for(c in b)a+="U+"+b[c].toString(16)+",";return a.slice(0
 J=function(b,a,c){a="";for(c in b)a+="\\u{"+b[c].toString(16)+"}";return a}
 
 // Array of CodePoints => Punycode
-K=function(b){return punycode.encode(b)}
+//see punycode.js
+//K=function(b){return punycode.encode(b)}
 
 // Array of CodePoints => IDN
-L=function(b){return punycode.toASCII(b)}
+L=function(b){return "xn--"+K(b)}
 
 // Array of CodePoints => UTF-7
 M=function(b){return utf7.encode(b)}

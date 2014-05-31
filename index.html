@@ -1,13 +1,12 @@
 <meta charset=utf-8>
 <title>EscApe</title>
-<script src=utf7.js></script>
 <style>
 h1 { font-size: 70px; margin: 0; }
 h2 { font-size: 20px; margin: 0; }
 body { font-family: arial; width: 90%; margin: 0 auto }
 table { width: 100%; border-collapse: collapse; }
 td { width: 300px; text-align: center; padding: 5px; background: #f0f0f0; font-size: 12px; vertical-align: top; }
-input, textarea { width: 100%; height: 60%; }
+input, textarea { width: 100%; }
 </style>
 <a href=//github.com/xem/escape><img style="position:absolute;top:0;right:0;border:0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 <center>
@@ -25,11 +24,15 @@ input, textarea { width: 100%; height: 60%; }
     <th>Intermediate formats
     <th>Target formats
   <tr>
-    <td rowspan=19>Plain text<br><textarea rows=18 id=i1 oninput='charcodes=i2.value=A(value);i5.value=D(charcodes);codepoints=i3.value=B(value);i6.value=E(codepoints);i7.value=F(codepoints);i8.value=G(codepoints);i9.value=H(codepoints);i10.value=I(codepoints);i11.value=J(codepoints);i12.value=K(codepoints);i13.value=L(codepoints);i14.value=M(value);i15.value=N(value);bytes=i4.value=C(value);i16.value=O(bytes);i17.value=P(bytes);i18.value=Q(bytes);i19.value=R(bytes);i20.value=S(bytes);i21.value=T(bytes);i22.value=U(bytes);i23.value=V(bytes)'>a©€💩</textarea>
-    <td>UTF-16 charCodes<br><textarea id=i2 rows=2 oninput='i1.value=a(eval("["+value+"]"));i1.oninput()'></textarea>
-    <td>Escaped JS string / regex<br><textarea id=i5 rows=2></textarea>
+    <td rowspan=19>Plain text<br><textarea rows=18 id=i1 oninput='charcodes=i2.value=A(value);i5.value=D(charcodes);i14.value=M(charcodes);i15.value=N(charcodes);codepoints=i3.value=B(value);i6.value=E(codepoints);i7.value=F(codepoints);i8.value=G(codepoints);i9.value=H(codepoints);i10.value=I(codepoints);i11.value=J(codepoints);i12.value=K(codepoints);i13.value=L(codepoints);bytes=i4.value=C(value);i16.value=O(bytes);i17.value=P(bytes);i18.value=Q(bytes);i19.value=R(bytes);i20.value=S(bytes);i21.value=T(bytes);i22.value=U(bytes);i23.value=V(bytes)'>a©€💩</textarea>
+    <td rowspan=3>UTF-16 charCodes<br><textarea id=i2 rows=9 oninput='i1.value=a(eval("["+value+"]"));i1.oninput()'></textarea>
+    <td>Escaped JS string / regex<textarea id=i5 rows=2></textarea>
   <tr>
-    <td rowspan=10>Unicode code points<br><textarea rows=9 id=i3 oninput='i1.value=b(eval("["+value+"]"));i1.oninput()'></textarea>
+    <td>UTF-7 <br><textarea readonly id=i14 rows=2></textarea>
+  <tr>
+    <td>UTF-7 (IMAP)<br><textarea readonly id=i15 rows=2></textarea>
+  <tr>
+    <td rowspan=8>Unicode code points<br><textarea rows=9 id=i3 oninput='i1.value=b(eval("["+value+"]"));i1.oninput()'></textarea>
     <td>Decimal HTML entities<br><textarea readonly id=i6 rows=2></textarea>
   <tr>
     <td>Hexadecimal HTML entities<br><textarea readonly id=i7 rows=2></textarea>
@@ -45,10 +48,6 @@ input, textarea { width: 100%; height: 60%; }
     <td>Punycode<br><textarea readonly id=i12 rows=2></textarea>
   <tr>
     <td>IDN<br><textarea readonly id=i13 rows=2></textarea>
-  <tr>
-    <td>UTF-7 <br><textarea readonly id=i14 rows=2></textarea>
-  <tr>
-    <td>UTF-7 (IMAP)<br><textarea readonly id=i15 rows=2></textarea>
   <tr>
     <td rowspan=8>UTF-8 bytes<br><textarea rows=9 id=i4 oninput='i1.value=c(eval("["+value+"]"));i1.oninput()'></textarea>
     <td>Hexadecimal<br><textarea readonly id=i16 rows=2></textarea>
@@ -86,6 +85,16 @@ C=function(b,a,c,d,n){a=[];for(c=0;c<b.length;c++)128>b[d="charCodeAt"](c)?a.pus
 // Array of CharCodes => JS string
 D=function(b,a,c){a="";for(c in b)a+="\\u"+(1E3+b[c].toString(16)).slice(-4);return a}
 
+// UTF-7
+// Ungolfed: http://xem.github.io/escape/utf7.js
+utf7=function(e,f,g,a,c,d,b){d=b="";e=e.concat(32);c=String.fromCharCode;for(g in e)a=e[g],32>a||125<a?d+=c(a>>8)+c(a&255):(d&&(b+=c(f)+btoa(d).replace(/=+$/,"")+"-",d=""),b=a==f?b+(c(f)+"-"):b+c(a));return b.slice(0,-1)}
+
+// Array of CharCodes => UTF-7
+M=function(b){return utf7(b,0x2B)}
+
+// Array of CharCodes => UTF-7 (IMAP)
+N=function(b){return utf7(b,0x26)}
+
 // Array of CodePoints => Decimal HTML entities
 E=function(b,a,c){a="";for(c in b)a+="&#"+b[c]+";";return a}
 
@@ -110,12 +119,6 @@ K=function(p,d,b,l,v,m,c,n,g,h,q,e,f,r,w,x,y,s,u,t,k){t=String.fromCharCode;k=Ma
 
 // Array of CodePoints => IDN
 L=function(b){return "xn--"+K(b)}
-
-// Array of CodePoints => UTF-7
-M=function(b){return utf7.encode(b)}
-
-// Array of CodePoints => UTF-7 (IMAP)
-N=function(b){return utf7.imap.encode(b)}
 
 // Array of UTF-8 bytes => Hexadecimal
 O=function(b,a,c){a="";for(c in b)a+="\\x"+b[c].toString(16);return a}

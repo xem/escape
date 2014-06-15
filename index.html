@@ -13,10 +13,10 @@ table table th { width: 30%; font: normal 12px arial; }
 <a href=//github.com/xem/escape><img style="position:absolute;top:0;right:0;border:0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 <center>
 <br>
-<img src=logo.png alt="&#9243;&#128018;">
+<img src=logo.png title="&#9243;&#128018;">
 <h2>(EscApe)</h2>
 <br>
-<b>A <a href=//gist.github.com/xem/1d646596b2d9c80f2769>code-golfed</a> tool converting any Unicode string in 28 different formats used on the Web.</b>
+<b>Convert any Unicode string in 33 different formats used on the Web.</b>
 <br>
 <br>
 <table border>
@@ -25,7 +25,7 @@ table table th { width: 30%; font: normal 12px arial; }
     <th width=25%>Intermediate formats
     <th width=50%>Target formats
   <tr>
-    <td rowspan=25 class=middle>Plain text<br><textarea rows=10 id=i1>a©€💩</textarea>
+    <td rowspan=27 class=middle>Plain text<br><textarea rows=10 id=i1>a©€💩</textarea>
     <td rowspan=5>UTF-16 BE charCodes<br><textarea id=i2 style=height:40px oninput='i1.value=a(eval("["+value+"]"));i1.oninput()'></textarea>
     <td><table><th>JS string / regex<td><textarea id=i6 style=height:20px></textarea></table>
   <tr>
@@ -80,6 +80,11 @@ table table th { width: 30%; font: normal 12px arial; }
     <td><table><th>Base64 (GB18030)<td><textarea readonly id=i30 style=height:20px></textarea></table>
   <tr>
     <td><table><th>DataURI + Base64 (GB18030)<td><textarea readonly id=i31 style=height:20px></textarea></table>
+  <tr>
+    <td rowspan=2>Windows-1252 bytes(compatible glyphs only)<textarea style=height:40px id=i32></textarea>
+    <td><table><th>Base64 (Windows-1252)<td><textarea readonly id=i33 style=height:20px></textarea></table>
+  <tr>
+    <td><table><th>DataURI + Base64 (Windows-1252)<td><textarea readonly id=i34 style=height:20px></textarea></table>
 </table>
 
 <script>
@@ -120,6 +125,10 @@ onload=i1.oninput=function(){
   gb=i29.value=e29(codepoints);
   i30.value=e30(gb);
   i31.value=e31(gb);
+  
+  latin1=i32.value=e32(codepoints);
+  i33.value=e33(latin1);
+  i34.value=e34(latin1);
 }
 
 /** Encoders **/
@@ -220,6 +229,16 @@ e30=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
 
 // Array of GB18030 bytes => data-URI + Base64
 e31=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return"data:;charset=gb18030;base64,"+btoa(a)}
+
+// Array of CodePoints => Array of Windows-1252 bytes
+windows1252index=[0x20AC,0x0081,0x201A,0x0192,0x201E,0x2026,0x2020,0x2021,0x02C6,0x2030,0x0160,0x2039,0x0152,0x008D,0x017D,0x008F,0x0090,0x2018,0x2019,0x201C,0x201D,0x2022,0x2013,0x2014,0x02DC,0x2122,0x0161,0x203A,0x0153,0x009D,0x017E,0x0178,0x00A0,0x00A1,0x00A2,0x00A3,0x00A4,0x00A5,0x00A6,0x00A7,0x00A8,0x00A9,0x00AA,0x00AB,0x00AC,0x00AD,0x00AE,0x00AF,0x00B0,0x00B1,0x00B2,0x00B3,0x00B4,0x00B5,0x00B6,0x00B7,0x00B8,0x00B9,0x00BA,0x00BB,0x00BC,0x00BD,0x00BE,0x00BF,0x00C0,0x00C1,0x00C2,0x00C3,0x00C4,0x00C5,0x00C6,0x00C7,0x00C8,0x00C9,0x00CA,0x00CB,0x00CC,0x00CD,0x00CE,0x00CF,0x00D0,0x00D1,0x00D2,0x00D3,0x00D4,0x00D5,0x00D6,0x00D7,0x00D8,0x00D9,0x00DA,0x00DB,0x00DC,0x00DD,0x00DE,0x00DF,0x00E0,0x00E1,0x00E2,0x00E3,0x00E4,0x00E5,0x00E6,0x00E7,0x00E8,0x00E9,0x00EA,0x00EB,0x00EC,0x00ED,0x00EE,0x00EF,0x00F0,0x00F1,0x00F2,0x00F3,0x00F4,0x00F5,0x00F6,0x00F7,0x00F8,0x00F9,0x00FA,0x00FB,0x00FC,0x00FD,0x00FE,0x00FF];
+e32=function(l,a,m,d,e){a=[];for(m in l)if(127>(d=l[m]))a.push(d);else if(-1!=(e=windows1252index.indexOf(d)))a.push(e+0x80);return a};
+
+// Array of Windows-1252 bytes => Base64
+e33=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
+
+// Array of Windows-1252 bytes => data-URI + Base64
+e34=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return"data:;base64,"+btoa(a)}
 
 
 /** Decoders **/

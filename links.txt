@@ -1,2 +1,0 @@
-http://www.whatwg.org/specs/web-apps/current-work/multipage/parsing.html#determining-the-character-encoding
-http://en.wikipedia.org/wiki/MIME#Difference_between_Q-encoding_and_quoted-printable

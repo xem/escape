@@ -10,6 +10,7 @@ input, textarea { width: 100%; }
 #a1, #a2 { height: 100px; }
 table a { float: right; text-decoration: none; }
 textarea { height: 90px }
+textarea:after { content: attr(id); }
 </style>
 <a href=//github.com/xem/escape><img style="position:absolute;top:0;right:0;border:0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on github"></a>
 <center>
@@ -40,129 +41,83 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
 	<tr>
 		<td>Char codes (decimal)<textarea id=c1></textarea>
 		<td>Unicode code points<textarea id=d1></textarea>
-		<td>Bytes (decimal)<textarea id=e1></textarea>
-		<td>Bytes (decimal)<textarea id=f1></textarea>
-		<td>Bytes (decimal)<textarea id=g1></textarea>
-		<td>Bytes (decimal)<textarea id=h1></textarea>
-		<td>Bytes (decimal)<textarea id=i1></textarea>
-		<td>Bytes (decimal)<textarea id=j1></textarea>
-		<td>Bytes (decimal)<textarea id=k1></textarea>
-		<td>Bytes (decimal)<textarea id=l1></textarea>
+		<td>Char codes (decimal)<textarea id=e1></textarea>
+		<td>Char codes (decimal)<textarea id=f1></textarea>
+		<td>Char codes (decimal)<textarea id=g1></textarea>
+		<td>Char codes (decimal)<textarea id=h1></textarea>
+		<td>Char codes (decimal)<textarea id=i1></textarea>
+		<td>Char codes (decimal)<textarea id=j1></textarea>
+		<td>Char codes (decimal)<textarea id=k1></textarea>
+		<td>Char codes (decimal)<textarea id=l1></textarea>
 	<tr>
-		<td>Bytes (hex)<textarea id=f2></textarea>
-		<td>Unicode canonical names<textarea id=b3></textarea>
-		<td>Bytes (hex)<textarea id=g2></textarea>
-		<td>Bytes (hex)<textarea id=d2></textarea>
-		<td>Bytes (hex)<textarea id=e2></textarea>
-		<td>Bytes (hex)<textarea id=c2></textarea>
-		<td>Bytes (hex)<textarea id=h2></textarea>
-		<td>Bytes (hex)<textarea id=i2></textarea>
-		<td>Bytes (hex)<textarea id=j2></textarea>
-		<td>Bytes (hex)<textarea id=k2></textarea>
+		<td>Char codes (hex)<textarea id=c2></textarea>
+		<td>Unicode canonical names<textarea id=d2></textarea>
+		<td>Char codes (hex)<textarea id=e2></textarea>
+		<td>Char codes (hex)<textarea id=f2></textarea>
+		<td>Char codes (hex)<textarea id=g2></textarea>
+		<td>Char codes (hex)<textarea id=h2></textarea>
+		<td>Char codes (hex)<textarea id=i2></textarea>
+		<td>Char codes (hex)<textarea id=j2></textarea>
+		<td>Char codes (hex)<textarea id=k2></textarea>
+		<td>Char codes (hex)<textarea id=l2></textarea>
+  <tr>
+		<td>Base64<textarea id=c3></textarea>
+		<td>Unicode blocks<textarea id=d11></textarea>
+		<td>Base64<textarea id=e3></textarea>
+		<td>Base64<textarea id=f3></textarea>
+		<td>Base64<textarea id=g3></textarea>
+		<td>Base64<textarea id=h3></textarea>
+		<td>Base64<textarea id=i3></textarea>
+		<td>Base64<textarea id=j3></textarea>
+		<td>Base64<textarea id=k3></textarea>
+		<td>Base64<textarea id=l3></textarea>
 	<tr>
-		<td>Bytes (binary)<textarea id=f3></textarea>
-		<td>Unicode blocks<textarea id=b4></textarea>
-		<td>Bytes (binary)<textarea id=g3></textarea>
-		<td>Bytes (binary)<textarea id=d3></textarea>
-		<td>Bytes (binary)<textarea id=e3></textarea>
-		<td>Bytes (binary)<textarea id=c3></textarea>
-		<td>Bytes (binary)<textarea id=h3></textarea>
-		<td>Bytes (binary)<textarea id=i3></textarea>
-		<td>Bytes (binary)<textarea id=j3></textarea>
-		<td>Bytes (binary)<textarea id=k3></textarea>
+		<td>JS string (ES6)<textarea id=d6></textarea>
+		<td>Decimal HTML entities<textarea id=d3></textarea>
+		<td>
+		<td>DataURI + Base64<textarea id=f4></textarea>
+		<td>DataURI + Base64<textarea id=g4></textarea>
+		<td>DataURI + Base64<textarea id=h4></textarea>
+		<td>DataURI + Base64<textarea id=i4></textarea>
+		<td>
+		<td>DataURI + Base64<textarea id=k4></textarea>
+		<td>DataURI + Base64<textarea id=l4></textarea>
 	<tr>
-		<td>Base64<textarea id=f4></textarea>
-		<td>Decimal HTML entities<textarea id=f5></textarea>
-		<td>Base64<textarea id=g4></textarea>
-		<td>Base64<textarea id=d4></textarea>
-		<td>Base64<textarea id=e4></textarea>
-		<td>Base64<textarea id=c4></textarea>
-		<td>Base64<textarea id=h4></textarea>
-		<td>Base64<textarea id=i4></textarea>
-		<td>Base64<textarea id=j4></textarea>
-		<td>Base64<textarea id=k4></textarea>
+		<td>Unicode blocks<textarea id=d11></textarea>
+		<td>JS querySelector<textarea id=d5></textarea>
+		<td>
+		<td>JS/C/C++/Java source code<textarea id=f5></textarea>
+		<td>
+		<td>MIME + Base64<textarea id=h5></textarea>
+		<td>
+		<td>
+		<td>Text (compatible glyphs only)<textarea id=k5></textarea>
+		<td>Text (compatible glyphs only)<textarea id=l5></textarea>
 	<tr>
-		<td>JS toLowerCase()<textarea id=b6></textarea>
-		<td>hex HTML entities<textarea id=f6></textarea>
+		<td>IDN<textarea id=d10></textarea>
+		<td>hex HTML entities<textarea id=d4></textarea>
 		<td>
-		<td>DataURI + Base64<textarea id=d5></textarea>
-		<td>DataURI + Base64<textarea id=e5></textarea>
-		<td>DataURI + Base64<textarea id=c5></textarea>
-		<td>DataURI + Base64<textarea id=h5></textarea>
+		<td>UTF-7<textarea id=f6></textarea>
 		<td>
-		<td>DataURI + Base64<textarea id=j5></textarea>
-		<td>DataURI + Base64<textarea id=k5></textarea>
-	<tr>
-		<td>JS toUpperCase()<textarea id=b7></textarea>
-		<td>JS querySelector<textarea id=f7></textarea>
-		
-		<td>
-		<td>JS/C/C++/Java source code<textarea id=d6></textarea>
-		<td>
-		<td>MIME + Base64<textarea id=c6></textarea>
+		<td>Q / Quoted printable<textarea id=h6></textarea>
 		<td>
 		<td>
-		<td>Text (compatible glyphs only)<textarea id=j6></textarea>
-		<td>Text (compatible glyphs only)<textarea id=k6></textarea>
-	<tr>
-		<td>JS escape()<textarea id=b8></textarea>
-		<td>JS string (ES6)<textarea id=f8></textarea>
-		
-		<td>
-		<td>UTF-7<textarea id=d7></textarea>
-		<td>
-		<td>Q / Quoted printable<textarea id=c7></textarea>
-		<td>
-		<td>
-		<td>JS hex escape<textarea id=j7></textarea>
+		<td>JS hex escape<textarea id=k6></textarea>
 		<td>
 	<tr>
-		<td>JS encodeURI()<textarea id=b9></textarea>
-		<td>CSS selector/font-family<textarea id=f9></textarea>
+		<td>Punycode<textarea id=d9></textarea>
+		<td>CSS selector/font-family<textarea id=d7></textarea>
 		<td>
-		<td>UTF-7 (IMAP)<textarea id=d8></textarea>
+		<td>UTF-7 (IMAP)<textarea id=f7></textarea>
 		<td>
-		<td>MIME + Q<textarea id=c8></textarea>
-		<td>
-		<td>
-		<td>JS octal escape<textarea id=j8></textarea>
-		<td>
-	<tr>
-		<td>JS encodeURIComponent()<textarea id=b10></textarea>
-		<td>CSS Unicode-range<textarea id=f10></textarea>
+		<td>MIME + Q<textarea id=h7></textarea>
 		<td>
 		<td>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
+		<td>JS octal escape<textarea id=k7></textarea>
 		<td>
 	<tr>
-		<td>JS length()<textarea id=b11></textarea>
-		<td>Punycode<textarea id=f11></textarea>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
-	<tr>
-		<td>countSymbolsPedantically()<textarea id=b12></textarea>
-		<td>IDN<textarea id=f12></textarea>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
-	<tr>
-		<td>Esrever()<textarea id=b13></textarea>
-		<td>Python source code<textarea id=f13></textarea>
+		<td>Python escape<textarea id=d11></textarea>
+		<td>CSS Unicode-range<textarea id=d8></textarea>
 		<td>
 		<td>
 		<td>
@@ -173,7 +128,7 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
 		<td>
 </table>
 <br>
-&#169; 2015 - <a href=//xem.github.io>xem</a>
+&#169; 2016 - <a href=//xem.github.io>xem</a>
 <br>
 <br>
 <script src="escape.js"></script>

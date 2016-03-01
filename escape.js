@@ -35,200 +35,307 @@ escape = function(){
 	
 	// Save plain text
 	text = a1.value;
-	
-	utf32be = C1(text);
+
+  // UTF-32 BE transformations
+  utf32be = C1(text);
 	c1.value = utf32be.join("\n");
-	
-	utf32le = E1(text);
+  d1.value = D1(utf32be).join("\n");
+  c2.value = C2(utf32be).join("\n");
+  d2.value = D2(utf32be).join("\n");
+  c3.value = C3(utf32be).join("\n");
+  d3.value = D3(utf32be).join("\n");
+  c4.value = C4(utf32be).join("\n");
+  d4.value = D4(utf32be).join("\n");
+  c5.value = C5(utf32be).join("\n");
+  d5.value = D5(utf32be).join("\n");
+  c6.value = C6(utf32be).join("\n");
+  d6.value = D6(utf32be).join("\n");
+  c7.value = C7(utf32be).join("\n");
+  c8.value = C8(utf32be).join("\n");
+  
+  // UTF-32 LE transformations
+  utf32le = E1(text);
 	e1.value = utf32le.join("\n");
-	
-	utf16be = F1(text);
+  e2.value = E2(utf32le).join("\n");
+  e3.value = E3(utf32le).join("\n");
+  
+  // UTF-16 BE transformations
+  utf16be = F1(text);
   f1.value = utf16be.join("\n");
+  f2.value = F2(utf16be).join("\n");
+  f3.value = F3(utf16be).join("\n");
+  f4.value = F4(utf16be).join("\n");
+  f5.value = F5(utf16be).join("\n");
+  f6.value = F6(utf16be).join("\n");
+  f7.value = F7(utf16be).join("\n");
   
-	utf16le = G1(text);
+  // UTF-16 LE transformations
+  utf16le = G1(text);
 	g1.value = utf16le.join("\n");
+  g2.value = G2(utf16le).join("\n");
+  g3.value = G3(utf16le).join("\n");
+  g4.value = G4(utf16le).join("\n");
   
+  // UTF-8 transformations
   utf8 = H1(text);
 	h1.value = utf8.join("\n");
+  h2.value = H2(utf8).join("\n");
+  h3.value = H3(utf8).join("\n");
+  h4.value = H4(utf8).join("\n");
+  h5.value = H5(utf8).join("\n");
+  h6.value = H6(utf8).join("\n");
+  h7.value = H7(utf8).join("\n");
   
+  // GB18030 transformations
   gb18030 = I1(text);
 	i1.value = gb18030.join("\n");
+  i2.value = I2(gb18030).join("\n");
+  i3.value = I3(gb18030).join("\n");
+  i4.value = I4(gb18030).join("\n");
   
+  // CESU-8 transformations
   cesu8 = J1(text);
 	j1.value = cesu8.join("\n");
+  j2.value = J2(cesu8).join("\n");
+  j3.value = J3(cesu8).join("\n");
   
+  // Latin-1 transformations
   latin1 = K1(text);
 	k1.value = latin1.join("\n");
+  k2.value = K2(latin1).join("\n");
+  k3.value = K3(latin1).join("\n");
+  k4.value = K4(latin1).join("\n");
+  k5.value = K5(latin1).join("\n");
+  k6.value = K6(latin1).join("\n");
+  k7.value = K7(latin1).join("\n");
   
+  // Windows-1252 transformations
   windows1252 = L1(text);
 	l1.value = windows1252.join("\n");
-  
-
-  
-  c2.value = C2(utf32be).join("\n");
-  e2.value = E2(utf32le).join("\n");
-  
-  
-  
-  
-  
-  
+  l2.value = L2(windows1252).join("\n");
+  l3.value = L3(windows1252).join("\n");
+  l4.value = L4(windows1252).join("\n");
+  l5.value = L5(windows1252).join("\n");
   
 }
 
 
-// Plain text => array of UTF-32 BE charcodes / Unicode codepoints
+
+// UTF-32 BE transformations
+
+// Plain text => array of UTF-32 BE charcodes (decimal)
 C1=function(b,a,c,d){a=[];for(c=0;c<b.length;c++)54==(b[d="charCodeAt"](c)>>10)?(a.push(1024*(b[d](c)-55296)+b[d](c+1)+9216),c++):a.push(b[d](c));return a}
 
 // Plain text => array of Unicode code points
 D1=function(){return []}
 
-// Plain text => array of UTF-32 LE charcodes
-E1=function(b,a,c,d){d=[];a=C1(b);for(c in a)d[c]=65536*(((a[c]&255)<<8)+(a[c]>>8&255))+(((a[c]>>16&255)<<8)+(a[c]>>24&255));return d}
-
-// Plain text => array of UTF-16 BE charCodes
-F1=function(b,a,c){a=[];for(c in b)a[c]=b.charCodeAt(c);return a}
-
-// Plain text => array of UTF-16 LE charCodes
-G1=function(b,a,c,d){d=[];a=F1(b);for(c in a)d[c]=((a[c]&0xff)<<8)+(a[c]>>8);return d}
-
-// Plain text => array of UTF-8 bytes
-H1=function(b,a,c,d,n){a=[];for(c=0;c<b.length;c++)128>b[d="charCodeAt"](c)?a.push(b[d](c)):(n=b[c],55296==(b[d](c)&64512)&&(n=b.substr(c,2),c++),encodeURI(n).replace(/\w+/g,function(b){a.push(parseInt(b,16))}));return a}
-
-// Plain text => array of GB-18030 charCodes
-I1=function(){return []}
-
-// Plain text => array of CESU-8 charCodes
-J1=function(){return []}
-
-// Plain text => array of Latin-1 charCodes
-K1=function(){return []}
-
-// Plain text => array of windows-1252 charCodes
-L1=function(){return []}
-
-
-
-
-
 // UTF-32 BE charcodes => hex
 C2=function(a,b,c){c=[];for(b in a)c[b]=(1E7+a[b].toString(16)).slice(-8);return c}
 
+// UTF-32 BE charcodes => Decimal HTML entities
+//Unicode canonical names
+D2=function(){return []}
+
+// UTF-32 BE charcodes => base64
+C3=function(){return []}
+
+// UTF-32 BE charcodes => Hex HTML entities
+D3=function(){return []}
+
+// UTF-32 BE charcodes => JS string (ES6)
+C4=function(){return []}
+
+// UTF-32 BE charcodes => JS querySelector
+D4=function(){return []}
+
+// UTF-32 BE charcodes => IDN
+C5=function(){return []}
+
+// UTF-32 BE charcodes => CSS selector/font-family
+D5=function(){return []}
+
+// UTF-32 BE charcodes => Punycode
+C6=function(){return []}
+
+// UTF-32 BE charcodes => CSS Unicode-range
+D6=function(){return []}
+
 // UTF-32 BE charcodes => Unicode canonical names
-D2
+C7=function(){return []}
+
+// UTF-32 BE charcodes => Unicode blocks
+C8=function(){return []}
+
+
+
+
+
+// UTF-32 LE transformations
+
+// Plain text => array of UTF-32 LE charcodes
+E1=function(b,a,c,d){d=[];a=C1(b);for(c in a)d[c]=65536*(((a[c]&255)<<8)+(a[c]>>8&255))+(((a[c]>>16&255)<<8)+(a[c]>>24&255));return d}
 
 // UTF-32 LE charcodes => hex
 E2 = C2;
 
-// UTF-16 BE charCodes => hex
-F2
-
-// UTF-16 LE charCodes => hex
-G2
-
-// UTF-8 bytes => hex
-H2
-
-// GB-18030 charCodes => hex
-I2
-
-// CESU-8 charCodes => hex
-J2
-
-// Latin-1 charCodes => hex
-K2
-
-// Windows-1252 charCodes => hex
-L2
-
-
-
-// UTF-32 BE charcodes => base64
-C3
-
-// UTF-32 BE charcodes => Decimal HTML entities
-D3
-
 // UTF-32 LE charcodes => base64
-E3
+E3=function(){return []}
+
+
+
+
+
+// UTF-16 BE transformations
+
+// Plain text => array of UTF-16 BE charCodes
+F1=function(b,a,c){a=[];for(c in b)a[c]=b.charCodeAt(c);return a}
+
+// UTF-16 BE charCodes => hex
+F2=function(){return []}
 
 // UTF-16 BE charCodes => base64
-F3
+F3=function(){return []}
+
+// UTF-16 BE charCodes => DataURI + Base64
+F4=function(){return []}
+
+// UTF-16 BE charCodes => JS/C/C++/Java source code
+F5=function(){return []}
+
+// UTF-16 BE charCodes => UTF-7
+F6=function(){return []}
+
+// UTF-16 BE charCodes => UTF-7 (IMAP)
+F7=function(){return []}
+
+
+
+
+
+
+// UTF-16 LE transformations
+
+// Plain text => array of UTF-16 LE charCodes
+G1=function(b,a,c,d){d=[];a=F1(b);for(c in a)d[c]=((a[c]&0xff)<<8)+(a[c]>>8);return d}
+
+// UTF-16 LE charCodes => hex
+G2=function(){return []}
 
 // UTF-16 LE charCodes => base64
-G3
+G3=function(){return []}
+
+// UTF-16 LE charCodes => DataURI + Base64
+G4=function(){return []}
+
+
+
+
+
+// UTF-8 transformations
+
+// Plain text => array of UTF-8 bytes
+H1=function(b,a,c,d,n){a=[];for(c=0;c<b.length;c++)128>b[d="charCodeAt"](c)?a.push(b[d](c)):(n=b[c],55296==(b[d](c)&64512)&&(n=b.substr(c,2),c++),encodeURI(n).replace(/\w+/g,function(b){a.push(parseInt(b,16))}));return a}
+
+// UTF-8 bytes => hex
+H2=function(){return []}
 
 // UTF-8 bytes => base64
-H3
+H3=function(){return []}
+
+// UTF-8 bytes => 
+H4=function(){return []}
+
+// UTF-8 bytes => 
+H5=function(){return []}
+
+// UTF-8 bytes => 
+H6=function(){return []}
+
+// UTF-8 bytes => 
+H7=function(){return []}
+
+
+
+
+// GB18030 transformations
+
+// Plain text => array of GB-18030 charCodes
+I1=function(){return []}
+
+// GB-18030 charCodes => hex
+I2=function(){return []}
 
 // GB-18030 charCodes => base64
-I3
+I3=function(){return []}
+
+// GB-18030 charCodes =>
+I4=function(){return []}
+
+
+
+
+
+// CESU-8 transformations
+
+// Plain text => array of CESU-8 charCodes
+J1=function(){return []}
+
+// CESU-8 charCodes => hex
+J2=function(){return []}
 
 // CESU-8 charCodes => base64
-J3
+J3=function(){return []}
+
+
+
+
+
+// Latin-1 transformations
+
+// Plain text => array of Latin-1 charCodes
+K1=function(){return []}
+
+// Latin-1 charCodes => hex
+K2=function(){return []}
 
 // Latin-1 charCodes => base64
-K3
+K3=function(){return []}
+
+// Latin-1 charCodes =>
+K4=function(){return []}
+
+// Latin-1 charCodes =>
+K5=function(){return []}
+
+// Latin-1 charCodes =>
+K6=function(){return []}
+
+// Latin-1 charCodes =>
+K7=function(){return []}
+
+
+
+// Windows-1252 transformations
+
+// Plain text => array of windows-1252 charCodes
+L1=function(){return []}
+
+// Windows-1252 charCodes => hex
+L2=function(){return []}
 
 // Windows-1252 charCodes => base64
-L3
+L3=function(){return []}
 
+// Windows-1252 charCodes =>
+L4=function(){return []}
 
-
-
-
-
-
+// Windows-1252 charCodes =>
+L5=function(){return []}
 
 
 /*
-onload=i1.oninput=function(){
 
-  // Encoders
-  utf16becharcodes=i2.value=e2(i1.value);
-  i6.value=e6(utf16becharcodes);
-  i7.value=e7(utf16becharcodes);
-  i8.value=e8(utf16becharcodes);
-  i9.value=e9(utf16becharcodes);
-  i10.value=e10(utf16becharcodes);
-  
-  utf16lecharcodes=i3.value=e3(i1.value);
-  i11.value=e11(utf16lecharcodes);
-  i12.value=e12(utf16lecharcodes);
-  
-  codepoints=i4.value=e4(i1.value);
-  i13.value=e13(codepoints);
-  i14.value=e14(codepoints);
-  i15.value=e15(codepoints);
-  i16.value=e16(codepoints);
-  i17.value=e17(codepoints);
-  i18.value=e18(codepoints);
-  i19.value=e19(codepoints);
-  i20.value=e20(codepoints);
-  
-  bytes=i5.value=e5(i1.value);
-  i21.value=e21(bytes);
-  i22.value=e22(bytes);
-  i23.value=e23(bytes);
-  i24.value=e24(bytes);
-  i25.value=e25(bytes);
-  i26.value=e26(bytes);
-  i27.value=e27(bytes);
-  i28.value=e28(bytes);
-  
-  gb=i29.value=e29(codepoints);
-  i30.value=e30(gb);
-  i31.value=e31(gb);
-  
-  latin1=i32.value=e32(codepoints);
-  i33.value=e33(latin1);
-  i34.value=e34(latin1);
-}
-
-/** Encoders **
-
-
-
+//legacy:
 
 // Array of UTF-16 BE CharCodes => JS string
 e6=function(b,a,c){a="";for(c in b)a+="\\u"+(1E3+b[c].toString(16)).slice(-4);return a}
@@ -324,39 +431,6 @@ e33=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
 // Array of Windows-1252 bytes => data-URI + Base64
 e34=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return"data:;base64,"+btoa(a)}
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // External data

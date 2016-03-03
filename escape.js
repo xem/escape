@@ -39,19 +39,20 @@ escape = function(){
   // UTF-32 BE transformations
   utf32be = C1(text);
 	c1.value = utf32be.join("\n");
-  d1.value = D1(utf32be).join("\n");
   c2.value = C2(utf32be).join("\n");
-  d2.value = D2(utf32be).join("\n");
   c3.value = C3(utf32be).join("\n");
-  d3.value = D3(utf32be).join("\n");
-  c4.value = C4(utf32be).join("\n");
-  d4.value = D4(utf32be).join("\n");
-  c5.value = C5(utf32be).join("\n");
-  d5.value = D5(utf32be).join("\n");
-  c6.value = C6(utf32be).join("\n");
-  d6.value = D6(utf32be).join("\n");
-  c7.value = C7(utf32be).join("\n");
-  c8.value = C8(utf32be).join("\n");
+  c4.value = C4(utf32be);
+  c5.value = C5(utf32be);
+  c6.value = C6(utf32be);
+  c7.value = C7(utf32be);
+  
+  d1.value = D1(utf32be);
+  d2.value = D2(utf32be);
+  d3.value = D3(utf32be);
+  d4.value = D4(utf32be);
+  d5.value = D5(utf32be);
+  d6.value = D6(utf32be);
+  c8.value = C8(utf32be);
   
   // UTF-32 LE transformations
   utf32le = E1(text);
@@ -63,60 +64,59 @@ escape = function(){
   utf16be = F1(text);
   f1.value = utf16be.join("\n");
   f2.value = F2(utf16be).join("\n");
-  f3.value = F3(utf16be).join("\n");
-  f4.value = F4(utf16be).join("\n");
-  f5.value = F5(utf16be).join("\n");
-  f6.value = F6(utf16be).join("\n");
-  f7.value = F7(utf16be).join("\n");
+  f3.value = F3(utf16be);
+  f4.value = F4(utf16be);
+  f5.value = F5(utf16be);
+  f6.value = F6(utf16be);
+  f7.value = F7(utf16be);
   
   // UTF-16 LE transformations
   utf16le = G1(text);
 	g1.value = utf16le.join("\n");
   g2.value = G2(utf16le).join("\n");
-  g3.value = G3(utf16le).join("\n");
-  g4.value = G4(utf16le).join("\n");
+  g3.value = G3(utf16le);
+  g4.value = G4(utf16le);
   
   // UTF-8 transformations
   utf8 = H1(text);
 	h1.value = utf8.join("\n");
   h2.value = H2(utf8).join("\n");
-  h3.value = H3(utf8).join("\n");
-  h4.value = H4(utf8).join("\n");
-  h5.value = H5(utf8).join("\n");
-  h6.value = H6(utf8).join("\n");
-  h7.value = H7(utf8).join("\n");
+  h3.value = H3(utf8);
+  h4.value = H4(utf8);
+  h5.value = H5(utf8);
+  h6.value = H6(utf8);
+  h7.value = H7(utf8);
   
   // GB18030 transformations
-  gb18030 = I1(text);
+  gb18030 = I1(utf32be);
 	i1.value = gb18030.join("\n");
   i2.value = I2(gb18030).join("\n");
-  i3.value = I3(gb18030).join("\n");
-  i4.value = I4(gb18030).join("\n");
+  i3.value = I3(gb18030);
+  i4.value = I4(gb18030);
   
   // CESU-8 transformations
   cesu8 = J1(text);
 	j1.value = cesu8.join("\n");
   j2.value = J2(cesu8).join("\n");
-  j3.value = J3(cesu8).join("\n");
+  j3.value = J3(cesu8);
   
   // Latin-1 transformations
-  latin1 = K1(text);
+  latin1 = K1(utf32be);
 	k1.value = latin1.join("\n");
   k2.value = K2(latin1).join("\n");
-  k3.value = K3(latin1).join("\n");
-  k4.value = K4(latin1).join("\n");
-  k5.value = K5(latin1).join("\n");
-  k6.value = K6(latin1).join("\n");
-  k7.value = K7(latin1).join("\n");
+  k3.value = K3(latin1);
+  k4.value = K4(latin1);
+  k5.value = K5(latin1);
+  k6.value = K6(latin1);
+  k7.value = K7(latin1);
   
   // Windows-1252 transformations
-  windows1252 = L1(text);
+  windows1252 = L1(utf32be);
 	l1.value = windows1252.join("\n");
   l2.value = L2(windows1252).join("\n");
-  l3.value = L3(windows1252).join("\n");
-  l4.value = L4(windows1252).join("\n");
-  l5.value = L5(windows1252).join("\n");
-  
+  l3.value = L3(windows1252);
+  l4.value = L4(windows1252);
+  l5.value = L5(windows1252);
 }
 
 
@@ -126,45 +126,46 @@ escape = function(){
 // Plain text => array of UTF-32 BE charcodes (decimal)
 C1=function(b,a,c,d){a=[];for(c=0;c<b.length;c++)54==(b[d="charCodeAt"](c)>>10)?(a.push(1024*(b[d](c)-55296)+b[d](c+1)+9216),c++):a.push(b[d](c));return a}
 
-// Plain text => array of Unicode code points
-D1=function(){return []}
+// UTF-32 BE charcodes => Decimal HTML entities
+D1=function(b,a,c){a="";for(c in b)a+="&#"+b[c]+";";return a}
 
 // UTF-32 BE charcodes => hex
 C2=function(a,b,c){c=[];for(b in a)c[b]=(1E7+a[b].toString(16)).slice(-8);return c}
 
-// UTF-32 BE charcodes => Decimal HTML entities
-//Unicode canonical names
-D2=function(){return []}
+// UTF-32 BE charcodes => Hex HTML entities
+D2=function(b,a,c){a="";for(c in b)a+="&#x"+b[c].toString(16)+";";return a}
 
 // UTF-32 BE charcodes => base64
 C3=function(){return []}
 
-// UTF-32 BE charcodes => Hex HTML entities
+// UTF-32 BE charcodes => array of Unicode code points
 D3=function(){return []}
 
 // UTF-32 BE charcodes => JS string (ES6)
-C4=function(){return []}
+C4=function(b,a,c){a="";for(c in b)a+="\\u{"+b[c].toString(16)+"}";return a}
 
 // UTF-32 BE charcodes => JS querySelector
-D4=function(){return []}
-
-// UTF-32 BE charcodes => IDN
-C5=function(){return []}
+D4=function(b,a,c){a="";for(c in b)a+="\\\\"+b[c].toString(16)+" ";return a}
 
 // UTF-32 BE charcodes => CSS selector/font-family
-D5=function(){return []}
-
-// UTF-32 BE charcodes => Punycode
-C6=function(){return []}
+C5=function(b,a,c){a="";for(c in b)a+="\\"+b[c].toString(16)+" ";return a}
 
 // UTF-32 BE charcodes => CSS Unicode-range
-D6=function(){return []}
+D5=function(b,a,c){a="";for(c in b)a+="U+"+b[c].toString(16)+",";return a.slice(0,-1)}
+
+// UTF-32 BE charcodes => Punycode
+// Ungolfed: http://xem.github.io/escape/punycode.js
+C6=function(p,d,b,l,v,m,c,n,g,h,q,e,f,r,w,x,y,s,u,t,k){t=String.fromCharCode;k=Math.floor;f=[];d=128;m=72;for(c=b=0;c<(r=p.length);++c)128>(e=p[c])&&f.push(t(e));for((l=v=f.length)&&f.push("-");l<r;){n=1E9;for(c=0;c<r;++c)(e=p[c])>=d&&e<n&&(n=e);b+=(n-d)*(w=l+1);d=n;for(c=0;c<r;++c)if((e=p[c])<d&&++b,e==d){g=b;for(h=36;!(g<(q=h<=m?1:h>=m+26?26:h-m));h+=36)u=q+(y=g-q)%(x=36-q),f.push(t(u+22+75*(26>u))),g=k(y/x);f.push(t(g+22+75*(26>g)));s=0;b=l==v?k(b/700):b>>1;for(b+=k(b/w);455<b;s+=36)b=k(b/ 35);m=k(s+36*b/(b+38));b=0;++l}++b;++d}return f.join("")}
+
+// UTF-32 BE charcodes => IDN
+D6=function(b){return "xn--"+C6(b)}
 
 // UTF-32 BE charcodes => Unicode canonical names
-C7=function(){return []}
+C7=function(b,a,c){a="";for(c in b)a+=unicodenames[b[c]]+"\n";return a}
 
 // UTF-32 BE charcodes => Unicode blocks
-C8=function(){return []}
+C8=function(b,a,c,d){a="";for(c in b)for(d in unicodeblocks)if(unicodeblocks[d][0]<=b[c]&&unicodeblocks[d][1]>=b[c])a+=unicodeblocks[d][2]+"\n";return a}
+
 
 
 
@@ -194,19 +195,19 @@ F1=function(b,a,c){a=[];for(c in b)a[c]=b.charCodeAt(c);return a}
 F2=function(){return []}
 
 // UTF-16 BE charCodes => base64
-F3=function(){return []}
+F3=function(b,a,c,s,t){a="";s=String.fromCharCode;for(c in b)t=b[c],a+=s(t>>8)+s(t&0xff);return btoa(a)}
 
 // UTF-16 BE charCodes => DataURI + Base64
-F4=function(){return []}
+F4=function(b){return "data:;charset=utf-16BE;base64,"+F3(b)}
 
 // UTF-16 BE charCodes => JS/C/C++/Java source code
-F5=function(){return []}
+F5=function(b,a,c){a="";for(c in b)a+="\\u"+(1E3+b[c].toString(16)).slice(-4);return a}
 
 // UTF-16 BE charCodes => UTF-7
-F6=function(){return []}
+F6=function(b){return utf7(b,0x2B)}
 
 // UTF-16 BE charCodes => UTF-7 (IMAP)
-F7=function(){return []}
+F7=function(b){return utf7(b,0x26)}
 
 
 
@@ -222,10 +223,10 @@ G1=function(b,a,c,d){d=[];a=F1(b);for(c in a)d[c]=((a[c]&0xff)<<8)+(a[c]>>8);ret
 G2=function(){return []}
 
 // UTF-16 LE charCodes => base64
-G3=function(){return []}
+G3=F3
 
 // UTF-16 LE charCodes => DataURI + Base64
-G4=function(){return []}
+G4=function(b){return "data:;charset=utf-16LE;base64,"+G3(b)}
 
 
 
@@ -237,40 +238,43 @@ G4=function(){return []}
 H1=function(b,a,c,d,n){a=[];for(c=0;c<b.length;c++)128>b[d="charCodeAt"](c)?a.push(b[d](c)):(n=b[c],55296==(b[d](c)&64512)&&(n=b.substr(c,2),c++),encodeURI(n).replace(/\w+/g,function(b){a.push(parseInt(b,16))}));return a}
 
 // UTF-8 bytes => hex
-H2=function(){return []}
+H2=function(b,c){for(c in b)b[c]=b[c].toString(16);return b}
 
 // UTF-8 bytes => base64
-H3=function(){return []}
+H3=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
 
-// UTF-8 bytes => 
-H4=function(){return []}
+// UTF-8 bytes => DataURI + Base64
+H4=function(a){return"data:;charset=utf-8;base64,"+H3(a)}
 
-// UTF-8 bytes => 
-H5=function(){return []}
+// UTF-8 bytes => MIME + Base64
+H5=function(a){return"=?UTF-8?B?"+H3(a)+"?="}
 
-// UTF-8 bytes => 
-H6=function(){return []}
+// UTF-8 bytes => Q / Quoted printable
+H6=function(b,a,c){a="";for(c in b)a+="="+b[c].toString(16);return a}
 
-// UTF-8 bytes => 
-H7=function(){return []}
+// UTF-8 bytes => MIME + Q
+H7=function(b,a,c){a="=?UTF-8?Q?";for(c in b)a+="="+b[c].toString(16);return a+"?="}
+
+// UTF-8 bytes => url encode
+H8=function(b,a,c){a="";for(c in b)a+="%"+b[c].toString(16);return a}
+
 
 
 
 
 // GB18030 transformations
 
-// Plain text => array of GB-18030 charCodes
-I1=function(){return []}
+// Code points => array of GB-18030 bytes
+I1=function(l,a,m,d,e,f,p,c,b,g,h,k,n){a=[];for(m in l)if(128>(d=l[m]))a.push(d);else if(-1!=(e=gb18030index.indexOf(d)))a.push(~~(e/190)+129),f=e%190,a.push(f+64+ +(63<f));else{for(c=0;c<gb18030ranges.length;c+=2)gb18030ranges[c+1]<=d&&(b=gb18030ranges[c]+d-gb18030ranges[c+1]);g=~~(b/10/126/10);b-=12600*g;h=~~(b/10/126);b-=1260*h;k=~~(b/10);n=b-10*k;a.push(g+129);a.push(h+48);a.push(k+129);a.push(n+48)}return a};
 
 // GB-18030 charCodes => hex
 I2=function(){return []}
 
 // GB-18030 charCodes => base64
-I3=function(){return []}
+I3=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
 
-// GB-18030 charCodes =>
-I4=function(){return []}
-
+// GB-18030 charCodes => DataURI + Base64
+I4=function(a){return"data:;charset=gb18030;base64,"+I3(a)}
 
 
 
@@ -292,7 +296,7 @@ J3=function(){return []}
 
 // Latin-1 transformations
 
-// Plain text => array of Latin-1 charCodes
+// Code points => array of Latin-1 charCodes
 K1=function(){return []}
 
 // Latin-1 charCodes => hex
@@ -301,136 +305,37 @@ K2=function(){return []}
 // Latin-1 charCodes => base64
 K3=function(){return []}
 
-// Latin-1 charCodes =>
+// Latin-1 charCodes => DataURI + Base64
 K4=function(){return []}
 
-// Latin-1 charCodes =>
+// Latin-1 charCodes => Text (compatible glyphs only)
 K5=function(){return []}
 
-// Latin-1 charCodes =>
-K6=function(){return []}
+// Latin-1 charCodes => JS hex escape
+K6=function(){return []} 
 
-// Latin-1 charCodes =>
-K7=function(){return []}
+// Latin-1 charCodes => JS octal escape
+K7=function(b,a,c){a="";for(c in b)a+="\\"+b[c].toString(8);return a}
 
 
 
 // Windows-1252 transformations
 
-// Plain text => array of windows-1252 charCodes
-L1=function(){return []}
+// Code points => array of windows-1252 charCodes
+L1=function(l,a,m,d,e){a=[];for(m in l)if(127>(d=l[m]))a.push(d);else if(-1!=(e=windows1252index.indexOf(d)))a.push(e+0x80);return a};
 
 // Windows-1252 charCodes => hex
 L2=function(){return []}
 
 // Windows-1252 charCodes => base64
-L3=function(){return []}
+L3=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
 
-// Windows-1252 charCodes =>
-L4=function(){return []}
+// Windows-1252 charCodes => DataURI + Base64
+L4=function(a){return"data:;base64,"+L3(a)}
 
-// Windows-1252 charCodes =>
+// Windows-1252 charCodes => Text (compatible glyphs only)
 L5=function(){return []}
 
-
-/*
-
-//legacy:
-
-// Array of UTF-16 BE CharCodes => JS string
-e6=function(b,a,c){a="";for(c in b)a+="\\u"+(1E3+b[c].toString(16)).slice(-4);return a}
-
-// UTF-7
-// Ungolfed: http://xem.github.io/escape/utf7.js
-utf7=function(e,f,g,a,c,d,b){d=b="";e=e.concat(32);c=String.fromCharCode;for(g in e)a=e[g],32>a||125<a?d+=c(a>>8)+c(a&255):(d&&(b+=c(f)+btoa(d).replace(/=+$/,"")+"-",d=""),b=a==f?b+(c(f)+"-"):b+c(a));return b.slice(0,-1)}
-
-// Array of UTF-16 BE CharCodes => UTF-7
-e7=function(b){return utf7(b,0x2B)}
-
-// Array of UTF-16 BE CharCodes => UTF-7 (IMAP)
-e8=function(b){return utf7(b,0x26)}
-
-// Array of UTF-16 BE CharCodes => Base64 (UTF-16 BE)
-e9=function(b,a,c,s,t){a="";s=String.fromCharCode;for(c in b)t=b[c],a+=s(t>>8)+s(t&0xff);return btoa(a)}
-
-// Array of UTF-16 BE CharCodes => DataURI + Base64 (UTF-16 BE)
-e10=function(b){return "data:;charset=utf-16BE;base64,"+e9(b)}
-
-// Array of UTF-16 BE CharCodes => Base64 (UTF-16 LE)
-e11=function(b){return e9(b)}
-
-// Array of UTF-16 BE CharCodes => DataURI + Base64 (UTF-16 LE)
-e12=function(b){return "data:;charset=utf-16LE;base64,"+e11(b)}
-
-// Array of CodePoints => Decimal HTML entities
-e13=function(b,a,c){a="";for(c in b)a+="&#"+b[c]+";";return a}
-
-// Array of CodePoints => hexadecimaladecimal HTML entities
-e14=function(b,a,c){a="";for(c in b)a+="&#x"+b[c].toString(16)+";";return a}
-
-// Array of CodePoints => CSS selector / font-family
-e15=function(b,a,c){a="";for(c in b)a+="\\"+b[c].toString(16)+" ";return a}
-
-// Array of CodePoints => CSS selector / font-family
-e16=function(b,a,c){a="";for(c in b)a+="\\\\"+b[c].toString(16)+" ";return a}
-
-// Array of CodePoints => CSS unicode-range
-e17=function(b,a,c){a="";for(c in b)a+="U+"+b[c].toString(16)+",";return a.slice(0,-1)}
-
-// Array of CodePoints => ES6 string
-e18=function(b,a,c){a="";for(c in b)a+="\\u{"+b[c].toString(16)+"}";return a}
-
-// Array of CodePoints => Punycode
-// Ungolfed: http://xem.github.io/escape/punycode.js
-e19=function(p,d,b,l,v,m,c,n,g,h,q,e,f,r,w,x,y,s,u,t,k){t=String.fromCharCode;k=Math.floor;f=[];d=128;m=72;for(c=b=0;c<(r=p.length);++c)128>(e=p[c])&&f.push(t(e));for((l=v=f.length)&&f.push("-");l<r;){n=1E9;for(c=0;c<r;++c)(e=p[c])>=d&&e<n&&(n=e);b+=(n-d)*(w=l+1);d=n;for(c=0;c<r;++c)if((e=p[c])<d&&++b,e==d){g=b;for(h=36;!(g<(q=h<=m?1:h>=m+26?26:h-m));h+=36)u=q+(y=g-q)%(x=36-q),f.push(t(u+22+75*(26>u))),g=k(y/x);f.push(t(g+22+75*(26>g)));s=0;b=l==v?k(b/700):b>>1;for(b+=k(b/w);455<b;s+=36)b=k(b/ 35);m=k(s+36*b/(b+38));b=0;++l}++b;++d}return f.join("")}
-
-// Array of CodePoints => IDN
-e20=function(b){return "xn--"+e19(b)}
-
-// Array of UTF-8 bytes => hexadecimaladecimal
-e21=function(b,a,c){a="";for(c in b)a+="\\x"+b[c].toString(16);return a}
-
-// Array of UTF-8 bytes => Octal
-e22=function(b,a,c){a="";for(c in b)a+="\\"+b[c].toString(8);return a}
-
-// Array of UTF-8 bytes => URL encode
-e23=function(b,a,c){a="";for(c in b)a+="%"+b[c].toString(16);return a}
-
-// Array of UTF-8 bytes => Q / Quoted-printable
-e24=function(b,a,c){a="";for(c in b)a+="="+b[c].toString(16);return a}
-
-// Array of UTF-8 bytes => MIME + Q / Quoted-printable
-e25=function(b,a,c){a="=?UTF-8?Q?";for(c in b)a+="="+b[c].toString(16);return a+"?="}
-
-// Array of UTF-8 bytes => Base64
-e26=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
-
-// Array of UTF-8 bytes => MIME + Base64
-e27=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return"=?UTF-8?B?"+btoa(a)+"?="}
-
-// Array of UTF-8 bytes => data-URI + Base64
-e28=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return"data:;charset=utf-8;base64,"+btoa(a)}
-
-// Array of CodePoints => Array of GB18030 bytes
-
-e29=function(l,a,m,d,e,f,p,c,b,g,h,k,n){a=[];for(m in l)if(128>(d=l[m]))a.push(d);else if(-1!=(e=gb18030index.indexOf(d)))a.push(~~(e/190)+129),f=e%190,a.push(f+64+ +(63<f));else{for(c=0;c<gb18030ranges.length;c+=2)gb18030ranges[c+1]<=d&&(b=gb18030ranges[c]+d-gb18030ranges[c+1]);g=~~(b/10/126/10);b-=12600*g;h=~~(b/10/126);b-=1260*h;k=~~(b/10);n=b-10*k;a.push(g+129);a.push(h+48);a.push(k+129);a.push(n+48)}return a};
-
-// Array of GB18030 bytes => Base64
-e30=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
-
-// Array of GB18030 bytes => data-URI + Base64
-e31=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return"data:;charset=gb18030;base64,"+btoa(a)}
-
-// Array of CodePoints => Array of Windows-1252 bytes
-
-e32=function(l,a,m,d,e){a=[];for(m in l)if(127>(d=l[m]))a.push(d);else if(-1!=(e=windows1252index.indexOf(d)))a.push(e+0x80);return a};
-
-// Array of Windows-1252 bytes => Base64
-e33=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
-
-// Array of Windows-1252 bytes => data-URI + Base64
-e34=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return"data:;base64,"+btoa(a)}
-*/
 
 
 // External data
@@ -440,3 +345,276 @@ gb18030index=[0x4E02,0x4E04,0x4E05,0x4E06,0x4E0F,0x4E12,0x4E17,0x4E1F,0x4E20,0x4
 gb18030ranges=[0,0x0080,36,0x00A5,38,0x00A9,45,0x00B2,50,0x00B8,81,0x00D8,89,0x00E2,95,0x00EB,96,0x00EE,100,0x00F4,103,0x00F8,104,0x00FB,105,0x00FD,109,0x0102,126,0x0114,133,0x011C,148,0x012C,172,0x0145,175,0x0149,179,0x014E,208,0x016C,306,0x01CF,307,0x01D1,308,0x01D3,309,0x01D5,310,0x01D7,311,0x01D9,312,0x01DB,313,0x01DD,341,0x01FA,428,0x0252,443,0x0262,544,0x02C8,545,0x02CC,558,0x02DA,741,0x03A2,742,0x03AA,749,0x03C2,750,0x03CA,805,0x0402,819,0x0450,820,0x0452,7922,0x2011,7924,0x2017,7925,0x201A,7927,0x201E,7934,0x2027,7943,0x2031,7944,0x2034,7945,0x2036,7950,0x203C,8062,0x20AD,8148,0x2104,8149,0x2106,8152,0x210A,8164,0x2117,8174,0x2122,8236,0x216C,8240,0x217A,8262,0x2194,8264,0x219A,8374,0x2209,8380,0x2210,8381,0x2212,8384,0x2216,8388,0x221B,8390,0x2221,8392,0x2224,8393,0x2226,8394,0x222C,8396,0x222F,8401,0x2238,8406,0x223E,8416,0x2249,8419,0x224D,8424,0x2253,8437,0x2262,8439,0x2268,8445,0x2270,8482,0x2296,8485,0x229A,8496,0x22A6,8521,0x22C0,8603,0x2313,8936,0x246A,8946,0x249C,9046,0x254C,9050,0x2574,9063,0x2590,9066,0x2596,9076,0x25A2,9092,0x25B4,9100,0x25BE,9108,0x25C8,9111,0x25CC,9113,0x25D0,9131,0x25E6,9162,0x2607,9164,0x260A,9218,0x2641,9219,0x2643,11329,0x2E82,11331,0x2E85,11334,0x2E89,11336,0x2E8D,11346,0x2E98,11361,0x2EA8,11363,0x2EAB,11366,0x2EAF,11370,0x2EB4,11372,0x2EB8,11375,0x2EBC,11389,0x2ECB,11682,0x2FFC,11686,0x3004,11687,0x3018,11692,0x301F,11694,0x302A,11714,0x303F,11716,0x3094,11723,0x309F,11725,0x30F7,11730,0x30FF,11736,0x312A,11982,0x322A,11989,0x3232,12102,0x32A4,12336,0x3390,12348,0x339F,12350,0x33A2,12384,0x33C5,12393,0x33CF,12395,0x33D3,12397,0x33D6,12510,0x3448,12553,0x3474,12851,0x359F,12962,0x360F,12973,0x361B,13738,0x3919,13823,0x396F,13919,0x39D1,13933,0x39E0,14080,0x3A74,14298,0x3B4F,14585,0x3C6F,14698,0x3CE1,15583,0x4057,15847,0x4160,16318,0x4338,16434,0x43AD,16438,0x43B2,16481,0x43DE,16729,0x44D7,17102,0x464D,17122,0x4662,17315,0x4724,17320,0x472A,17402,0x477D,17418,0x478E,17859,0x4948,17909,0x497B,17911,0x497E,17915,0x4984,17916,0x4987,17936,0x499C,17939,0x49A0,17961,0x49B8,18664,0x4C78,18703,0x4CA4,18814,0x4D1A,18962,0x4DAF,19043,0x9FA6,33469,0xE76C,33470,0xE7C8,33471,0xE7E7,33484,0xE815,33485,0xE819,33490,0xE81F,33497,0xE827,33501,0xE82D,33505,0xE833,33513,0xE83C,33520,0xE844,33536,0xE856,33550,0xE865,37845,0xF92D,37921,0xF97A,37948,0xF996,38029,0xF9E8,38038,0xF9F2,38064,0xFA10,38065,0xFA12,38066,0xFA15,38069,0xFA19,38075,0xFA22,38076,0xFA25,38078,0xFA2A,39108,0xFE32,39109,0xFE45,39113,0xFE53,39114,0xFE58,39115,0xFE67,39116,0xFE6C,39265,0xFF5F,39394,0xFFE6,189000,0x10000];
 
 windows1252index=[0x20AC,0x0081,0x201A,0x0192,0x201E,0x2026,0x2020,0x2021,0x02C6,0x2030,0x0160,0x2039,0x0152,0x008D,0x017D,0x008F,0x0090,0x2018,0x2019,0x201C,0x201D,0x2022,0x2013,0x2014,0x02DC,0x2122,0x0161,0x203A,0x0153,0x009D,0x017E,0x0178,0x00A0,0x00A1,0x00A2,0x00A3,0x00A4,0x00A5,0x00A6,0x00A7,0x00A8,0x00A9,0x00AA,0x00AB,0x00AC,0x00AD,0x00AE,0x00AF,0x00B0,0x00B1,0x00B2,0x00B3,0x00B4,0x00B5,0x00B6,0x00B7,0x00B8,0x00B9,0x00BA,0x00BB,0x00BC,0x00BD,0x00BE,0x00BF,0x00C0,0x00C1,0x00C2,0x00C3,0x00C4,0x00C5,0x00C6,0x00C7,0x00C8,0x00C9,0x00CA,0x00CB,0x00CC,0x00CD,0x00CE,0x00CF,0x00D0,0x00D1,0x00D2,0x00D3,0x00D4,0x00D5,0x00D6,0x00D7,0x00D8,0x00D9,0x00DA,0x00DB,0x00DC,0x00DD,0x00DE,0x00DF,0x00E0,0x00E1,0x00E2,0x00E3,0x00E4,0x00E5,0x00E6,0x00E7,0x00E8,0x00E9,0x00EA,0x00EB,0x00EC,0x00ED,0x00EE,0x00EF,0x00F0,0x00F1,0x00F2,0x00F3,0x00F4,0x00F5,0x00F6,0x00F7,0x00F8,0x00F9,0x00FA,0x00FB,0x00FC,0x00FD,0x00FE,0x00FF];
+
+
+// UTF-7
+// Ungolfed: http://xem.github.io/escape/utf7.js
+utf7=function(e,f,g,a,c,d,b){d=b="";e=e.concat(32);c=String.fromCharCode;for(g in e)a=e[g],32>a||125<a?d+=c(a>>8)+c(a&255):(d&&(b+=c(f)+btoa(d).replace(/=+$/,"")+"-",d=""),b=a==f?b+(c(f)+"-"):b+c(a));return b.slice(0,-1)}
+
+
+// Unicode 8 blocks
+// Source: http://www.unicode.org/Public/UNIDATA/Blocks.txt
+unicodeblocks = [
+[0x0000,0x007F,"Basic Latin"],
+[0x0080,0x00FF,"Latin-1 Supplement"],
+[0x0100,0x017F,"Latin Extended-A"],
+[0x0180,0x024F,"Latin Extended-B"],
+[0x0250,0x02AF,"IPA Extensions"],
+[0x02B0,0x02FF,"Spacing Modifier Letters"],
+[0x0300,0x036F,"Combining Diacritical Marks"],
+[0x0370,0x03FF,"Greek and Coptic"],
+[0x0400,0x04FF,"Cyrillic"],
+[0x0500,0x052F,"Cyrillic Supplement"],
+[0x0530,0x058F,"Armenian"],
+[0x0590,0x05FF,"Hebrew"],
+[0x0600,0x06FF,"Arabic"],
+[0x0700,0x074F,"Syriac"],
+[0x0750,0x077F,"Arabic Supplement"],
+[0x0780,0x07BF,"Thaana"],
+[0x07C0,0x07FF,"NKo"],
+[0x0800,0x083F,"Samaritan"],
+[0x0840,0x085F,"Mandaic"],
+[0x08A0,0x08FF,"Arabic Extended-A"],
+[0x0900,0x097F,"Devanagari"],
+[0x0980,0x09FF,"Bengali"],
+[0x0A00,0x0A7F,"Gurmukhi"],
+[0x0A80,0x0AFF,"Gujarati"],
+[0x0B00,0x0B7F,"Oriya"],
+[0x0B80,0x0BFF,"Tamil"],
+[0x0C00,0x0C7F,"Telugu"],
+[0x0C80,0x0CFF,"Kannada"],
+[0x0D00,0x0D7F,"Malayalam"],
+[0x0D80,0x0DFF,"Sinhala"],
+[0x0E00,0x0E7F,"Thai"],
+[0x0E80,0x0EFF,"Lao"],
+[0x0F00,0x0FFF,"Tibetan"],
+[0x1000,0x109F,"Myanmar"],
+[0x10A0,0x10FF,"Georgian"],
+[0x1100,0x11FF,"Hangul Jamo"],
+[0x1200,0x137F,"Ethiopic"],
+[0x1380,0x139F,"Ethiopic Supplement"],
+[0x13A0,0x13FF,"Cherokee"],
+[0x1400,0x167F,"Unified Canadian Aboriginal Syllabics"],
+[0x1680,0x169F,"Ogham"],
+[0x16A0,0x16FF,"Runic"],
+[0x1700,0x171F,"Tagalog"],
+[0x1720,0x173F,"Hanunoo"],
+[0x1740,0x175F,"Buhid"],
+[0x1760,0x177F,"Tagbanwa"],
+[0x1780,0x17FF,"Khmer"],
+[0x1800,0x18AF,"Mongolian"],
+[0x18B0,0x18FF,"Unified Canadian Aboriginal Syllabics Extended"],
+[0x1900,0x194F,"Limbu"],
+[0x1950,0x197F,"Tai Le"],
+[0x1980,0x19DF,"New Tai Lue"],
+[0x19E0,0x19FF,"Khmer Symbols"],
+[0x1A00,0x1A1F,"Buginese"],
+[0x1A20,0x1AAF,"Tai Tham"],
+[0x1AB0,0x1AFF,"Combining Diacritical Marks Extended"],
+[0x1B00,0x1B7F,"Balinese"],
+[0x1B80,0x1BBF,"Sundanese"],
+[0x1BC0,0x1BFF,"Batak"],
+[0x1C00,0x1C4F,"Lepcha"],
+[0x1C50,0x1C7F,"Ol Chiki"],
+[0x1CC0,0x1CCF,"Sundanese Supplement"],
+[0x1CD0,0x1CFF,"Vedic Extensions"],
+[0x1D00,0x1D7F,"Phonetic Extensions"],
+[0x1D80,0x1DBF,"Phonetic Extensions Supplement"],
+[0x1DC0,0x1DFF,"Combining Diacritical Marks Supplement"],
+[0x1E00,0x1EFF,"Latin Extended Additional"],
+[0x1F00,0x1FFF,"Greek Extended"],
+[0x2000,0x206F,"General Punctuation"],
+[0x2070,0x209F,"Superscripts and Subscripts"],
+[0x20A0,0x20CF,"Currency Symbols"],
+[0x20D0,0x20FF,"Combining Diacritical Marks for Symbols"],
+[0x2100,0x214F,"Letterlike Symbols"],
+[0x2150,0x218F,"Number Forms"],
+[0x2190,0x21FF,"Arrows"],
+[0x2200,0x22FF,"Mathematical Operators"],
+[0x2300,0x23FF,"Miscellaneous Technical"],
+[0x2400,0x243F,"Control Pictures"],
+[0x2440,0x245F,"Optical Character Recognition"],
+[0x2460,0x24FF,"Enclosed Alphanumerics"],
+[0x2500,0x257F,"Box Drawing"],
+[0x2580,0x259F,"Block Elements"],
+[0x25A0,0x25FF,"Geometric Shapes"],
+[0x2600,0x26FF,"Miscellaneous Symbols"],
+[0x2700,0x27BF,"Dingbats"],
+[0x27C0,0x27EF,"Miscellaneous Mathematical Symbols-A"],
+[0x27F0,0x27FF,"Supplemental Arrows-A"],
+[0x2800,0x28FF,"Braille Patterns"],
+[0x2900,0x297F,"Supplemental Arrows-B"],
+[0x2980,0x29FF,"Miscellaneous Mathematical Symbols-B"],
+[0x2A00,0x2AFF,"Supplemental Mathematical Operators"],
+[0x2B00,0x2BFF,"Miscellaneous Symbols and Arrows"],
+[0x2C00,0x2C5F,"Glagolitic"],
+[0x2C60,0x2C7F,"Latin Extended-C"],
+[0x2C80,0x2CFF,"Coptic"],
+[0x2D00,0x2D2F,"Georgian Supplement"],
+[0x2D30,0x2D7F,"Tifinagh"],
+[0x2D80,0x2DDF,"Ethiopic Extended"],
+[0x2DE0,0x2DFF,"Cyrillic Extended-A"],
+[0x2E00,0x2E7F,"Supplemental Punctuation"],
+[0x2E80,0x2EFF,"CJK Radicals Supplement"],
+[0x2F00,0x2FDF,"Kangxi Radicals"],
+[0x2FF0,0x2FFF,"Ideographic Description Characters"],
+[0x3000,0x303F,"CJK Symbols and Punctuation"],
+[0x3040,0x309F,"Hiragana"],
+[0x30A0,0x30FF,"Katakana"],
+[0x3100,0x312F,"Bopomofo"],
+[0x3130,0x318F,"Hangul Compatibility Jamo"],
+[0x3190,0x319F,"Kanbun"],
+[0x31A0,0x31BF,"Bopomofo Extended"],
+[0x31C0,0x31EF,"CJK Strokes"],
+[0x31F0,0x31FF,"Katakana Phonetic Extensions"],
+[0x3200,0x32FF,"Enclosed CJK Letters and Months"],
+[0x3300,0x33FF,"CJK Compatibility"],
+[0x3400,0x4DBF,"CJK Unified Ideographs Extension A"],
+[0x4DC0,0x4DFF,"Yijing Hexagram Symbols"],
+[0x4E00,0x9FFF,"CJK Unified Ideographs"],
+[0xA000,0xA48F,"Yi Syllables"],
+[0xA490,0xA4CF,"Yi Radicals"],
+[0xA4D0,0xA4FF,"Lisu"],
+[0xA500,0xA63F,"Vai"],
+[0xA640,0xA69F,"Cyrillic Extended-B"],
+[0xA6A0,0xA6FF,"Bamum"],
+[0xA700,0xA71F,"Modifier Tone Letters"],
+[0xA720,0xA7FF,"Latin Extended-D"],
+[0xA800,0xA82F,"Syloti Nagri"],
+[0xA830,0xA83F,"Common Indic Number Forms"],
+[0xA840,0xA87F,"Phags-pa"],
+[0xA880,0xA8DF,"Saurashtra"],
+[0xA8E0,0xA8FF,"Devanagari Extended"],
+[0xA900,0xA92F,"Kayah Li"],
+[0xA930,0xA95F,"Rejang"],
+[0xA960,0xA97F,"Hangul Jamo Extended-A"],
+[0xA980,0xA9DF,"Javanese"],
+[0xA9E0,0xA9FF,"Myanmar Extended-B"],
+[0xAA00,0xAA5F,"Cham"],
+[0xAA60,0xAA7F,"Myanmar Extended-A"],
+[0xAA80,0xAADF,"Tai Viet"],
+[0xAAE0,0xAAFF,"Meetei Mayek Extensions"],
+[0xAB00,0xAB2F,"Ethiopic Extended-A"],
+[0xAB30,0xAB6F,"Latin Extended-E"],
+[0xAB70,0xABBF,"Cherokee Supplement"],
+[0xABC0,0xABFF,"Meetei Mayek"],
+[0xAC00,0xD7AF,"Hangul Syllables"],
+[0xD7B0,0xD7FF,"Hangul Jamo Extended-B"],
+[0xD800,0xDB7F,"High Surrogates"],
+[0xDB80,0xDBFF,"High Private Use Surrogates"],
+[0xDC00,0xDFFF,"Low Surrogates"],
+[0xE000,0xF8FF,"Private Use Area"],
+[0xF900,0xFAFF,"CJK Compatibility Ideographs"],
+[0xFB00,0xFB4F,"Alphabetic Presentation Forms"],
+[0xFB50,0xFDFF,"Arabic Presentation Forms-A"],
+[0xFE00,0xFE0F,"Variation Selectors"],
+[0xFE10,0xFE1F,"Vertical Forms"],
+[0xFE20,0xFE2F,"Combining Half Marks"],
+[0xFE30,0xFE4F,"CJK Compatibility Forms"],
+[0xFE50,0xFE6F,"Small Form Variants"],
+[0xFE70,0xFEFF,"Arabic Presentation Forms-B"],
+[0xFF00,0xFFEF,"Halfwidth and Fullwidth Forms"],
+[0xFFF0,0xFFFF,"Specials"],
+[0x10000,0x1007F,"Linear B Syllabary"],
+[0x10080,0x100FF,"Linear B Ideograms"],
+[0x10100,0x1013F,"Aegean Numbers"],
+[0x10140,0x1018F,"Ancient Greek Numbers"],
+[0x10190,0x101CF,"Ancient Symbols"],
+[0x101D0,0x101FF,"Phaistos Disc"],
+[0x10280,0x1029F,"Lycian"],
+[0x102A0,0x102DF,"Carian"],
+[0x102E0,0x102FF,"Coptic Epact Numbers"],
+[0x10300,0x1032F,"Old Italic"],
+[0x10330,0x1034F,"Gothic"],
+[0x10350,0x1037F,"Old Permic"],
+[0x10380,0x1039F,"Ugaritic"],
+[0x103A0,0x103DF,"Old Persian"],
+[0x10400,0x1044F,"Deseret"],
+[0x10450,0x1047F,"Shavian"],
+[0x10480,0x104AF,"Osmanya"],
+[0x10500,0x1052F,"Elbasan"],
+[0x10530,0x1056F,"Caucasian Albanian"],
+[0x10600,0x1077F,"Linear A"],
+[0x10800,0x1083F,"Cypriot Syllabary"],
+[0x10840,0x1085F,"Imperial Aramaic"],
+[0x10860,0x1087F,"Palmyrene"],
+[0x10880,0x108AF,"Nabataean"],
+[0x108E0,0x108FF,"Hatran"],
+[0x10900,0x1091F,"Phoenician"],
+[0x10920,0x1093F,"Lydian"],
+[0x10980,0x1099F,"Meroitic Hieroglyphs"],
+[0x109A0,0x109FF,"Meroitic Cursive"],
+[0x10A00,0x10A5F,"Kharoshthi"],
+[0x10A60,0x10A7F,"Old South Arabian"],
+[0x10A80,0x10A9F,"Old North Arabian"],
+[0x10AC0,0x10AFF,"Manichaean"],
+[0x10B00,0x10B3F,"Avestan"],
+[0x10B40,0x10B5F,"Inscriptional Parthian"],
+[0x10B60,0x10B7F,"Inscriptional Pahlavi"],
+[0x10B80,0x10BAF,"Psalter Pahlavi"],
+[0x10C00,0x10C4F,"Old Turkic"],
+[0x10C80,0x10CFF,"Old Hungarian"],
+[0x10E60,0x10E7F,"Rumi Numeral Symbols"],
+[0x11000,0x1107F,"Brahmi"],
+[0x11080,0x110CF,"Kaithi"],
+[0x110D0,0x110FF,"Sora Sompeng"],
+[0x11100,0x1114F,"Chakma"],
+[0x11150,0x1117F,"Mahajani"],
+[0x11180,0x111DF,"Sharada"],
+[0x111E0,0x111FF,"Sinhala Archaic Numbers"],
+[0x11200,0x1124F,"Khojki"],
+[0x11280,0x112AF,"Multani"],
+[0x112B0,0x112FF,"Khudawadi"],
+[0x11300,0x1137F,"Grantha"],
+[0x11480,0x114DF,"Tirhuta"],
+[0x11580,0x115FF,"Siddham"],
+[0x11600,0x1165F,"Modi"],
+[0x11680,0x116CF,"Takri"],
+[0x11700,0x1173F,"Ahom"],
+[0x118A0,0x118FF,"Warang Citi"],
+[0x11AC0,0x11AFF,"Pau Cin Hau"],
+[0x12000,0x123FF,"Cuneiform"],
+[0x12400,0x1247F,"Cuneiform Numbers and Punctuation"],
+[0x12480,0x1254F,"Early Dynastic Cuneiform"],
+[0x13000,0x1342F,"Egyptian Hieroglyphs"],
+[0x14400,0x1467F,"Anatolian Hieroglyphs"],
+[0x16800,0x16A3F,"Bamum Supplement"],
+[0x16A40,0x16A6F,"Mro"],
+[0x16AD0,0x16AFF,"Bassa Vah"],
+[0x16B00,0x16B8F,"Pahawh Hmong"],
+[0x16F00,0x16F9F,"Miao"],
+[0x1B000,0x1B0FF,"Kana Supplement"],
+[0x1BC00,0x1BC9F,"Duployan"],
+[0x1BCA0,0x1BCAF,"Shorthand Format Controls"],
+[0x1D000,0x1D0FF,"Byzantine Musical Symbols"],
+[0x1D100,0x1D1FF,"Musical Symbols"],
+[0x1D200,0x1D24F,"Ancient Greek Musical Notation"],
+[0x1D300,0x1D35F,"Tai Xuan Jing Symbols"],
+[0x1D360,0x1D37F,"Counting Rod Numerals"],
+[0x1D400,0x1D7FF,"Mathematical Alphanumeric Symbols"],
+[0x1D800,0x1DAAF,"Sutton SignWriting"],
+[0x1E800,0x1E8DF,"Mende Kikakui"],
+[0x1EE00,0x1EEFF,"Arabic Mathematical Alphabetic Symbols"],
+[0x1F000,0x1F02F,"Mahjong Tiles"],
+[0x1F030,0x1F09F,"Domino Tiles"],
+[0x1F0A0,0x1F0FF,"Playing Cards"],
+[0x1F100,0x1F1FF,"Enclosed Alphanumeric Supplement"],
+[0x1F200,0x1F2FF,"Enclosed Ideographic Supplement"],
+[0x1F300,0x1F5FF,"Miscellaneous Symbols and Pictographs"],
+[0x1F600,0x1F64F,"Emoticons"],
+[0x1F650,0x1F67F,"Ornamental Dingbats"],
+[0x1F680,0x1F6FF,"Transport and Map Symbols"],
+[0x1F700,0x1F77F,"Alchemical Symbols"],
+[0x1F780,0x1F7FF,"Geometric Shapes Extended"],
+[0x1F800,0x1F8FF,"Supplemental Arrows-C"],
+[0x1F900,0x1F9FF,"Supplemental Symbols and Pictographs"],
+[0x20000,0x2A6DF,"CJK Unified Ideographs Extension B"],
+[0x2A700,0x2B73F,"CJK Unified Ideographs Extension C"],
+[0x2B740,0x2B81F,"CJK Unified Ideographs Extension D"],
+[0x2B820,0x2CEAF,"CJK Unified Ideographs Extension E"],
+[0x2F800,0x2FA1F,"CJK Compatibility Ideographs Supplement"],
+[0xE0000,0xE007F,"Tags"],
+[0xE0100,0xE01EF,"Variation Selectors Supplement"],
+[0xF0000,0xFFFFF,"Supplementary Private Use Area-A"],
+[0x100000,0x10FFFF,"Supplementary Private Use Area-B"]
+]

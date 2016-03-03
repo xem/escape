@@ -40,25 +40,25 @@ escape = function(){
   utf32be = C1(text);
 	c1.value = utf32be.join("\n");
   c2.value = C2(utf32be).join("\n");
-  c3.value = C3(utf32be).join("\n");
+  c3.value = C3(utf32be);
   c4.value = C4(utf32be);
   c5.value = C5(utf32be);
   c6.value = C6(utf32be);
-  c7.value = C7(utf32be);
+  c7.value = C7(utf32be).join("\n");
+  c8.value = C8(utf32be).join("\n");
   
   d1.value = D1(utf32be);
   d2.value = D2(utf32be);
-  d3.value = D3(utf32be);
+  d3.value = D3(utf32be).join("\n");
   d4.value = D4(utf32be);
   d5.value = D5(utf32be);
   d6.value = D6(utf32be);
-  c8.value = C8(utf32be);
   
   // UTF-32 LE transformations
   utf32le = E1(text);
 	e1.value = utf32le.join("\n");
   e2.value = E2(utf32le).join("\n");
-  e3.value = E3(utf32le).join("\n");
+  e3.value = E3(utf32le);
   
   // UTF-16 BE transformations
   utf16be = F1(text);
@@ -86,6 +86,7 @@ escape = function(){
   h5.value = H5(utf8);
   h6.value = H6(utf8);
   h7.value = H7(utf8);
+  h8.value = H8(utf8);
   
   // GB18030 transformations
   gb18030 = I1(utf32be);
@@ -136,10 +137,10 @@ C2=function(a,b,c){c=[];for(b in a)c[b]=(1E7+a[b].toString(16)).slice(-8);return
 D2=function(b,a,c){a="";for(c in b)a+="&#x"+b[c].toString(16)+";";return a}
 
 // UTF-32 BE charcodes => base64
-C3=function(){return []}
+C3=function(b,a,c,s,t){a="";s=String.fromCharCode;for(c in b)t=b[c],a+=s((t>>24)&0xff)+s((t>>16)&0xff)+s((t>>8)&0xff)+s(t&0xff);return btoa(a)}
 
 // UTF-32 BE charcodes => array of Unicode code points
-D3=function(){return []}
+D3=function(a,b,c){c=[];for(b in a)c[b]="U+"+((a[b]<=0xFFFF)?(1E3+a[b].toString(16)).slice(-4):a[b].toString(16));return c}
 
 // UTF-32 BE charcodes => JS string (ES6)
 C4=function(b,a,c){a="";for(c in b)a+="\\u{"+b[c].toString(16)+"}";return a}
@@ -161,10 +162,10 @@ C6=function(p,d,b,l,v,m,c,n,g,h,q,e,f,r,w,x,y,s,u,t,k){t=String.fromCharCode;k=M
 D6=function(b){return "xn--"+C6(b)}
 
 // UTF-32 BE charcodes => Unicode canonical names
-C7=function(b,a,c){a="";for(c in b)a+=unicodenames[b[c]]+"\n";return a}
+C7=function(b,a,c){a=[];for(c in b)a[c]=unicodenames[b[c]];return a}
 
 // UTF-32 BE charcodes => Unicode blocks
-C8=function(b,a,c,d){a="";for(c in b)for(d in unicodeblocks)if(unicodeblocks[d][0]<=b[c]&&unicodeblocks[d][1]>=b[c])a+=unicodeblocks[d][2]+"\n";return a}
+C8=function(b,a,c,d){a=[];for(c in b)for(d in unicodeblocks)if(unicodeblocks[d][0]<=b[c]&&unicodeblocks[d][1]>=b[c])a[c]=unicodeblocks[d][2];return a}
 
 
 
@@ -177,10 +178,10 @@ C8=function(b,a,c,d){a="";for(c in b)for(d in unicodeblocks)if(unicodeblocks[d][
 E1=function(b,a,c,d){d=[];a=C1(b);for(c in a)d[c]=65536*(((a[c]&255)<<8)+(a[c]>>8&255))+(((a[c]>>16&255)<<8)+(a[c]>>24&255));return d}
 
 // UTF-32 LE charcodes => hex
-E2 = C2;
+E2=function(a,b,c){c=[];for(b in a)c[b]=(1E7+a[b].toString(16)).slice(-8);return c}
 
 // UTF-32 LE charcodes => base64
-E3=function(){return []}
+E3=C3
 
 
 
@@ -192,7 +193,7 @@ E3=function(){return []}
 F1=function(b,a,c){a=[];for(c in b)a[c]=b.charCodeAt(c);return a}
 
 // UTF-16 BE charCodes => hex
-F2=function(){return []}
+F2=function(a,b,c){c=[];for(b in a)c[b]=(1E3+a[b].toString(16)).slice(-4);return c}
 
 // UTF-16 BE charCodes => base64
 F3=function(b,a,c,s,t){a="";s=String.fromCharCode;for(c in b)t=b[c],a+=s(t>>8)+s(t&0xff);return btoa(a)}
@@ -220,7 +221,7 @@ F7=function(b){return utf7(b,0x26)}
 G1=function(b,a,c,d){d=[];a=F1(b);for(c in a)d[c]=((a[c]&0xff)<<8)+(a[c]>>8);return d}
 
 // UTF-16 LE charCodes => hex
-G2=function(){return []}
+G2=F2
 
 // UTF-16 LE charCodes => base64
 G3=F3
@@ -238,7 +239,7 @@ G4=function(b){return "data:;charset=utf-16LE;base64,"+G3(b)}
 H1=function(b,a,c,d,n){a=[];for(c=0;c<b.length;c++)128>b[d="charCodeAt"](c)?a.push(b[d](c)):(n=b[c],55296==(b[d](c)&64512)&&(n=b.substr(c,2),c++),encodeURI(n).replace(/\w+/g,function(b){a.push(parseInt(b,16))}));return a}
 
 // UTF-8 bytes => hex
-H2=function(b,c){for(c in b)b[c]=b[c].toString(16);return b}
+H2=function(b,c){for(c in b)b[c]=("0"+b[c].toString(16)).slice(-2);return b}
 
 // UTF-8 bytes => base64
 H3=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
@@ -268,7 +269,7 @@ H8=function(b,a,c){a="";for(c in b)a+="%"+b[c].toString(16);return a}
 I1=function(l,a,m,d,e,f,p,c,b,g,h,k,n){a=[];for(m in l)if(128>(d=l[m]))a.push(d);else if(-1!=(e=gb18030index.indexOf(d)))a.push(~~(e/190)+129),f=e%190,a.push(f+64+ +(63<f));else{for(c=0;c<gb18030ranges.length;c+=2)gb18030ranges[c+1]<=d&&(b=gb18030ranges[c]+d-gb18030ranges[c+1]);g=~~(b/10/126/10);b-=12600*g;h=~~(b/10/126);b-=1260*h;k=~~(b/10);n=b-10*k;a.push(g+129);a.push(h+48);a.push(k+129);a.push(n+48)}return a};
 
 // GB-18030 charCodes => hex
-I2=function(){return []}
+I2=H2
 
 // GB-18030 charCodes => base64
 I3=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
@@ -325,7 +326,7 @@ K7=function(b,a,c){a="";for(c in b)a+="\\"+b[c].toString(8);return a}
 L1=function(l,a,m,d,e){a=[];for(m in l)if(127>(d=l[m]))a.push(d);else if(-1!=(e=windows1252index.indexOf(d)))a.push(e+0x80);return a};
 
 // Windows-1252 charCodes => hex
-L2=function(){return []}
+L2=H2
 
 // Windows-1252 charCodes => base64
 L3=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}

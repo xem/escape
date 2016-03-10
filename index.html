@@ -1,16 +1,23 @@
 <meta charset=utf-8>
 <title>EscApe</title>
 <style>
+* { box-sizing: border-box }
 h1 { font-size: 70px; margin: 0; }
 h2 { font-size: 20px; margin: 0; }
 body { font-family: arial; width: 98%; margin: 0 auto }
-table { width: 100%; border-collapse: collapse; table-layout: fixed }
-td { text-align: center; padding: 2px 6px; background: #f0f0f0; font-size: 12px; vertical-align: top; }
+table { width: 100%; border-collapse: collapse; table-layout: fixed; position: static; }
+td { text-align: center; padding: 2px 6px; background: #f0f0f0; font-size: 12px; vertical-align: top;}
+td.column { padding: 0; width: 200px; border-right: 1px solid; }
+td.column:last-of-type { border-right: none; }
+td.column[colspan="2"] { width: 400px;}
+td.column td { height: 120px; }
 input, textarea { width: 100%; }
 #a1, #a2 { height: 100px; }
 table a { float: right; text-decoration: none; }
 textarea { height: 90px }
 textarea:after { content: attr(id); }
+.wrapper1 { width: 97vw; }
+.wrapper2 { width: 97vw; height: calc(99vh - 370px); overflow: auto; border: 1px solid; position: relative; }
 </style>
 <a href=//github.com/xem/escape><img style="position:absolute;top:0;right:0;border:0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on github"></a>
 <center>
@@ -21,110 +28,1153 @@ textarea:after { content: attr(id); }
 All the encoding / decoding / escaping features you (n)ever dreamed of, all in one place!
 <br>
 <br>
+<div class=wrapper1>
 <table border>
   <tr>
-		<th colspan=6>Plain text
+		<th colspan=7>Plain text
 		<th colspan=4>Events
 	<tr>
-    <td colspan=6><textarea id=a1 autofocus>a©€💩</textarea>
+    <td colspan=7><textarea id=a1 autofocus>a©€💩</textarea>
 		<td colspan=4><textarea id=a2 readonly></textarea>
-  <tr>
-		<th colspan=2>UTF-32 BE<a href="" title="download (with BOM)" id=b1>⇓</a> <a href="" title="download (without BOM)" id=b2>⇓</a>
-		<th>UTF-32 LE<a href="" title="download (with BOM)" id=b3>⇓</a> <a href="" title="download (without BOM)" id=b4>⇓</a>
-		<th>UTF-16 BE<a href="" title="download (with BOM)" id=b5>⇓</a> <a href="" title="download (without BOM)" id=b6>⇓</a>
-		<th>UTF-16 LE<a href="" title="download (with BOM)" id=b7>⇓</a> <a href="" title="download (without BOM)" id=b8>⇓</a>
-		<th>UTF-8<a href="" title="download (with BOM)" id=b9>⇓</a> <a href="" title="download (without BOM)" id=b10>⇓</a>
-		<th>GB18030<a href="" title="download" id=b11>⇓</a>
-		<th>CESU-8<a href="" title="download" id=b12>⇓</a>
-		<th>Latin-1<a href="" title="download" id=b13>⇓</a>
-		<th>Windows-1252<a href="" title="download" id=b14>⇓</a>
-	<tr>
-		<td>Char codes (decimal)<textarea id=c1></textarea>
-		<td>HTML entities (decimal)<textarea id=d1></textarea>
-		<td>Char codes (decimal)<textarea id=e1></textarea>
-		<td>Char codes (decimal)<textarea id=f1></textarea>
-		<td>Char codes (decimal)<textarea id=g1></textarea>
-		<td>Bytes (decimal)<textarea id=h1></textarea>
-		<td>Bytes (decimal)<textarea id=i1></textarea>
-		<td>Char codes (decimal)<textarea id=j1></textarea>
-		<td>Char codes (decimal)<textarea id=k1></textarea>
-		<td>Char codes (decimal)<textarea id=l1></textarea>
-	<tr>
-		<td>Char codes (hex)<textarea id=c2></textarea>
-		<td>HTML entities (hex)<textarea id=d2></textarea>
-		<td>Char codes (hex)<textarea id=e2></textarea>
-		<td>Char codes (hex)<textarea id=f2></textarea>
-		<td>Char codes (hex)<textarea id=g2></textarea>
-		<td>Bytes (hex)<textarea id=h2></textarea>
-		<td>Bytes (hex)<textarea id=i2></textarea>
-		<td>Char codes (hex)<textarea id=j2></textarea>
-		<td>Char codes (hex)<textarea id=k2></textarea>
-		<td>Char codes (hex)<textarea id=l2></textarea>
-  <tr>
-		<td>Base64<textarea id=c3></textarea>
-		<td>Unicode code points<textarea id=d3></textarea>
-		<td>Base64<textarea id=e3></textarea>
-		<td>Base64<textarea id=f3></textarea>
-		<td>Base64<textarea id=g3></textarea>
-		<td>Base64<textarea id=h3></textarea>
-		<td>Base64<textarea id=i3></textarea>
-		<td>Base64<textarea id=j3></textarea>
-		<td>Base64<textarea id=k3></textarea>
-		<td>Base64<textarea id=l3></textarea>
-	<tr>
-		<td>JS string (ES6)<textarea id=c4></textarea>
-		<td>JS querySelector<textarea id=d4></textarea>
-		<td>
-		<td>DataURI + Base64<textarea id=f4></textarea>
-		<td>DataURI + Base64<textarea id=g4></textarea>
-		<td>DataURI + Base64<textarea id=h4></textarea>
-		<td>DataURI + Base64<textarea id=i4></textarea>
-		<td>
-		<td>DataURI + Base64<textarea id=k4></textarea>
-		<td>DataURI + Base64<textarea id=l4></textarea>
-	<tr>
-		<td>CSS selector/font-family<textarea id=c5></textarea>
-		<td>CSS Unicode-range<textarea id=d5></textarea>
-		<td>
-		<td>JS/C/C++/Java source code<textarea id=f5></textarea>
-		<td>
-		<td>MIME + Base64<textarea id=h5></textarea>
-		<td>
-		<td>
-		<td>Text (compatible glyphs only)<textarea id=k5></textarea>
-		<td>Text (compatible glyphs only)<textarea id=l5></textarea>
-	<tr>
-		<td>Punycode<textarea id=c6></textarea>
-		<td></textarea>IDN<textarea id=d6></textarea>
-		<td>
-		<td>UTF-7<textarea id=f6></textarea>
-		<td>
-		<td>Q / Quoted printable<textarea id=h6></textarea>
-		<td>
-		<td>
-		<td>JS hex escape<textarea id=k6></textarea>
-		<td>
-	<tr>
-		<td colspan=2>Unicode canonical names<textarea id=c7></textarea>
-		<td>
-		<td>UTF-7 (IMAP)<textarea id=f7></textarea>
-		<td>
-		<td>MIME + Q<textarea id=h7></textarea>
-		<td>
-		<td>
-		<td>JS octal escape<textarea id=k7></textarea>
-		<td>
-  <tr>
-    <td colspan=2>Unicode blocks<textarea id=c8></textarea>
-    <td>
-		<td>
-		<td>
-		<td>URL encode<textarea id=h8></textarea> 
-		<td>
-		<td>
-		<td>
-		<td>
 </table>
+</div>
+<div class=wrapper2>
+<table>
+  <tr>
+  
+  
+    <td colspan=2 class=column>
+    
+        <table border>
+          <tr>
+            <th>UTF-32 BE <a href="" title="download (with BOM)" id=b1>⇓</a> <a href="" title="download (without BOM)" id=b2>⇓</a>
+          <tr>
+            <td>Char codes (decimal)<textarea id=c1></textarea>
+            <td>HTML entities (decimal)<textarea id=d1></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=c2></textarea>
+            <td>HTML entities (hex)<textarea id=d2></textarea>
+          <tr>
+            <td>Base64<textarea id=c3></textarea>
+            <td>Unicode code points<textarea id=d3></textarea>
+          <tr>
+            <td>JS string (ES6)<textarea id=c4></textarea>
+            <td>JS querySelector<textarea id=d4></textarea>
+          <tr>
+            <td>CSS selector/font-family<textarea id=c5></textarea>
+            <td>CSS Unicode-range<textarea id=d5></textarea>
+          <tr>
+            <td>Punycode<textarea id=c6></textarea>
+            <td></textarea>IDN<textarea id=d6></textarea>
+          <tr>
+            <td class=colspan colspan=2>Unicode canonical names<textarea id=c7></textarea>
+          <tr>
+            <td class=colspan colspan=2>Unicode blocks<textarea id=c8></textarea>
+        </table>
+      
+      
+    <td class=column>
+    
+    
+        <table border>
+          <tr>
+            <th>UTF-32 LE<a href="" title="download (with BOM)" id=b3>⇓</a> <a href="" title="download (without BOM)" id=b4>⇓</a>
+          <tr>
+            <td>Char codes (decimal)<textarea id=e1></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=e2></textarea>
+          <tr>
+            <td>Base64<textarea id=e3></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+      
+      
+    <td class=column>
+    
+    
+        <table border>
+          <tr>
+            <th>UTF-16 BE<a href="" title="download (with BOM)" id=b5>⇓</a> <a href="" title="download (without BOM)" id=b6>⇓</a>
+          <tr>
+            <td>Char codes (decimal)<textarea id=f1></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=f2></textarea>
+          <tr>
+            <td>Base64<textarea id=f3></textarea>
+          <tr>
+            <td>DataURI + Base64<textarea id=f4></textarea>
+          <tr>
+            <td>JS/C/C++/Java source code<textarea id=f5></textarea>
+          <tr>
+            <td>UTF-7<textarea id=f6></textarea>
+          <tr>
+            <td>UTF-7 (IMAP)<textarea id=f7></textarea>
+          <tr>
+            <td>
+        </table>
+      
+      
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>UTF-16 LE<a href="" title="download (with BOM)" id=b7>⇓</a> <a href="" title="download (without BOM)" id=b8>⇓</a>
+          <tr>
+            <td>Char codes (decimal)<textarea id=g1></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=g2></textarea>
+          <tr>
+            <td>Base64<textarea id=g3></textarea>
+          <tr>
+            <td>DataURI + Base64<textarea id=g4></textarea>
+          <tr>
+            <td>Q / Quoted printable<textarea id=></textarea>
+          <tr>
+            <td>MIME + Q<textarea id=></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+      
+      
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>UTF-8<a href="" title="download (with BOM)" id=b9>⇓</a> <a href="" title="download (without BOM)" id=b10>⇓</a>
+          <tr>
+            <td>Bytes (decimal)<textarea id=h1></textarea>
+          <tr>
+            <td>Bytes (hex)<textarea id=h2></textarea>
+          <tr>
+            <td>Base64<textarea id=h3></textarea>
+          <tr>
+            <td>DataURI + Base64<textarea id=h4></textarea>
+          <tr>
+            <td>MIME + Base64<textarea id=h5></textarea>
+          <tr>
+            <td>Q / Quoted printable<textarea id=h6></textarea>
+          <tr>
+            <td>MIME + Q<textarea id=h7></textarea>
+          <tr>
+            <td>URL encode<textarea id=h8></textarea>
+        </table>
+      
+      
+    <td class=column>
+    
+      
+        <table border>
+          <tr>
+            <th>WTF-7
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+      
+      
+    <td class=column>
+    
+      
+        <table border>
+          <tr>
+            <th>UTF-7
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+        
+        
+    <td class=column>
+      
+        <table border>
+          <tr>
+            <th>UTF-1
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+      
+      
+    <td class=column>
+    
+     
+        <table border>
+          <tr>
+            <th>UTF-EBCDIC
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+      
+      
+    <td class=column>
+    
+      
+        <table border>
+          <tr>
+            <th>GB18030<a href="" title="download" id=b11>⇓</a>
+          <tr>
+            <td>Bytes (decimal)<textarea id=i1></textarea>
+          <tr>
+            <td>Bytes (hex)<textarea id=i2></textarea>
+          <tr>
+            <td>Base64<textarea id=i3></textarea>
+          <tr>
+            <td>DataURI + Base64<textarea id=i4></textarea>
+          <tr>
+            <td>Q / Quoted printable<textarea id=></textarea>
+          <tr>
+            <td>MIME + Q<textarea id=></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+      </div>
+      
+      
+    <td class=column>
+
+    
+    
+        <table border>
+          <tr>
+            <th>CESU-8<a href="" title="download" id=b12>⇓</a>
+          <tr>
+            <td>Char codes (decimal)<textarea id=j1></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=j2></textarea>
+          <tr>
+            <td>Base64<textarea id=j3></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+      
+      
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>BOCU-1
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+      
+      
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-1<a href="" title="download" id=b13>⇓</a>
+          <tr>
+            <td>Char codes (decimal)<textarea id=k1></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=k2></textarea>
+          <tr>
+            <td>Base64<textarea id=k3></textarea>
+          <tr>
+            <td>DataURI + Base64<textarea id=k4></textarea>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=k5></textarea>
+          <tr>
+            <td>JS hex escape<textarea id=k6></textarea>
+          <tr>
+            <td>JS octal escape<textarea id=k7></textarea>
+          <tr>
+            <td>
+        </table>
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-2
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-3
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-4
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-5
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-6
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-7
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-8
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-8-i
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-9
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-10
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-11
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-12
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-13
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-14
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-15
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Latin-16
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Windows-1250
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Windows-874
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Windows-1251
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+      
+      
+    <td class=column>
+      
+        <table border>
+          <tr>
+            <th>Windows-1252<a href="" title="download" id=b14>⇓</a>
+          <tr>
+            <td>Char codes (decimal)<textarea id=l1></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=l2></textarea>
+          <tr>
+            <td>Base64<textarea id=l3></textarea>
+          <tr>
+            <td>DataURI + Base64<textarea id=l4></textarea>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=l5></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Windows-1253
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Windows-1254
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Windows-1255
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Windows-1256
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Windows-1257
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>Windows-1258
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>x-mac-cyrillic
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>macintosh
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>koi8-r
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>koi8-u
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>x-mac-cyrillic
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+        
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>ibm866
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+      
+    </td>
+  </tr>
+</table>
+</div>
 <br>
 &#169; 2016 - <a href=//xem.github.io>xem</a>
 <br>

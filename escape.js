@@ -37,87 +37,91 @@ escape = function(){
 	text = a1.value;
 
   // UTF-32 BE transformations
-  utf32be = C1(text);
-	c1.value = utf32be.join("\n");
-  c2.value = C2(utf32be).join("\n");
-  c3.value = C3(utf32be);
-  c4.value = C4(utf32be);
-  c5.value = C5(utf32be);
-  c6.value = C6(utf32be);
-  c7.value = C7(utf32be).join("\n");
-  c8.value = C8(utf32be).join("\n");
+  utf32be_codepoints = utf32be_1_encoder(text);
+	utf32be_1.value = utf32be_codepoints.join("\n");
+  utf32be_2.value = utf32be_2_encoder(utf32be_codepoints);
+  utf32be_3.value = utf32be_3_encoder(utf32be_codepoints).join("\n");
+  utf32be_4.value = utf32be_4_encoder(utf32be_codepoints);
+  utf32be_5.value = utf32be_5_encoder(utf32be_codepoints);
+  utf32be_6.value = utf32be_6_encoder(utf32be_codepoints).join("\n");
+  utf32be_7.value = utf32be_7_encoder(utf32be_codepoints);
+  utf32be_8.value = utf32be_8_encoder(utf32be_codepoints);
+  utf32be_9.value = utf32be_9_encoder(utf32be_codepoints);
+  utf32be_10.value = utf32be_10_encoder(utf32be_codepoints);
+  utf32be_11.value = utf32be_11_encoder(utf32be_codepoints);
+  utf32be_12.value = utf32be_12_encoder(utf32be_codepoints);
+  utf32be_13.value = utf32be_13_encoder(utf32be_codepoints).join("\n");
+  utf32be_14.value = utf32be_14_encoder(utf32be_codepoints).join("\n");
   
-  d1.value = D1(utf32be);
-  d2.value = D2(utf32be);
-  d3.value = D3(utf32be).join("\n");
-  d4.value = D4(utf32be);
-  d5.value = D5(utf32be);
-  d6.value = D6(utf32be);
   
   // UTF-32 LE transformations
-  utf32le = E1(text);
-	e1.value = utf32le.join("\n");
-  e2.value = E2(utf32le).join("\n");
-  e3.value = E3(utf32le);
+  utf32le_codepoints = utf32le_1_encoder(text);
+	utf32le_1.value = utf32le_codepoints.join("\n");
+  utf32le_2.value = utf32le_2_encoder(utf32le_codepoints).join("\n");
+  utf32le_3.value = utf32le_3_encoder(utf32le_codepoints);
   
   // UTF-16 BE transformations
-  utf16be = F1(text);
-  f1.value = utf16be.join("\n");
-  f2.value = F2(utf16be).join("\n");
-  f3.value = F3(utf16be);
-  f4.value = F4(utf16be);
-  f5.value = F5(utf16be);
-  f6.value = F6(utf16be);
-  f7.value = F7(utf16be);
+  utf16be_codepoints = utf16be_1_encoder(text);
+  utf16be_1.value = utf16be_codepoints.join("\n");
+  utf16be_2.value = utf16be_2_encoder(utf16be_codepoints).join("\n");
+  utf16be_3.value = utf16be_3_encoder(utf16be_codepoints);
+  utf16be_4.value = utf16be_4_encoder(utf16be_codepoints);
+  utf16be_5.value = utf16be_5_encoder(utf16be_codepoints);
   
   // UTF-16 LE transformations
-  utf16le = G1(text);
-	g1.value = utf16le.join("\n");
-  g2.value = G2(utf16le).join("\n");
-  g3.value = G3(utf16le);
-  g4.value = G4(utf16le);
+  utf16le_codepoints = utf16le_1_encoder(text);
+	utf16le_1.value = utf16le_codepoints.join("\n");
+  utf16le_2.value = utf16le_2_encoder(utf16le_codepoints).join("\n");
+  utf16le_3.value = utf16le_3_encoder(utf16le_codepoints);
+  utf16le_4.value = utf16le_4_encoder(utf16le_codepoints);
   
   // UTF-8 transformations
-  utf8 = H1(text);
-	h1.value = utf8.join("\n");
-  h2.value = H2(utf8).join("\n");
-  h3.value = H3(utf8);
-  h4.value = H4(utf8);
-  h5.value = H5(utf8);
-  h6.value = H6(utf8);
-  h7.value = H7(utf8);
-  h8.value = H8(utf8);
+  utf8_bytes = utf8_1_encoder(text);
+	utf8_1.value = utf8_bytes.join("\n");
+  utf8_2.value = utf8_2_encoder(utf8_bytes).join("\n");
+  utf8_3.value = utf8_3_encoder(utf8_bytes);
+  utf8_4.value = utf8_4_encoder(utf8_bytes);
+  utf8_5.value = utf8_5_encoder(utf8_bytes);
+  utf8_6.value = utf8_6_encoder(utf8_bytes);
+  utf8_7.value = utf8_7_encoder(utf8_bytes);
+  utf8_8.value = utf8_8_encoder(utf8_bytes);
+  utf8_9.value = utf8_9_encoder(utf8_bytes);
+  
+  // UTF-7 transformations
+  utf7_1.value = utf7_1_encoder(utf16be_codepoints);
+  utf7_2.value = utf7_2_encoder(utf16be_codepoints);
   
   // GB18030 transformations
-  gb18030 = I1(utf32be);
-	i1.value = gb18030.join("\n");
-  i2.value = I2(gb18030).join("\n");
-  i3.value = I3(gb18030);
-  i4.value = I4(gb18030);
+  gb18030_codepoints = gb180301_encoder(utf32be_codepoints);
+	gb180301.value = gb18030_codepoints.join("\n");
+  gb180302.value = gb180302_encoder(gb18030_codepoints).join("\n");
+  gb180303.value = gb180303_encoder(gb18030_codepoints);
+  gb180304.value = gb180304_encoder(gb18030_codepoints);
   
   // CESU-8 transformations
-  cesu8 = J1(text);
-	j1.value = cesu8.join("\n");
-  j2.value = J2(cesu8).join("\n");
-  j3.value = J3(cesu8);
+  cesu8_codepoints = cesu8_1_encoder(text);
+	cesu8_1.value = cesu8_codepoints.join("\n");
+  cesu8_2.value = cesu8_2_encoder(cesu8_codepoints).join("\n");
+  cesu8_3.value = cesu8_3_encoder(cesu8_codepoints);
   
   // Latin-1 transformations
-  latin1 = K1(utf32be);
-	k1.value = latin1.join("\n");
-  k2.value = K2(latin1).join("\n");
-  k3.value = K3(latin1);
-  k4.value = K4(latin1);
-  k5.value = K5(latin1);
-  k6.value = K6(latin1);
-  k7.value = K7(latin1);
+  latin1_codepoints = latin1_1_encoder(utf32be_codepoints);
+	latin1_1.value = latin1_codepoints.join("\n");
+  latin1_2.value = latin1_2_encoder(latin1_codepoints).join("\n");
+  latin1_3.value = latin1_3_encoder(latin1_codepoints);
+  latin1_4.value = latin1_4_encoder(latin1_codepoints);
+  latin1_5.value = latin1_5_encoder(latin1_codepoints);
+  latin1_6.value = latin1_6_encoder(latin1_codepoints);
+  latin1_7.value = latin1_7_encoder(latin1_codepoints);
   
   // Windows-1252 transformations
-  windows1252 = L1(utf32be);
-	l1.value = windows1252.join("\n");
-  l2.value = L2(windows1252).join("\n");
-  l3.value = L3(windows1252);
-  l4.value = L4(windows1252);
-  l5.value = L5(windows1252);
+  windows1252_codepoints = windows1252_3_encoder(utf32be_codepoints);
+  windows1252_1.value = "";
+  windows1252_2.value = "";
+	windows1252_3.value = windows1252_codepoints.join("\n");
+  windows1252_4.value = windows1252_4_encoder(windows1252_codepoints).join("\n");;
+  windows1252_5.value = windows1252_5_encoder(windows1252_codepoints);
+  windows1252_6.value = windows1252_6_encoder(windows1252_codepoints);
 }
 
 
@@ -125,47 +129,47 @@ escape = function(){
 // UTF-32 BE transformations
 
 // Plain text => array of UTF-32 BE charcodes (decimal)
-C1=function(b,a,c,d){a=[];for(c=0;c<b.length;c++)54==(b[d="charCodeAt"](c)>>10)?(a.push(1024*(b[d](c)-55296)+b[d](c+1)+9216),c++):a.push(b[d](c));return a}
+utf32be_1_encoder=function(b,a,c,d){a=[];for(c=0;c<b.length;c++)54==(b[d="charCodeAt"](c)>>10)?(a.push(1024*(b[d](c)-55296)+b[d](c+1)+9216),c++):a.push(b[d](c));return a}
 
 // UTF-32 BE charcodes => Decimal HTML entities
-D1=function(b,a,c){a="";for(c in b)a+="&#"+b[c]+";";return a}
+utf32be_2_encoder=function(b,a,c){a="";for(c in b)a+="&#"+b[c]+";";return a}
 
 // UTF-32 BE charcodes => hex
-C2=function(a,b,c){c=[];for(b in a)c[b]=(1E7+a[b].toString(16)).slice(-8);return c}
+utf32be_3_encoder=function(a,b,c){c=[];for(b in a)c[b]=(1E7+a[b].toString(16)).slice(-8);return c}
 
 // UTF-32 BE charcodes => Hex HTML entities
-D2=function(b,a,c){a="";for(c in b)a+="&#x"+b[c].toString(16)+";";return a}
+utf32be_4_encoder=function(b,a,c){a="";for(c in b)a+="&#x"+b[c].toString(16)+";";return a}
 
 // UTF-32 BE charcodes => base64
-C3=function(b,a,c,s,t){a="";s=String.fromCharCode;for(c in b)t=b[c],a+=s((t>>24)&0xff)+s((t>>16)&0xff)+s((t>>8)&0xff)+s(t&0xff);return btoa(a)}
+utf32be_5_encoder=function(b,a,c,s,t){a="";s=String.fromCharCode;for(c in b)t=b[c],a+=s((t>>24)&0xff)+s((t>>16)&0xff)+s((t>>8)&0xff)+s(t&0xff);return btoa(a)}
 
 // UTF-32 BE charcodes => array of Unicode code points
-D3=function(a,b,c){c=[];for(b in a)c[b]="U+"+((a[b]<=0xFFFF)?(1E3+a[b].toString(16)).slice(-4):a[b].toString(16));return c}
+utf32be_6_encoder=function(a,b,c){c=[];for(b in a)c[b]="U+"+((a[b]<=0xFFFF)?(1E3+a[b].toString(16)).slice(-4):a[b].toString(16));return c}
 
 // UTF-32 BE charcodes => JS string (ES6)
-C4=function(b,a,c){a="";for(c in b)a+="\\u{"+b[c].toString(16)+"}";return a}
+utf32be_7_encoder=function(b,a,c){a="";for(c in b)a+="\\u{"+b[c].toString(16)+"}";return a}
 
 // UTF-32 BE charcodes => JS querySelector
-D4=function(b,a,c){a="";for(c in b)a+="\\\\"+b[c].toString(16)+" ";return a}
+utf32be_8_encoder=function(b,a,c){a="";for(c in b)a+="\\\\"+b[c].toString(16)+" ";return a}
 
 // UTF-32 BE charcodes => CSS selector/font-family
-C5=function(b,a,c){a="";for(c in b)a+="\\"+b[c].toString(16)+" ";return a}
+utf32be_9_encoder=function(b,a,c){a="";for(c in b)a+="\\"+b[c].toString(16)+" ";return a}
 
 // UTF-32 BE charcodes => CSS Unicode-range
-D5=function(b,a,c){a="";for(c in b)a+="U+"+b[c].toString(16)+",";return a.slice(0,-1)}
+utf32be_10_encoder=function(b,a,c){a="";for(c in b)a+="U+"+b[c].toString(16)+",";return a.slice(0,-1)}
 
 // UTF-32 BE charcodes => Punycode
 // Ungolfed: http://xem.github.io/escape/punycode.js
-C6=function(p,d,b,l,v,m,c,n,g,h,q,e,f,r,w,x,y,s,u,t,k){t=String.fromCharCode;k=Math.floor;f=[];d=128;m=72;for(c=b=0;c<(r=p.length);++c)128>(e=p[c])&&f.push(t(e));for((l=v=f.length)&&f.push("-");l<r;){n=1E9;for(c=0;c<r;++c)(e=p[c])>=d&&e<n&&(n=e);b+=(n-d)*(w=l+1);d=n;for(c=0;c<r;++c)if((e=p[c])<d&&++b,e==d){g=b;for(h=36;!(g<(q=h<=m?1:h>=m+26?26:h-m));h+=36)u=q+(y=g-q)%(x=36-q),f.push(t(u+22+75*(26>u))),g=k(y/x);f.push(t(g+22+75*(26>g)));s=0;b=l==v?k(b/700):b>>1;for(b+=k(b/w);455<b;s+=36)b=k(b/ 35);m=k(s+36*b/(b+38));b=0;++l}++b;++d}return f.join("")}
+utf32be_11_encoder=function(p,d,b,l,v,m,c,n,g,h,q,e,f,r,w,x,y,s,u,t,k){t=String.fromCharCode;k=Math.floor;f=[];d=128;m=72;for(c=b=0;c<(r=p.length);++c)128>(e=p[c])&&f.push(t(e));for((l=v=f.length)&&f.push("-");l<r;){n=1E9;for(c=0;c<r;++c)(e=p[c])>=d&&e<n&&(n=e);b+=(n-d)*(w=l+1);d=n;for(c=0;c<r;++c)if((e=p[c])<d&&++b,e==d){g=b;for(h=36;!(g<(q=h<=m?1:h>=m+26?26:h-m));h+=36)u=q+(y=g-q)%(x=36-q),f.push(t(u+22+75*(26>u))),g=k(y/x);f.push(t(g+22+75*(26>g)));s=0;b=l==v?k(b/700):b>>1;for(b+=k(b/w);455<b;s+=36)b=k(b/ 35);m=k(s+36*b/(b+38));b=0;++l}++b;++d}return f.join("")}
 
 // UTF-32 BE charcodes => IDN
-D6=function(b){return "xn--"+C6(b)}
+utf32be_12_encoder=function(b){return "xn--"+utf32be_11_encoder(b)}
 
 // UTF-32 BE charcodes => Unicode canonical names
-C7=function(b,a,c){a=[];for(c in b)a[c]=unicodenames[b[c]];return a}
+utf32be_13_encoder=function(b,a,c){a=[];for(c in b)a[c]=unicodenames[b[c]];return a}
 
 // UTF-32 BE charcodes => Unicode blocks
-C8=function(b,a,c,d){a=[];for(c in b)for(d in unicodeblocks)if(unicodeblocks[d][0]<=b[c]&&unicodeblocks[d][1]>=b[c])a[c]=unicodeblocks[d][2];return a}
+utf32be_14_encoder=function(b,a,c,d){a=[];for(c in b)for(d in unicodeblocks)if(unicodeblocks[d][0]<=b[c]&&unicodeblocks[d][1]>=b[c])a[c]=unicodeblocks[d][2];return a}
 
 
 
@@ -175,13 +179,13 @@ C8=function(b,a,c,d){a=[];for(c in b)for(d in unicodeblocks)if(unicodeblocks[d][
 // UTF-32 LE transformations
 
 // Plain text => array of UTF-32 LE charcodes
-E1=function(b,a,c,d){d=[];a=C1(b);for(c in a)d[c]=65536*(((a[c]&255)<<8)+(a[c]>>8&255))+(((a[c]>>16&255)<<8)+(a[c]>>24&255));return d}
+utf32le_1_encoder=function(b,a,c,d){d=[];a=utf32be_1_encoder(b);for(c in a)d[c]=65536*(((a[c]&255)<<8)+(a[c]>>8&255))+(((a[c]>>16&255)<<8)+(a[c]>>24&255));return d}
 
 // UTF-32 LE charcodes => hex
-E2=function(a,b,c){c=[];for(b in a)c[b]=(1E7+a[b].toString(16)).slice(-8);return c}
+utf32le_2_encoder=function(a,b,c){c=[];for(b in a)c[b]=(1E7+a[b].toString(16)).slice(-8);return c}
 
 // UTF-32 LE charcodes => base64
-E3=C3
+utf32le_3_encoder=utf32be_5_encoder
 
 
 
@@ -190,27 +194,19 @@ E3=C3
 // UTF-16 BE transformations
 
 // Plain text => array of UTF-16 BE charCodes
-F1=function(b,a,c){a=[];for(c in b)a[c]=b.charCodeAt(c);return a}
+utf16be_1_encoder=function(b,a,c){a=[];for(c in b)a[c]=b.charCodeAt(c);return a}
 
 // UTF-16 BE charCodes => hex
-F2=function(a,b,c){c=[];for(b in a)c[b]=(1E3+a[b].toString(16)).slice(-4);return c}
+utf16be_2_encoder=function(a,b,c){c=[];for(b in a)c[b]=(1E3+a[b].toString(16)).slice(-4);return c}
 
 // UTF-16 BE charCodes => base64
-F3=function(b,a,c,s,t){a="";s=String.fromCharCode;for(c in b)t=b[c],a+=s(t>>8)+s(t&0xff);return btoa(a)}
+utf16be_3_encoder=function(b,a,c,s,t){a="";s=String.fromCharCode;for(c in b)t=b[c],a+=s(t>>8)+s(t&0xff);return btoa(a)}
 
 // UTF-16 BE charCodes => DataURI + Base64
-F4=function(b){return "data:;charset=utf-16BE;base64,"+F3(b)}
+utf16be_4_encoder=function(b){return "data:;charset=utf-16BE;base64,"+utf16be_3_encoder(b)}
 
 // UTF-16 BE charCodes => JS/C/C++/Java source code
-F5=function(b,a,c){a="";for(c in b)a+="\\u"+(1E3+b[c].toString(16)).slice(-4);return a}
-
-// UTF-16 BE charCodes => UTF-7
-F6=function(b){return utf7(b,0x2B)}
-
-// UTF-16 BE charCodes => UTF-7 (IMAP)
-F7=function(b){return utf7(b,0x26)}
-
-
+utf16be_5_encoder=function(b,a,c){a="";for(c in b)a+="\\u"+(1E3+b[c].toString(16)).slice(-4);return a}
 
 
 
@@ -218,16 +214,16 @@ F7=function(b){return utf7(b,0x26)}
 // UTF-16 LE transformations
 
 // Plain text => array of UTF-16 LE charCodes
-G1=function(b,a,c,d){d=[];a=F1(b);for(c in a)d[c]=((a[c]&0xff)<<8)+(a[c]>>8);return d}
+utf16le_1_encoder=function(b,a,c,d){d=[];a=utf16be_1_encoder(b);for(c in a)d[c]=((a[c]&0xff)<<8)+(a[c]>>8);return d}
 
 // UTF-16 LE charCodes => hex
-G2=F2
+utf16le_2_encoder=utf16be_2_encoder
 
 // UTF-16 LE charCodes => base64
-G3=F3
+utf16le_3_encoder=utf16be_3_encoder
 
 // UTF-16 LE charCodes => DataURI + Base64
-G4=function(b){return "data:;charset=utf-16LE;base64,"+G3(b)}
+utf16le_4_encoder=function(b){return "data:;charset=utf-16LE;base64,"+utf16le_3_encoder(b)}
 
 
 
@@ -236,28 +232,41 @@ G4=function(b){return "data:;charset=utf-16LE;base64,"+G3(b)}
 // UTF-8 transformations
 
 // Plain text => array of UTF-8 bytes
-H1=function(b,a,c,d,n){a=[];for(c=0;c<b.length;c++)128>b[d="charCodeAt"](c)?a.push(b[d](c)):(n=b[c],55296==(b[d](c)&64512)&&(n=b.substr(c,2),c++),encodeURI(n).replace(/\w+/g,function(b){a.push(parseInt(b,16))}));return a}
+utf8_1_encoder=function(b,a,c,d,n){a=[];for(c=0;c<b.length;c++)128>b[d="charCodeAt"](c)?a.push(b[d](c)):(n=b[c],55296==(b[d](c)&64512)&&(n=b.substr(c,2),c++),encodeURI(n).replace(/\w+/g,function(b){a.push(parseInt(b,16))}));return a}
 
 // UTF-8 bytes => hex
-H2=function(b,c){for(c in b)b[c]=("0"+b[c].toString(16)).slice(-2);return b}
+utf8_2_encoder=function(b,c,a){a=[];for(c in b)a[c]=("0"+b[c].toString(16)).slice(-2);return a}
 
 // UTF-8 bytes => base64
-H3=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
+utf8_3_encoder=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
 
 // UTF-8 bytes => DataURI + Base64
-H4=function(a){return"data:;charset=utf-8;base64,"+H3(a)}
+utf8_4_encoder=function(a){return"data:;charset=utf-8;base64,"+utf8_3_encoder(a)}
 
 // UTF-8 bytes => MIME + Base64
-H5=function(a){return"=?UTF-8?B?"+H3(a)+"?="}
+utf8_5_encoder=function(a){return"=?UTF-8?B?"+utf8_3_encoder(a)+"?="}
 
 // UTF-8 bytes => Q / Quoted printable
-H6=function(b,a,c){a="";for(c in b)a+="="+b[c].toString(16);return a}
+utf8_6_encoder=function(b,a,c){a="";for(c in b)a+="="+b[c].toString(16);return a}
 
 // UTF-8 bytes => MIME + Q
-H7=function(b,a,c){a="=?UTF-8?Q?";for(c in b)a+="="+b[c].toString(16);return a+"?="}
+utf8_7_encoder=function(b,a,c){a="=?UTF-8?Q?";for(c in b)a+="="+b[c].toString(16);return a+"?="}
 
 // UTF-8 bytes => url encode
-H8=function(b,a,c){a="";for(c in b)a+="%"+b[c].toString(16);return a}
+utf8_8_encoder=function(b,a,c){a="";for(c in b)a+="%"+b[c].toString(16);return a}
+
+// UTF-8 bytes => read as windows-1252
+utf8_9_encoder=function(b,a){with(new XMLHttpRequest){open("GET","data:;charset=windows-1252;base64,"+utf8_3_encoder(b),!1),send(),a=responseText};return a}
+
+
+
+// UTF-7 transformations
+
+// UTF-16 BE charCodes => UTF-7
+utf7_1_encoder=function(b){return utf7(b,0x2B)}
+
+// UTF-16 BE charCodes => UTF-7 (IMAP)
+utf7_2_encoder=function(b){return utf7(b,0x26)}
 
 
 
@@ -266,16 +275,16 @@ H8=function(b,a,c){a="";for(c in b)a+="%"+b[c].toString(16);return a}
 // GB18030 transformations
 
 // Code points => array of GB-18030 bytes
-I1=function(l,a,m,d,e,f,p,c,b,g,h,k,n){a=[];for(m in l)if(128>(d=l[m]))a.push(d);else if(-1!=(e=gb18030index.indexOf(d)))a.push(~~(e/190)+129),f=e%190,a.push(f+64+ +(63<f));else{for(c=0;c<gb18030ranges.length;c+=2)gb18030ranges[c+1]<=d&&(b=gb18030ranges[c]+d-gb18030ranges[c+1]);g=~~(b/10/126/10);b-=12600*g;h=~~(b/10/126);b-=1260*h;k=~~(b/10);n=b-10*k;a.push(g+129);a.push(h+48);a.push(k+129);a.push(n+48)}return a};
+gb180301_encoder=function(l,a,m,d,e,f,p,c,b,g,h,k,n){a=[];for(m in l)if(128>(d=l[m]))a.push(d);else if(-1!=(e=gb18030index.indexOf(d)))a.push(~~(e/190)+129),f=e%190,a.push(f+64+ +(63<f));else{for(c=0;c<gb18030ranges.length;c+=2)gb18030ranges[c+1]<=d&&(b=gb18030ranges[c]+d-gb18030ranges[c+1]);g=~~(b/10/126/10);b-=12600*g;h=~~(b/10/126);b-=1260*h;k=~~(b/10);n=b-10*k;a.push(g+129);a.push(h+48);a.push(k+129);a.push(n+48)}return a};
 
 // GB-18030 charCodes => hex
-I2=H2
+gb180302_encoder=utf8_2_encoder
 
 // GB-18030 charCodes => base64
-I3=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
+gb180303_encoder=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
 
 // GB-18030 charCodes => DataURI + Base64
-I4=function(a){return"data:;charset=gb18030;base64,"+I3(a)}
+gb180304_encoder=function(a){return"data:;charset=gb18030;base64,"+gb180303_encoder(a)}
 
 
 
@@ -283,13 +292,13 @@ I4=function(a){return"data:;charset=gb18030;base64,"+I3(a)}
 // CESU-8 transformations
 
 // Plain text => array of CESU-8 charCodes
-J1=function(){return []}
+cesu8_1_encoder=function(){return []}
 
 // CESU-8 charCodes => hex
-J2=function(){return []}
+cesu8_2_encoder=function(){return []}
 
 // CESU-8 charCodes => base64
-J3=function(){return []}
+cesu8_3_encoder=function(){return []}
 
 
 
@@ -298,44 +307,47 @@ J3=function(){return []}
 // Latin-1 transformations
 
 // Code points => array of Latin-1 charCodes
-K1=function(){return []}
+latin1_1_encoder=function(){return []}
 
 // Latin-1 charCodes => hex
-K2=function(){return []}
+latin1_2_encoder=function(){return []}
 
 // Latin-1 charCodes => base64
-K3=function(){return []}
+latin1_3_encoder=function(){return []}
 
 // Latin-1 charCodes => DataURI + Base64
-K4=function(){return []}
+latin1_4_encoder=function(){return []}
 
 // Latin-1 charCodes => Text (compatible glyphs only)
-K5=function(){return []}
+latin1_5_encoder=function(){return []}
 
 // Latin-1 charCodes => JS hex escape
-K6=function(){return []} 
+latin1_6_encoder=function(){return []} 
 
 // Latin-1 charCodes => JS octal escape
-K7=function(b,a,c){a="";for(c in b)a+="\\"+b[c].toString(8);return a}
+latin1_7_encoder=function(b,a,c){a="";for(c in b)a+="\\"+b[c].toString(8);return a}
 
 
 
 // Windows-1252 transformations
 
+// Windows-1252 charCodes => Text (compatible glyphs only)
+windows1252_1_encoder=function(){return []}
+
+// Windows-1252 charCodes => interpreted as UTF-8
+windows1252_2_encoder=function(){}
+
 // Code points => array of windows-1252 charCodes
-L1=function(l,a,m,d,e){a=[];for(m in l)if(127>(d=l[m]))a.push(d);else if(-1!=(e=windows1252index.indexOf(d)))a.push(e+0x80);return a};
+windows1252_3_encoder=function(l,a,m,d,e){a=[];for(m in l)if(127>(d=l[m]))a.push(d);else if(-1!=(e=windows1252_index.indexOf(d)))a.push(e+0x80);return a};
 
 // Windows-1252 charCodes => hex
-L2=H2
+windows1252_4_encoder=utf8_2_encoder
 
 // Windows-1252 charCodes => base64
-L3=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
+windows1252_5_encoder=function(b,a,c){a="";for(c in b)a+=String.fromCharCode(b[c]);return btoa(a)}
 
 // Windows-1252 charCodes => DataURI + Base64
-L4=function(a){return"data:;base64,"+L3(a)}
-
-// Windows-1252 charCodes => Text (compatible glyphs only)
-L5=function(){return []}
+windows1252_6_encoder=function(a){return"data:;base64,"+windows1252_5_encoder(a)}
 
 
 
@@ -345,7 +357,7 @@ gb18030index=[0x4E02,0x4E04,0x4E05,0x4E06,0x4E0F,0x4E12,0x4E17,0x4E1F,0x4E20,0x4
 
 gb18030ranges=[0,0x0080,36,0x00A5,38,0x00A9,45,0x00B2,50,0x00B8,81,0x00D8,89,0x00E2,95,0x00EB,96,0x00EE,100,0x00F4,103,0x00F8,104,0x00FB,105,0x00FD,109,0x0102,126,0x0114,133,0x011C,148,0x012C,172,0x0145,175,0x0149,179,0x014E,208,0x016C,306,0x01CF,307,0x01D1,308,0x01D3,309,0x01D5,310,0x01D7,311,0x01D9,312,0x01DB,313,0x01DD,341,0x01FA,428,0x0252,443,0x0262,544,0x02C8,545,0x02CC,558,0x02DA,741,0x03A2,742,0x03AA,749,0x03C2,750,0x03CA,805,0x0402,819,0x0450,820,0x0452,7922,0x2011,7924,0x2017,7925,0x201A,7927,0x201E,7934,0x2027,7943,0x2031,7944,0x2034,7945,0x2036,7950,0x203C,8062,0x20AD,8148,0x2104,8149,0x2106,8152,0x210A,8164,0x2117,8174,0x2122,8236,0x216C,8240,0x217A,8262,0x2194,8264,0x219A,8374,0x2209,8380,0x2210,8381,0x2212,8384,0x2216,8388,0x221B,8390,0x2221,8392,0x2224,8393,0x2226,8394,0x222C,8396,0x222F,8401,0x2238,8406,0x223E,8416,0x2249,8419,0x224D,8424,0x2253,8437,0x2262,8439,0x2268,8445,0x2270,8482,0x2296,8485,0x229A,8496,0x22A6,8521,0x22C0,8603,0x2313,8936,0x246A,8946,0x249C,9046,0x254C,9050,0x2574,9063,0x2590,9066,0x2596,9076,0x25A2,9092,0x25B4,9100,0x25BE,9108,0x25C8,9111,0x25CC,9113,0x25D0,9131,0x25E6,9162,0x2607,9164,0x260A,9218,0x2641,9219,0x2643,11329,0x2E82,11331,0x2E85,11334,0x2E89,11336,0x2E8D,11346,0x2E98,11361,0x2EA8,11363,0x2EAB,11366,0x2EAF,11370,0x2EB4,11372,0x2EB8,11375,0x2EBC,11389,0x2ECB,11682,0x2FFC,11686,0x3004,11687,0x3018,11692,0x301F,11694,0x302A,11714,0x303F,11716,0x3094,11723,0x309F,11725,0x30F7,11730,0x30FF,11736,0x312A,11982,0x322A,11989,0x3232,12102,0x32A4,12336,0x3390,12348,0x339F,12350,0x33A2,12384,0x33C5,12393,0x33CF,12395,0x33D3,12397,0x33D6,12510,0x3448,12553,0x3474,12851,0x359F,12962,0x360F,12973,0x361B,13738,0x3919,13823,0x396F,13919,0x39D1,13933,0x39E0,14080,0x3A74,14298,0x3B4F,14585,0x3C6F,14698,0x3CE1,15583,0x4057,15847,0x4160,16318,0x4338,16434,0x43AD,16438,0x43B2,16481,0x43DE,16729,0x44D7,17102,0x464D,17122,0x4662,17315,0x4724,17320,0x472A,17402,0x477D,17418,0x478E,17859,0x4948,17909,0x497B,17911,0x497E,17915,0x4984,17916,0x4987,17936,0x499C,17939,0x49A0,17961,0x49B8,18664,0x4C78,18703,0x4CA4,18814,0x4D1A,18962,0x4DAF,19043,0x9FA6,33469,0xE76C,33470,0xE7C8,33471,0xE7E7,33484,0xE815,33485,0xE819,33490,0xE81F,33497,0xE827,33501,0xE82D,33505,0xE833,33513,0xE83C,33520,0xE844,33536,0xE856,33550,0xE865,37845,0xF92D,37921,0xF97A,37948,0xF996,38029,0xF9E8,38038,0xF9F2,38064,0xFA10,38065,0xFA12,38066,0xFA15,38069,0xFA19,38075,0xFA22,38076,0xFA25,38078,0xFA2A,39108,0xFE32,39109,0xFE45,39113,0xFE53,39114,0xFE58,39115,0xFE67,39116,0xFE6C,39265,0xFF5F,39394,0xFFE6,189000,0x10000];
 
-windows1252index=[0x20AC,0x0081,0x201A,0x0192,0x201E,0x2026,0x2020,0x2021,0x02C6,0x2030,0x0160,0x2039,0x0152,0x008D,0x017D,0x008F,0x0090,0x2018,0x2019,0x201C,0x201D,0x2022,0x2013,0x2014,0x02DC,0x2122,0x0161,0x203A,0x0153,0x009D,0x017E,0x0178,0x00A0,0x00A1,0x00A2,0x00A3,0x00A4,0x00A5,0x00A6,0x00A7,0x00A8,0x00A9,0x00AA,0x00AB,0x00AC,0x00AD,0x00AE,0x00AF,0x00B0,0x00B1,0x00B2,0x00B3,0x00B4,0x00B5,0x00B6,0x00B7,0x00B8,0x00B9,0x00BA,0x00BB,0x00BC,0x00BD,0x00BE,0x00BF,0x00C0,0x00C1,0x00C2,0x00C3,0x00C4,0x00C5,0x00C6,0x00C7,0x00C8,0x00C9,0x00CA,0x00CB,0x00CC,0x00CD,0x00CE,0x00CF,0x00D0,0x00D1,0x00D2,0x00D3,0x00D4,0x00D5,0x00D6,0x00D7,0x00D8,0x00D9,0x00DA,0x00DB,0x00DC,0x00DD,0x00DE,0x00DF,0x00E0,0x00E1,0x00E2,0x00E3,0x00E4,0x00E5,0x00E6,0x00E7,0x00E8,0x00E9,0x00EA,0x00EB,0x00EC,0x00ED,0x00EE,0x00EF,0x00F0,0x00F1,0x00F2,0x00F3,0x00F4,0x00F5,0x00F6,0x00F7,0x00F8,0x00F9,0x00FA,0x00FB,0x00FC,0x00FD,0x00FE,0x00FF];
+windows1252_index=[0x20AC,0x0081,0x201A,0x0192,0x201E,0x2026,0x2020,0x2021,0x02C6,0x2030,0x0160,0x2039,0x0152,0x008D,0x017D,0x008F,0x0090,0x2018,0x2019,0x201C,0x201D,0x2022,0x2013,0x2014,0x02DC,0x2122,0x0161,0x203A,0x0153,0x009D,0x017E,0x0178,0x00A0,0x00A1,0x00A2,0x00A3,0x00A4,0x00A5,0x00A6,0x00A7,0x00A8,0x00A9,0x00AA,0x00AB,0x00AC,0x00AD,0x00AE,0x00AF,0x00B0,0x00B1,0x00B2,0x00B3,0x00B4,0x00B5,0x00B6,0x00B7,0x00B8,0x00B9,0x00BA,0x00BB,0x00BC,0x00BD,0x00BE,0x00BF,0x00C0,0x00C1,0x00C2,0x00C3,0x00C4,0x00C5,0x00C6,0x00C7,0x00C8,0x00C9,0x00CA,0x00CB,0x00CC,0x00CD,0x00CE,0x00CF,0x00D0,0x00D1,0x00D2,0x00D3,0x00D4,0x00D5,0x00D6,0x00D7,0x00D8,0x00D9,0x00DA,0x00DB,0x00DC,0x00DD,0x00DE,0x00DF,0x00E0,0x00E1,0x00E2,0x00E3,0x00E4,0x00E5,0x00E6,0x00E7,0x00E8,0x00E9,0x00EA,0x00EB,0x00EC,0x00ED,0x00EE,0x00EF,0x00F0,0x00F1,0x00F2,0x00F3,0x00F4,0x00F5,0x00F6,0x00F7,0x00F8,0x00F9,0x00FA,0x00FB,0x00FC,0x00FD,0x00FE,0x00FF];
 
 
 // UTF-7

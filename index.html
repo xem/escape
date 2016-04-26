@@ -5,7 +5,7 @@
 h1 { font-size: 70px; margin: 0; }
 h2 { font-size: 20px; margin: 0; }
 body { font-family: arial; width: 98%; margin: 0 auto }
-table { width: 100%; border-collapse: collapse; table-layout: fixed; position: static; min-width: 200px; display: block; }
+table { width: 100%; border-collapse: collapse; position: static; min-width: 200px; display: block; }
 td { text-align: center; padding: 2px 6px; background: #f0f0f0; font-size: 12px; vertical-align: top;}
 td.column { padding: 0; border-right: 1px solid; }
 td.column:last-of-type { border-right: none; }
@@ -18,7 +18,7 @@ table a { float: right; text-decoration: none; }
 textarea { height: 90px }
 textarea:after { content: attr(id); }
 .wrapper1 { width: 97vw; }
-.wrapper1 table { display: table; }
+.wrapper1 table { display: table; table-layout: fixed; }
 .wrapper2 { width: 97vw; height: calc(99vh - 370px); overflow: auto; border: 1px solid; position: relative; }
 input[type="checkbox"]{ width: auto; }
 input[type="checkbox"] ~ h3 { position: absolute; top: 40px; transform: rotate(90deg); transform-origin: 23px -4px; width: 200px; text-align: left; }

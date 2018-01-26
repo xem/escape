@@ -1,0 +1,1340 @@
+<meta charset=utf-8>
+<title>EscApe</title>
+<style>
+* { box-sizing: border-box }
+h1 { font-size: 70px; margin: 0; }
+h2 { font-size: 20px; margin: 0; }
+body { font-family: arial; width: 98%; margin: 0 auto }
+table { width: 100%; border-collapse: collapse; position: static; min-width: 200px; display: block; }
+td { text-align: center; padding: 2px 6px; background: #f0f0f0; font-size: 12px; vertical-align: top;}
+td.column { padding: 0; border-right: 1px solid; }
+td.column:last-of-type { border-right: none; }
+td.column[colspan="2"] { width: 400px;}
+td.column[colspan="2"] table { width: 400px;}
+td.column td { height: 120px; }
+input, textarea { width: 100%; }
+#a1, #a2 { height: 100px; }
+table a { float: right; text-decoration: none; }
+textarea { height: 90px }
+textarea:after { content: attr(id); }
+.wrapper1 { width: 97vw; }
+.wrapper1 table { display: table; table-layout: fixed; }
+.wrapper2 { width: 97vw; height: calc(99vh - 370px); overflow: auto; border: 1px solid; position: relative; }
+input[type="checkbox"]{ width: auto; }
+input[type="checkbox"] ~ h3 { position: absolute; top: 40px; transform: rotate(90deg); transform-origin: 23px -4px; width: 200px; text-align: left; }
+input[type="checkbox"] ~ table { display: none; }
+input[type="checkbox"]:checked ~ table { display: block; }
+input[type="checkbox"]:checked { display: none; }
+input[type="checkbox"]:checked ~ h3 { display: none; }
+
+</style>
+<a href=//github.com/xem/escape><img style="position:absolute;top:0;right:0;border:0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on github"></a>
+<center>
+<br>
+<img src=logo.png title="&#9243;&#128018;">
+<h2>(EscApe)</h2>
+<br>
+All the encoding / decoding / escaping features you (n)ever dreamed of, all in one place! (and code-golfed)
+<br>
+<br>
+<div class=wrapper1>
+<table border>
+  <tr>
+		<th colspan=7>Plain text
+		<th colspan=4>Events
+	<tr>
+    <td colspan=7><textarea id=a1 autofocus>a©€💩</textarea>
+		<td colspan=4><textarea id=a2 readonly></textarea>
+</table>
+</div>
+<div class=wrapper2>
+<table>
+  <tr>
+
+    <td colspan=2 class=column>
+    
+        <table border>
+          <tr>
+            <th colspan=2>Unicode / UTF-32 BE
+            <a href="" title="download (with BOM)" id=utf32be_DLBOM>⇓</a>
+            <a href="" title="download (without BOM)" id=utf32be_DL>⇓</a>
+          <tr>
+            <td>Char codes (decimal)<textarea id=utf32be_1></textarea>
+            <td>HTML entities (decimal)<textarea id=utf32be_2></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=utf32be_3></textarea>
+            <td>HTML entities (hex)<textarea id=utf32be_4></textarea>
+          <tr>
+            <td>Base64<textarea id=utf32be_5></textarea>
+            <td>Unicode code points<textarea id=utf32be_6></textarea>
+          <tr>
+            <td>JS string (ES6)<textarea id=utf32be_7></textarea>
+            <td>JS querySelector<textarea id=utf32be_8></textarea>
+          <tr>
+            <td>CSS selector/font-family<textarea id=utf32be_9></textarea>
+            <td>CSS Unicode-range<textarea id=utf32be_10></textarea>
+          <tr>
+            <td>Punycode<textarea id=utf32be_11></textarea>
+            <td></textarea>IDN<textarea id=utf32be_12></textarea>
+          <tr>
+            <td class=colspan colspan=2>Unicode canonical names<textarea id=utf32be_13></textarea>
+          <tr>
+            <td class=colspan colspan=2>Unicode blocks<textarea id=utf32be_14></textarea>
+          <tr>
+            <td colspan=2>
+        </table>
+
+    <td class=column>
+
+        <input type=checkbox>
+        <h3>UTF-32 LE</h3>
+        <table border>
+          <tr>
+            <th>UTF-32 LE
+            <a href="" title="download (with BOM)" id=utf32le_DLBOM>⇓</a>
+            <a href="" title="download (without BOM)" id=utf32le_DL>⇓</a>
+          <tr>
+            <td>Char codes (decimal)<textarea id=utf32le_1></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=utf32le_2></textarea>
+          <tr>
+            <td>Base64<textarea id=utf32le_3></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+
+    <td class=column>
+
+        <table border>
+          <tr>
+            <th>UTF-16 BE
+            <a href="" title="download (with BOM)" id=utf16be_DLBOM>⇓</a>
+            <a href="" title="download (without BOM)" id=utf16be_DL>⇓</a>
+          <tr>
+            <td>Char codes (decimal)<textarea id=utf16be_1></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=utf16be_2></textarea>
+          <tr>
+            <td>Base64<textarea id=utf16be_3></textarea>
+          <tr>
+            <td>DataURI + Base64<textarea id=utf16be_4></textarea>
+          <tr>
+            <td>JS/C/C++/Java source code<textarea id=utf16be_5></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+
+    <td class=column>
+
+        <table border>
+          <tr>
+            <th>UTF-16 LE
+            <a href="" title="download (with BOM)" id=utf16le_DLBOM>⇓</a>
+            <a href="" title="download (without BOM)" id=utf16le_DL>⇓</a>
+          <tr>
+            <td>Char codes (decimal)<textarea id=utf16le_1></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=utf16le_2></textarea>
+          <tr>
+            <td>Base64<textarea id=utf16le_3></textarea>
+          <tr>
+            <td>DataURI + Base64<textarea id=utf16le_4></textarea>
+          <tr>
+            <td>Q / Quoted printable<textarea id=utf16le_5></textarea>
+          <tr>
+            <td>MIME + Q<textarea id=utf16le_6></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+      
+      
+    <td class=column>
+      
+      
+        <table border>
+          <tr>
+            <th>UTF-8
+            <a href="" title="download (with BOM)" id=utf8_DLBOM>⇓</a>
+            <a href="" title="download (without BOM)" id=utf8_DL>⇓</a>
+          <tr>
+            <td>Bytes (decimal)<textarea id=utf8_1></textarea>
+          <tr>
+            <td>Bytes (hex)<textarea id=utf8_2></textarea>
+          <tr>
+            <td>Base64<textarea id=utf8_3></textarea>
+          <tr>
+            <td>DataURI + Base64<textarea id=utf8_4></textarea>
+          <tr>
+            <td>MIME + Base64<textarea id=utf8_5></textarea>
+          <tr>
+            <td>Q / Quoted printable<textarea id=utf8_6></textarea>
+          <tr>
+            <td>MIME + Q<textarea id=utf8_7></textarea>
+          <tr>
+            <td>URL encode<textarea id=utf8_8></textarea>
+          <tr>
+            <td>Interpreted as Windows-1252<textarea id=utf8_9></textarea>
+        </table>
+      
+      
+    <td class=column>
+
+        <input type=checkbox>
+        <h3>WTF-8</h3>
+        
+        <table border>
+          <tr>
+            <th>WTF-8
+            <a href="" title="download" id=wtf8DL>⇓</a>
+          <tr>
+            <td>Bytes (decimal)<textarea id=wtf81></textarea>
+          <tr>
+            <td>Bytes (hex)<textarea id=wtf82></textarea>
+          <tr>
+            <td>Base64<textarea id=wtf83></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+      
+      
+    <td class=column>
+
+        <input type=checkbox>
+        <h3>UTF-7</h3>
+        
+        <table border>
+          <tr>
+            <th>UTF-7
+            <a href="" title="download (with BOM)" id=utf7_DLBOM>⇓</a>
+            <a href="" title="download (without BOM)" id=utf7_DL>⇓</a>
+          <tr>
+            <td>UTF-7<textarea id=utf7_1></textarea>
+          <tr>
+            <td>UTF-7 (IMAP)<textarea id=utf7_2></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+        
+        
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>UTF-1</h3>
+        
+        <table border>
+          <tr>
+            <th>UTF-1
+            <a href="" title="download" id=utf1DL>⇓</a>
+          <tr>
+            <td>Bytes (decimal)<textarea id=utf11></textarea>
+          <tr>
+            <td>Bytes (hex)<textarea id=utf12></textarea>
+          <tr>
+            <td>Base64<textarea id=utf13></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+        
+    <td class=column>
+    
+        <input type=checkbox>
+        <h3>UTF-EBCDIC</h3>
+        
+        <table border>
+          <tr>
+            <th>UTF-EBCDIC
+            <a href="" title="download (with BOM)" id=utfebcdicDLBOM>⇓</a>
+            <a href="" title="download (without BOM)" id=utfebcdicDL>⇓</a>
+         <tr>
+            <td>Bytes (decimal)<textarea id=utfebcdic1></textarea>
+          <tr>
+            <td>Bytes (hex)<textarea id=utfebcdic2></textarea>
+          <tr>
+            <td>Base64<textarea id=utfebcdic3></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+        
+    <td class=column>
+    
+        <input type=checkbox>
+        <h3>GB18030</h3>
+        
+        <table border>
+          <tr>
+            <th>GB18030
+            <a href="" title="download" id=gb18030DL>⇓</a>
+          <tr>
+            <td>Bytes (decimal)<textarea id=gb180301></textarea>
+          <tr>
+            <td>Bytes (hex)<textarea id=gb180302></textarea>
+          <tr>
+            <td>Base64<textarea id=gb180303></textarea>
+          <tr>
+            <td>DataURI + Base64<textarea id=gb180304></textarea>
+          <tr>
+            <td>Q / Quoted printable<textarea id=gb180305></textarea>
+          <tr>
+            <td>MIME + Q<textarea id=gb180306></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+      </div>
+      
+    <td class=column>
+
+        <input type=checkbox>
+        <h3>CESU-8</h3>
+        
+        <table border>
+          <tr>
+            <th>CESU-8
+            <a href="" title="download" id=cesu8_DL>⇓</a>
+          <tr>
+            <td>Char codes (decimal)<textarea id=cesu8_1></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=cesu8_2></textarea>
+          <tr>
+            <td>Base64<textarea id=cesu8_3></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+      
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>BOCU-1</h3>
+        
+        <table border>
+          <tr>
+            <th>BOCU-1
+            <a href="" title="download (with BOM)" id=bocu1DLBOM>⇓</a>
+            <a href="" title="download (without BOM)" id=bocu1DL>⇓</a>
+          <tr>
+            <td>Bytes (decimal)<textarea id=bocu11></textarea>
+          <tr>
+            <td>Bytes (hex)<textarea id=bocu12></textarea>
+          <tr>
+            <td>Base64<textarea id=bocu13></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+      
+    <td class=column>
+      
+        <table border>
+          <tr>
+            <th>Latin-1
+            <a href="" title="download" id=latin1_DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin1_1></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin1_2></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin1_3></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin1_4></textarea>
+          <tr>
+            <td>Base64<textarea id=latin1_5></textarea>
+          <tr>
+            <td>DataURI + Base64<textarea id=latin1_6></textarea>
+          <tr>
+            <td>JS hex escape<textarea id=latin1_7></textarea>
+          <tr>
+            <td>JS octal escape<textarea id=latin1_8></textarea>
+          <tr>
+            <td>
+        </table>
+        
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-2</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-2
+            <a href="" title="download" id=latin2DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin21></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin22></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin23></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin24></textarea>
+          <tr>
+            <td>Base64<textarea id=latin25></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-3</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-3
+            <a href="" title="download" id=latin3DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin31></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin32></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin33></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin34></textarea>
+          <tr>
+            <td>Base64<textarea id=latin35></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-4</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-4
+            <a href="" title="download" id=latin4DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin41></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin42></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin43></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin44></textarea>
+          <tr>
+            <td>Base64<textarea id=latin45></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-5</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-5
+            <a href="" title="download" id=latin5DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin51></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin52></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin53></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin54></textarea>
+          <tr>
+            <td>Base64<textarea id=latin55></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-6</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-6
+            <a href="" title="download" id=latin6DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin61></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin62></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin63></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin64></textarea>
+          <tr>
+            <td>Base64<textarea id=latin65></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-7</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-7
+            <a href="" title="download" id=latin7DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin71></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin72></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin73></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin74></textarea>
+          <tr>
+            <td>Base64<textarea id=latin75></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-8</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-8
+            <a href="" title="download" id=latin8DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin81></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin82></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin83></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin84></textarea>
+          <tr>
+            <td>Base64<textarea id=latin85></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-8-i</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-8-i
+            <a href="" title="download" id=latin8iDL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin8i1></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin8i2></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin8i3></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin8i4></textarea>
+          <tr>
+            <td>Base64<textarea id=latin8i5></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-9</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-9
+            <a href="" title="download" id=latin9DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin91></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin92></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin93></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin94></textarea>
+          <tr>
+            <td>Base64<textarea id=latin95></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-10</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-10
+            <a href="" title="download" id=latin10DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin101></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin102></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin103></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin104></textarea>
+          <tr>
+            <td>Base64<textarea id=latin105></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-11</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-11
+            <a href="" title="download" id=latin11DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin111></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin112></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin113></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin114></textarea>
+          <tr>
+            <td>Base64<textarea id=latin115></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-12</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-12
+            <a href="" title="download" id=latin12DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin121></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin122></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin123></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin124></textarea>
+          <tr>
+            <td>Base64<textarea id=latin125></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-13</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-13
+            <a href="" title="download" id=latin13DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin131></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin132></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin133></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin134></textarea>
+          <tr>
+            <td>Base64<textarea id=latin135></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-14</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-14
+            <a href="" title="download" id=latin14DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin141></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin142></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin143></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin144></textarea>
+          <tr>
+            <td>Base64<textarea id=latin145></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-15</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-15
+            <a href="" title="download" id=latin15DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin151></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin152></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin153></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin154></textarea>
+          <tr>
+            <td>Base64<textarea id=latin155></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Latin-16</h3>
+        
+        <table border>
+          <tr>
+            <th>Latin-16
+            <a href="" title="download" id=latin16DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin161></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin162></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin163></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin164></textarea>
+          <tr>
+            <td>Base64<textarea id=latin165></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Windows-874</h3>
+        
+        <table border>
+          <tr>
+            <th>Windows-874
+            <a href="" title="download" id=windows874DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=windows8741></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=windows8742></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=windows8743></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=windows8744></textarea>
+          <tr>
+            <td>Base64<textarea id=windows8745></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+        
+    <td class=column>
+    
+        <input type=checkbox>
+        <h3>Windows-1250</h3>
+        
+        <table border>
+          <tr>
+            <th>Windows-1250
+            <a href="" title="download" id=windows1250DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=windows12501></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=windows12502></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=windows12503></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=windows12504></textarea>
+          <tr>
+            <td>Base64<textarea id=windows12505></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Windows-1251</h3>
+        
+        <table border>
+          <tr>
+            <th>Windows-1251
+            <a href="" title="download" id=windows1251DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=windows12511></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=windows12512></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=windows12513></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=windows12514></textarea>
+          <tr>
+            <td>Base64<textarea id=windows12515></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+      
+    <td class=column>
+      
+        <table border>
+          <tr>
+            <th>Windows-1252
+            <a href="" title="download" id=windows1252_DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=windows1252_1></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=windows1252_2></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=windows1252_3></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=windows1252_4></textarea>
+          <tr>
+            <td>Base64<textarea id=windows1252_5></textarea>
+          <tr>
+            <td>DataURI + Base64<textarea id=windows1252_6></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Windows-1253</h3>
+        
+        <table border>
+          <tr>
+            <th>Windows-1253
+            <a href="" title="download" id=windows1253DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=windows12531></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=windows12532></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=windows12533></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=windows12534></textarea>
+          <tr>
+            <td>Base64<textarea id=windows12535></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Windows-1254</h3>
+        
+        <table border>
+          <tr>
+            <th>Windows-1254
+            <a href="" title="download" id=windows1254DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=windows12541></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=windows12542></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=windows12543></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=windows12544></textarea>
+          <tr>
+            <td>Base64<textarea id=windows12545></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+        
+    <td class=column>
+    
+        <input type=checkbox>
+        <h3>Windows-1255</h3>
+        
+        <table border>
+          <tr>
+            <th>Windows-1255
+            <a href="" title="download" id=windows1255DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=windows12551></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=windows12552></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=windows12553></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=windows12554></textarea>
+          <tr>
+            <td>Base64<textarea id=windows12555></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Windows-1256</h3>
+        
+        <table border>
+          <tr>
+            <th>Windows-1256
+            <a href="" title="download" id=windows1256DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=windows12561></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=windows12562></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=windows12563></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=windows12564></textarea>
+          <tr>
+            <td>Base64<textarea id=windows12565></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Windows-1257</h3>
+        
+        <table border>
+          <tr>
+            <th>Windows-1257
+            <a href="" title="download" id=windows1257DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=latin21></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=latin22></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=latin23></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=latin24></textarea>
+          <tr>
+            <td>Base64<textarea id=latin25></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>Windows-1258</h3>
+        
+        <table border>
+          <tr>
+            <th>Windows-1258
+            <a href="" title="download" id=windows1258DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=windows12581></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=windows12582></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=windows12583></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=windows12584></textarea>
+          <tr>
+            <td>Base64<textarea id=windows12585></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>x-mac-cyrillic</h3>
+        
+        <table border>
+          <tr>
+            <th>x-mac-cyrillic
+            <a href="" title="download" id=xmaccyrillicDL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=xmaccyrillic1></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=xmaccyrillic2></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=xmaccyrillic3></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=xmaccyrillic4></textarea>
+          <tr>
+            <td>Base64<textarea id=xmaccyrillic5></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>macintosh</h3>
+        
+        <table border>
+          <tr>
+            <th>macintosh
+            <a href="" title="download" id=macintoshDL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=macintosh1></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=macintosh2></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=macintosh3></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=macintosh4></textarea>
+          <tr>
+            <td>Base64<textarea id=macintosh5></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+        
+    <td class=column>
+    
+        <input type=checkbox>
+        <h3>koi8-r</h3>
+        
+        <table border>
+          <tr>
+            <th>koi8-r
+            <a href="" title="download" id=koi8rDL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=koi8r1></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=koi8r2></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=koi8r3></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=koi8r4></textarea>
+          <tr>
+            <td>Base64<textarea id=koi8r5></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table>
+        
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>koi8-u</h3>
+        
+        <table border>
+          <tr>
+            <th>koi8-u
+            <a href="" title="download" id=koi8uDL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=koi8u1></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=koi8u2></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=koi8u3></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=koi8u4></textarea>
+          <tr>
+            <td>Base64<textarea id=koi8u5></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+
+    <td class=column>
+      
+        <input type=checkbox>
+        <h3>ibm866</h3>
+        
+        <table border>
+          <tr>
+            <th>ibm866
+            <a href="" title="download" id=ibm866DL>⇓</a>
+          <tr>
+            <td>Text (compatible glyphs only)<textarea id=ibm8661></textarea>
+          <tr>
+            <td>Interpreted as UTF-8<textarea id=ibm8662></textarea>
+          <tr>
+            <td>Char codes (decimal)<textarea id=ibm8663></textarea>
+          <tr>
+            <td>Char codes (hex)<textarea id=ibm8664></textarea>
+          <tr>
+            <td>Base64<textarea id=ibm8665></textarea>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+          <tr>
+            <td>
+        </table> 
+      
+    </td>
+  </tr>
+</table>
+</div>
+<br>
+V2.0, WIP ~ 277 conversions and counting ~ &#169; 2016 - <a href=//xem.github.io>xem</a>
+<br>
+<br>
+<script src="unicodenames.js"></script>
+<script src="escape.js"></script>

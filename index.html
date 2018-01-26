@@ -1,32 +1,20 @@
 <meta charset=utf-8>
 <title>EscApe</title>
 <style>
-* { box-sizing: border-box }
-h1 { font-size: 70px; margin: 0; }
-h2 { font-size: 20px; margin: 0; }
-body { font-family: arial; width: 98%; margin: 0 auto }
-table { width: 100%; border-collapse: collapse; position: static; min-width: 200px; display: block; }
-td { text-align: center; padding: 2px 6px; background: #f0f0f0; font-size: 12px; vertical-align: top;}
-td.column { padding: 0; border-right: 1px solid; }
-td.column:last-of-type { border-right: none; }
-td.column[colspan="2"] { width: 400px;}
-td.column[colspan="2"] table { width: 400px;}
-td.column td { height: 120px; }
-input, textarea { width: 100%; }
-#a1, #a2 { height: 100px; }
-table a { float: right; text-decoration: none; }
-textarea { height: 90px }
-textarea:after { content: attr(id); }
-.wrapper1 { width: 97vw; }
-.wrapper1 table { display: table; table-layout: fixed; }
-.wrapper2 { width: 97vw; height: calc(99vh - 370px); overflow: auto; border: 1px solid; position: relative; }
-input[type="checkbox"]{ width: auto; }
-input[type="checkbox"] ~ h3 { position: absolute; top: 40px; transform: rotate(90deg); transform-origin: 23px -4px; width: 200px; text-align: left; }
-input[type="checkbox"] ~ table { display: none; }
-input[type="checkbox"]:checked ~ table { display: block; }
-input[type="checkbox"]:checked { display: none; }
-input[type="checkbox"]:checked ~ h3 { display: none; }
-
+* { box-sizing: border-box; font-size: 12px; font-family: arial; }
+h2 { font-size: 14px }
+table { width: 98%; max-width: 1600px; margin: auto; border-collapse: collapse; border: 2px solid #ccc; }
+table table { width: 100% }
+td { width: 33%; vertical-align: top; text-align: left; padding: 10px; border-right: 2px solid #ccc; }
+table table td { width: auto; padding: 5px; border: none; border-bottom: 2px solid #ccc; }
+input { width: 100%; height: 20px; margin: 0; font-family: courier, monospace; } 
+textarea { width: 100%; height: 10em; margin: 0; font-family: courier, monospace; } 
+hr { border: none; border-bottom: 1px solid #ddd; }
+@media (max-width: 1600px){
+  table { max-width: 700px }
+  td { display: block; width: 100%; border-bottom: none; border-right: none; }
+  table table td { display: table-cell; width: auto; }
+}
 </style>
 <a href=//github.com/xem/escape><img style="position:absolute;top:0;right:0;border:0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on github"></a>
 <center>
@@ -34,168 +22,139 @@ input[type="checkbox"]:checked ~ h3 { display: none; }
 <img src=logo.png title="&#9243;&#128018;">
 <h2>(EscApe)</h2>
 <br>
-All the encoding / decoding / escaping features you (n)ever dreamed of, all in one place! (and code-golfed)
-<br>
-<br>
-<div class=wrapper1>
-<table border>
-  <tr>
-		<th colspan=7>Plain text
-		<th colspan=4>Events
-	<tr>
-    <td colspan=7><textarea id=a1 autofocus>a©€💩</textarea>
-		<td colspan=4><textarea id=a2 readonly></textarea>
-</table>
-</div>
-<div class=wrapper2>
 <table>
-  <tr>
+<tr>
+<td>
 
-    <td colspan=2 class=column>
-    
-        <table border>
-          <tr>
-            <th colspan=2>Unicode / UTF-32 BE
-            <a href="" title="download (with BOM)" id=utf32be_DLBOM>⇓</a>
-            <a href="" title="download (without BOM)" id=utf32be_DL>⇓</a>
-          <tr>
-            <td>Char codes (decimal)<textarea id=utf32be_1></textarea>
-            <td>HTML entities (decimal)<textarea id=utf32be_2></textarea>
-          <tr>
-            <td>Char codes (hex)<textarea id=utf32be_3></textarea>
-            <td>HTML entities (hex)<textarea id=utf32be_4></textarea>
-          <tr>
-            <td>Base64<textarea id=utf32be_5></textarea>
-            <td>Unicode code points<textarea id=utf32be_6></textarea>
-          <tr>
-            <td>JS string (ES6)<textarea id=utf32be_7></textarea>
-            <td>JS querySelector<textarea id=utf32be_8></textarea>
-          <tr>
-            <td>CSS selector/font-family<textarea id=utf32be_9></textarea>
-            <td>CSS Unicode-range<textarea id=utf32be_10></textarea>
-          <tr>
-            <td>Punycode<textarea id=utf32be_11></textarea>
-            <td></textarea>IDN<textarea id=utf32be_12></textarea>
-          <tr>
-            <td class=colspan colspan=2>Unicode canonical names<textarea id=utf32be_13></textarea>
-          <tr>
-            <td class=colspan colspan=2>Unicode blocks<textarea id=utf32be_14></textarea>
-          <tr>
-            <td colspan=2>
-        </table>
+  <h2>Plain text</h2>
+  
+  <table>
+    <tr><td style=width:120px;max-width:120px>Plain text<td><textarea id=a1 autofocus>a©€💩</textarea>
+  </table>
+  
+  <br>
+  
+  <h2>Plain text transforms</h2>
+  
+  <table>
+    <tr><td colspan=2>Events<br><textarea id=a2 readonly></textarea>
+    <tr><td style=width:120px;max-width:120px>Unicode canonical names<td><textarea id=utf32be_13></textarea>
+    <tr><td>Unicode blocks<td><textarea id=utf32be_14></textarea>
+    <tr><td>Unicode code points<td><textarea id=utf32be_6></textarea>
+    <tr><td>HTML entities (dec)<td><input id=utf32be_2>
+    <tr><td>HTML entities (hex)<td><input id=utf32be_4>
+    <tr><td>JS string (ES6)<td><input id=utf32be_7>
+    <tr><td>JS querySelector<td><input id=utf32be_8>
+    <tr><td>CSS selector/font-family<td><input id=utf32be_9>
+    <tr><td>CSS Unicode-range<td><input id=utf32be_10>
+    <tr><td>Punycode<td><input id=utf32be_11>
+    <tr><td>IDN<td><input id=utf32be_12>
+  </table>
+</td>
+<td>
 
-    <td class=column>
+  <h2>UTF-8</h2>
 
-        <input type=checkbox>
-        <h3>UTF-32 LE</h3>
-        <table border>
-          <tr>
-            <th>UTF-32 LE
-            <a href="" title="download (with BOM)" id=utf32le_DLBOM>⇓</a>
-            <a href="" title="download (without BOM)" id=utf32le_DL>⇓</a>
-          <tr>
-            <td>Char codes (decimal)<textarea id=utf32le_1></textarea>
-          <tr>
-            <td>Char codes (hex)<textarea id=utf32le_2></textarea>
-          <tr>
-            <td>Base64<textarea id=utf32le_3></textarea>
-          <tr>
-            <td>
-          <tr>
-            <td>
-          <tr>
-            <td>
-          <tr>
-            <td>
-          <tr>
-            <td>
-          <tr>
-            <td>
-        </table>
+  <table>
+    <tr><td style=width:120px;max-width:120px>Bytes (decimal)<td><input id=utf8_1>
+    <tr><td>Bytes (hex)<td><input id=utf8_2>
+    <tr><td>Base64<td><input id=utf8_3>
+    <tr><td>DataURI + Base64<td><input id=utf8_4>
+    <tr><td>MIME + Base64<td><input id=utf8_5>
+    <tr><td>Q / Quoted printable<td><input id=utf8_6>
+    <tr><td>MIME + Q<td><input id=utf8_7>
+    <tr><td>URL encode<td><input id=utf8_8>
+    <tr><td>Win1252 mojibake<td><input id=utf8_9>
+  </table>
 
-    <td class=column>
+  <h2>UTF-16 BE</h2>
 
-        <table border>
-          <tr>
-            <th>UTF-16 BE
-            <a href="" title="download (with BOM)" id=utf16be_DLBOM>⇓</a>
-            <a href="" title="download (without BOM)" id=utf16be_DL>⇓</a>
-          <tr>
-            <td>Char codes (decimal)<textarea id=utf16be_1></textarea>
-          <tr>
-            <td>Char codes (hex)<textarea id=utf16be_2></textarea>
-          <tr>
-            <td>Base64<textarea id=utf16be_3></textarea>
-          <tr>
-            <td>DataURI + Base64<textarea id=utf16be_4></textarea>
-          <tr>
-            <td>JS/C/C++/Java source code<textarea id=utf16be_5></textarea>
-          <tr>
-            <td>
-          <tr>
-            <td>
-          <tr>
-            <td>
-          <tr>
-            <td>
-        </table>
+  <table>
+    <tr><td style=width:120px;max-width:120px>Char codes (decimal)<td><input id=utf16be_1>
+    <tr><td>Char codes (hex)<td><input id=utf16be_2>
+    <tr><td>Base64<td><input id=utf16be_3>
+    <tr><td>DataURI + Base64<td><input id=utf16be_4>
+    <tr><td>JS/C/C++/Java<td><input id=utf16be_5>
+  </table>
+  
+  <h2>UTF-16 LE</h2>
 
-    <td class=column>
+  <table>
+    <tr><td style=width:120px;max-width:120px>Char codes (decimal)<td><input id=utf16le_1>
+    <tr><td>Char codes (hex)<td><input id=utf16le_2>
+    <tr><td>Base64<td><input id=utf16le_3>
+    <tr><td>DataURI + Base64<td><input id=utf16le_4>
+    <tr><td>Q / Quoted printable<td><input id=utf16le_5>
+    <tr><td>MIME + Q<td><input id=utf16le_6>
+  </table>
+  
+  <h2>UTF-32 BE</h2>
+ 
+  <table>
+    <tr><td style=width:120px;max-width:120px>Char codes (decimal)<td><input id=utf32be_1>
+    <tr><td>Char codes (hex)<td><input id=utf32be_3>
+    <tr><td>Base64<td><input id=utf32be_5>
+  </table>
 
-        <table border>
-          <tr>
-            <th>UTF-16 LE
-            <a href="" title="download (with BOM)" id=utf16le_DLBOM>⇓</a>
-            <a href="" title="download (without BOM)" id=utf16le_DL>⇓</a>
-          <tr>
-            <td>Char codes (decimal)<textarea id=utf16le_1></textarea>
-          <tr>
-            <td>Char codes (hex)<textarea id=utf16le_2></textarea>
-          <tr>
-            <td>Base64<textarea id=utf16le_3></textarea>
-          <tr>
-            <td>DataURI + Base64<textarea id=utf16le_4></textarea>
-          <tr>
-            <td>Q / Quoted printable<textarea id=utf16le_5></textarea>
-          <tr>
-            <td>MIME + Q<textarea id=utf16le_6></textarea>
-          <tr>
-            <td>
-          <tr>
-            <td>
-          <tr>
-            <td>
-        </table>
-      
-      
-    <td class=column>
-      
-      
-        <table border>
-          <tr>
-            <th>UTF-8
-            <a href="" title="download (with BOM)" id=utf8_DLBOM>⇓</a>
-            <a href="" title="download (without BOM)" id=utf8_DL>⇓</a>
-          <tr>
-            <td>Bytes (decimal)<textarea id=utf8_1></textarea>
-          <tr>
-            <td>Bytes (hex)<textarea id=utf8_2></textarea>
-          <tr>
-            <td>Base64<textarea id=utf8_3></textarea>
-          <tr>
-            <td>DataURI + Base64<textarea id=utf8_4></textarea>
-          <tr>
-            <td>MIME + Base64<textarea id=utf8_5></textarea>
-          <tr>
-            <td>Q / Quoted printable<textarea id=utf8_6></textarea>
-          <tr>
-            <td>MIME + Q<textarea id=utf8_7></textarea>
-          <tr>
-            <td>URL encode<textarea id=utf8_8></textarea>
-          <tr>
-            <td>Interpreted as Windows-1252<textarea id=utf8_9></textarea>
-        </table>
-      
+  <h2>UTF-32 LE</h2>
+  
+  <table>
+    <tr><td style=width:120px;max-width:120px>Char codes (decimal)<td><input id=utf32le_1>
+    <tr><td>Char codes (hex)<td><input id=utf32le_2>
+    <tr><td>Base64<td><input id=utf32le_3>
+  </table>
+ 
+</td>
+<td>
+  
+  <h2>Windows-1252</h2>
+
+  <table>
+    <tr><td style=width:120px;max-width:120px>Text<td><input id=windows1252_1>
+    <tr><td>Interpreted as UTF-8<td><input id=windows1252_2>
+    <tr><td>Char codes (decimal)<td><input id=windows1252_3>
+    <tr><td>Char codes (hex)<td><input id=windows1252_4>
+    <tr><td>Base64<td><input id=windows1252_5>
+    <tr><td>DataURI + Base64<td><input id=windows1252_6>
+  </table>
+  
+  <h2>Latin-1</h2>
+
+  <table>
+    <tr><td style=width:120px;max-width:120px>Text<td><input id=latin1_1>
+    <tr><td>Interpreted as UTF-8<td><input id=latin1_2>
+    <tr><td>Char codes (decimal)<td><input id=latin1_3>
+    <tr><td>Char codes (hex)<td><input id=latin1_4>
+    <tr><td>Base64<td><input id=latin1_5>
+    <tr><td>DataURI + Base64<td><input id=latin1_6>
+    <tr><td>JS hex escape<td><input id=latin1_7>
+    <tr><td>JS octal escape<td><input id=latin1_8>
+  </table>
+  
+  <h2>GB18030</h2>
+        
+  <table>
+    <tr><td style=width:120px;max-width:120px>Bytes (decimal)<td><input id=gb180301>
+    <tr><td>Bytes (hex)<td><input id=gb180302>
+    <tr><td>Base64<td><input id=gb180303>
+    <tr><td>DataURI + Base64<td><input id=gb180304>
+    <tr><td>Q / Quoted printable<td><input id=gb180305>
+    <tr><td>MIME + Q<td><input id=gb180306>
+  </table>
+  
+  <h3>UTF-7</h3>
+        
+  <table>
+    <tr><td style=width:120px;max-width:120px>UTF-7<td><input id=utf7_1>
+    <tr><td>UTF-7 (IMAP)<td><input id=utf7_2>
+  </table>
+  
+</td>
+</tr>  
+</table>
+
+
+<!--
       
     <td class=column>
 
@@ -207,11 +166,11 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>WTF-8
             <a href="" title="download" id=wtf8DL>⇓</a>
           <tr>
-            <td>Bytes (decimal)<textarea id=wtf81></textarea>
+            <td>Bytes (decimal)<input id=wtf81>
           <tr>
-            <td>Bytes (hex)<textarea id=wtf82></textarea>
+            <td>Bytes (hex)<input id=wtf82>
           <tr>
-            <td>Base64<textarea id=wtf83></textarea>
+            <td>Base64<input id=wtf83>
           <tr>
             <td>
           <tr>
@@ -226,37 +185,6 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <td>
         </table>
       
-      
-    <td class=column>
-
-        <input type=checkbox>
-        <h3>UTF-7</h3>
-        
-        <table border>
-          <tr>
-            <th>UTF-7
-            <a href="" title="download (with BOM)" id=utf7_DLBOM>⇓</a>
-            <a href="" title="download (without BOM)" id=utf7_DL>⇓</a>
-          <tr>
-            <td>UTF-7<textarea id=utf7_1></textarea>
-          <tr>
-            <td>UTF-7 (IMAP)<textarea id=utf7_2></textarea>
-          <tr>
-            <td>
-          <tr>
-            <td>
-          <tr>
-            <td>
-          <tr>
-            <td>
-          <tr>
-            <td>
-          <tr>
-            <td>
-          <tr>
-            <td>
-        </table>
-        
         
     <td class=column>
       
@@ -268,11 +196,11 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>UTF-1
             <a href="" title="download" id=utf1DL>⇓</a>
           <tr>
-            <td>Bytes (decimal)<textarea id=utf11></textarea>
+            <td>Bytes (decimal)<input id=utf11>
           <tr>
-            <td>Bytes (hex)<textarea id=utf12></textarea>
+            <td>Bytes (hex)<input id=utf12>
           <tr>
-            <td>Base64<textarea id=utf13></textarea>
+            <td>Base64<input id=utf13>
           <tr>
             <td>
           <tr>
@@ -298,46 +226,17 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <a href="" title="download (with BOM)" id=utfebcdicDLBOM>⇓</a>
             <a href="" title="download (without BOM)" id=utfebcdicDL>⇓</a>
          <tr>
-            <td>Bytes (decimal)<textarea id=utfebcdic1></textarea>
+            <td>Bytes (decimal)<input id=utfebcdic1>
           <tr>
-            <td>Bytes (hex)<textarea id=utfebcdic2></textarea>
+            <td>Bytes (hex)<input id=utfebcdic2>
           <tr>
-            <td>Base64<textarea id=utfebcdic3></textarea>
-          <tr>
-            <td>
+            <td>Base64<input id=utfebcdic3>
           <tr>
             <td>
           <tr>
             <td>
           <tr>
             <td>
-          <tr>
-            <td>
-          <tr>
-            <td>
-        </table>
-        
-    <td class=column>
-    
-        <input type=checkbox>
-        <h3>GB18030</h3>
-        
-        <table border>
-          <tr>
-            <th>GB18030
-            <a href="" title="download" id=gb18030DL>⇓</a>
-          <tr>
-            <td>Bytes (decimal)<textarea id=gb180301></textarea>
-          <tr>
-            <td>Bytes (hex)<textarea id=gb180302></textarea>
-          <tr>
-            <td>Base64<textarea id=gb180303></textarea>
-          <tr>
-            <td>DataURI + Base64<textarea id=gb180304></textarea>
-          <tr>
-            <td>Q / Quoted printable<textarea id=gb180305></textarea>
-          <tr>
-            <td>MIME + Q<textarea id=gb180306></textarea>
           <tr>
             <td>
           <tr>
@@ -345,7 +244,7 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
           <tr>
             <td>
         </table>
-      </div>
+
       
     <td class=column>
 
@@ -357,11 +256,11 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>CESU-8
             <a href="" title="download" id=cesu8_DL>⇓</a>
           <tr>
-            <td>Char codes (decimal)<textarea id=cesu8_1></textarea>
+            <td>Char codes (decimal)<input id=cesu8_1>
           <tr>
-            <td>Char codes (hex)<textarea id=cesu8_2></textarea>
+            <td>Char codes (hex)<input id=cesu8_2>
           <tr>
-            <td>Base64<textarea id=cesu8_3></textarea>
+            <td>Base64<input id=cesu8_3>
           <tr>
             <td>
           <tr>
@@ -387,11 +286,11 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <a href="" title="download (with BOM)" id=bocu1DLBOM>⇓</a>
             <a href="" title="download (without BOM)" id=bocu1DL>⇓</a>
           <tr>
-            <td>Bytes (decimal)<textarea id=bocu11></textarea>
+            <td>Bytes (decimal)<input id=bocu11>
           <tr>
-            <td>Bytes (hex)<textarea id=bocu12></textarea>
+            <td>Bytes (hex)<input id=bocu12>
           <tr>
-            <td>Base64<textarea id=bocu13></textarea>
+            <td>Base64<input id=bocu13>
           <tr>
             <td>
           <tr>
@@ -412,22 +311,7 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
           <tr>
             <th>Latin-1
             <a href="" title="download" id=latin1_DL>⇓</a>
-          <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin1_1></textarea>
-          <tr>
-            <td>Interpreted as UTF-8<textarea id=latin1_2></textarea>
-          <tr>
-            <td>Char codes (decimal)<textarea id=latin1_3></textarea>
-          <tr>
-            <td>Char codes (hex)<textarea id=latin1_4></textarea>
-          <tr>
-            <td>Base64<textarea id=latin1_5></textarea>
-          <tr>
-            <td>DataURI + Base64<textarea id=latin1_6></textarea>
-          <tr>
-            <td>JS hex escape<textarea id=latin1_7></textarea>
-          <tr>
-            <td>JS octal escape<textarea id=latin1_8></textarea>
+          
           <tr>
             <td>
         </table>
@@ -442,15 +326,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-2
             <a href="" title="download" id=latin2DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin21></textarea>
+            <td>Text (compatible glyphs only)<input id=latin21>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin22></textarea>
+            <td>Interpreted as UTF-8<input id=latin22>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin23></textarea>
+            <td>Char codes (decimal)<input id=latin23>
           <tr>
-            <td>Char codes (hex)<textarea id=latin24></textarea>
+            <td>Char codes (hex)<input id=latin24>
           <tr>
-            <td>Base64<textarea id=latin25></textarea>
+            <td>Base64<input id=latin25>
           <tr>
             <td>
           <tr>
@@ -471,15 +355,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-3
             <a href="" title="download" id=latin3DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin31></textarea>
+            <td>Text (compatible glyphs only)<input id=latin31>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin32></textarea>
+            <td>Interpreted as UTF-8<input id=latin32>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin33></textarea>
+            <td>Char codes (decimal)<input id=latin33>
           <tr>
-            <td>Char codes (hex)<textarea id=latin34></textarea>
+            <td>Char codes (hex)<input id=latin34>
           <tr>
-            <td>Base64<textarea id=latin35></textarea>
+            <td>Base64<input id=latin35>
           <tr>
             <td>
           <tr>
@@ -500,15 +384,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-4
             <a href="" title="download" id=latin4DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin41></textarea>
+            <td>Text (compatible glyphs only)<input id=latin41>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin42></textarea>
+            <td>Interpreted as UTF-8<input id=latin42>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin43></textarea>
+            <td>Char codes (decimal)<input id=latin43>
           <tr>
-            <td>Char codes (hex)<textarea id=latin44></textarea>
+            <td>Char codes (hex)<input id=latin44>
           <tr>
-            <td>Base64<textarea id=latin45></textarea>
+            <td>Base64<input id=latin45>
           <tr>
             <td>
           <tr>
@@ -529,15 +413,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-5
             <a href="" title="download" id=latin5DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin51></textarea>
+            <td>Text (compatible glyphs only)<input id=latin51>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin52></textarea>
+            <td>Interpreted as UTF-8<input id=latin52>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin53></textarea>
+            <td>Char codes (decimal)<input id=latin53>
           <tr>
-            <td>Char codes (hex)<textarea id=latin54></textarea>
+            <td>Char codes (hex)<input id=latin54>
           <tr>
-            <td>Base64<textarea id=latin55></textarea>
+            <td>Base64<input id=latin55>
           <tr>
             <td>
           <tr>
@@ -558,15 +442,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-6
             <a href="" title="download" id=latin6DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin61></textarea>
+            <td>Text (compatible glyphs only)<input id=latin61>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin62></textarea>
+            <td>Interpreted as UTF-8<input id=latin62>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin63></textarea>
+            <td>Char codes (decimal)<input id=latin63>
           <tr>
-            <td>Char codes (hex)<textarea id=latin64></textarea>
+            <td>Char codes (hex)<input id=latin64>
           <tr>
-            <td>Base64<textarea id=latin65></textarea>
+            <td>Base64<input id=latin65>
           <tr>
             <td>
           <tr>
@@ -587,15 +471,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-7
             <a href="" title="download" id=latin7DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin71></textarea>
+            <td>Text (compatible glyphs only)<input id=latin71>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin72></textarea>
+            <td>Interpreted as UTF-8<input id=latin72>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin73></textarea>
+            <td>Char codes (decimal)<input id=latin73>
           <tr>
-            <td>Char codes (hex)<textarea id=latin74></textarea>
+            <td>Char codes (hex)<input id=latin74>
           <tr>
-            <td>Base64<textarea id=latin75></textarea>
+            <td>Base64<input id=latin75>
           <tr>
             <td>
           <tr>
@@ -616,15 +500,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-8
             <a href="" title="download" id=latin8DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin81></textarea>
+            <td>Text (compatible glyphs only)<input id=latin81>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin82></textarea>
+            <td>Interpreted as UTF-8<input id=latin82>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin83></textarea>
+            <td>Char codes (decimal)<input id=latin83>
           <tr>
-            <td>Char codes (hex)<textarea id=latin84></textarea>
+            <td>Char codes (hex)<input id=latin84>
           <tr>
-            <td>Base64<textarea id=latin85></textarea>
+            <td>Base64<input id=latin85>
           <tr>
             <td>
           <tr>
@@ -645,15 +529,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-8-i
             <a href="" title="download" id=latin8iDL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin8i1></textarea>
+            <td>Text (compatible glyphs only)<input id=latin8i1>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin8i2></textarea>
+            <td>Interpreted as UTF-8<input id=latin8i2>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin8i3></textarea>
+            <td>Char codes (decimal)<input id=latin8i3>
           <tr>
-            <td>Char codes (hex)<textarea id=latin8i4></textarea>
+            <td>Char codes (hex)<input id=latin8i4>
           <tr>
-            <td>Base64<textarea id=latin8i5></textarea>
+            <td>Base64<input id=latin8i5>
           <tr>
             <td>
           <tr>
@@ -674,15 +558,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-9
             <a href="" title="download" id=latin9DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin91></textarea>
+            <td>Text (compatible glyphs only)<input id=latin91>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin92></textarea>
+            <td>Interpreted as UTF-8<input id=latin92>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin93></textarea>
+            <td>Char codes (decimal)<input id=latin93>
           <tr>
-            <td>Char codes (hex)<textarea id=latin94></textarea>
+            <td>Char codes (hex)<input id=latin94>
           <tr>
-            <td>Base64<textarea id=latin95></textarea>
+            <td>Base64<input id=latin95>
           <tr>
             <td>
           <tr>
@@ -703,15 +587,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-10
             <a href="" title="download" id=latin10DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin101></textarea>
+            <td>Text (compatible glyphs only)<input id=latin101>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin102></textarea>
+            <td>Interpreted as UTF-8<input id=latin102>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin103></textarea>
+            <td>Char codes (decimal)<input id=latin103>
           <tr>
-            <td>Char codes (hex)<textarea id=latin104></textarea>
+            <td>Char codes (hex)<input id=latin104>
           <tr>
-            <td>Base64<textarea id=latin105></textarea>
+            <td>Base64<input id=latin105>
           <tr>
             <td>
           <tr>
@@ -732,15 +616,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-11
             <a href="" title="download" id=latin11DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin111></textarea>
+            <td>Text (compatible glyphs only)<input id=latin111>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin112></textarea>
+            <td>Interpreted as UTF-8<input id=latin112>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin113></textarea>
+            <td>Char codes (decimal)<input id=latin113>
           <tr>
-            <td>Char codes (hex)<textarea id=latin114></textarea>
+            <td>Char codes (hex)<input id=latin114>
           <tr>
-            <td>Base64<textarea id=latin115></textarea>
+            <td>Base64<input id=latin115>
           <tr>
             <td>
           <tr>
@@ -761,15 +645,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-12
             <a href="" title="download" id=latin12DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin121></textarea>
+            <td>Text (compatible glyphs only)<input id=latin121>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin122></textarea>
+            <td>Interpreted as UTF-8<input id=latin122>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin123></textarea>
+            <td>Char codes (decimal)<input id=latin123>
           <tr>
-            <td>Char codes (hex)<textarea id=latin124></textarea>
+            <td>Char codes (hex)<input id=latin124>
           <tr>
-            <td>Base64<textarea id=latin125></textarea>
+            <td>Base64<input id=latin125>
           <tr>
             <td>
           <tr>
@@ -790,15 +674,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-13
             <a href="" title="download" id=latin13DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin131></textarea>
+            <td>Text (compatible glyphs only)<input id=latin131>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin132></textarea>
+            <td>Interpreted as UTF-8<input id=latin132>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin133></textarea>
+            <td>Char codes (decimal)<input id=latin133>
           <tr>
-            <td>Char codes (hex)<textarea id=latin134></textarea>
+            <td>Char codes (hex)<input id=latin134>
           <tr>
-            <td>Base64<textarea id=latin135></textarea>
+            <td>Base64<input id=latin135>
           <tr>
             <td>
           <tr>
@@ -819,15 +703,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-14
             <a href="" title="download" id=latin14DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin141></textarea>
+            <td>Text (compatible glyphs only)<input id=latin141>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin142></textarea>
+            <td>Interpreted as UTF-8<input id=latin142>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin143></textarea>
+            <td>Char codes (decimal)<input id=latin143>
           <tr>
-            <td>Char codes (hex)<textarea id=latin144></textarea>
+            <td>Char codes (hex)<input id=latin144>
           <tr>
-            <td>Base64<textarea id=latin145></textarea>
+            <td>Base64<input id=latin145>
           <tr>
             <td>
           <tr>
@@ -848,15 +732,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-15
             <a href="" title="download" id=latin15DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin151></textarea>
+            <td>Text (compatible glyphs only)<input id=latin151>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin152></textarea>
+            <td>Interpreted as UTF-8<input id=latin152>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin153></textarea>
+            <td>Char codes (decimal)<input id=latin153>
           <tr>
-            <td>Char codes (hex)<textarea id=latin154></textarea>
+            <td>Char codes (hex)<input id=latin154>
           <tr>
-            <td>Base64<textarea id=latin155></textarea>
+            <td>Base64<input id=latin155>
           <tr>
             <td>
           <tr>
@@ -877,15 +761,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Latin-16
             <a href="" title="download" id=latin16DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin161></textarea>
+            <td>Text (compatible glyphs only)<input id=latin161>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin162></textarea>
+            <td>Interpreted as UTF-8<input id=latin162>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin163></textarea>
+            <td>Char codes (decimal)<input id=latin163>
           <tr>
-            <td>Char codes (hex)<textarea id=latin164></textarea>
+            <td>Char codes (hex)<input id=latin164>
           <tr>
-            <td>Base64<textarea id=latin165></textarea>
+            <td>Base64<input id=latin165>
           <tr>
             <td>
           <tr>
@@ -906,15 +790,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Windows-874
             <a href="" title="download" id=windows874DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=windows8741></textarea>
+            <td>Text (compatible glyphs only)<input id=windows8741>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=windows8742></textarea>
+            <td>Interpreted as UTF-8<input id=windows8742>
           <tr>
-            <td>Char codes (decimal)<textarea id=windows8743></textarea>
+            <td>Char codes (decimal)<input id=windows8743>
           <tr>
-            <td>Char codes (hex)<textarea id=windows8744></textarea>
+            <td>Char codes (hex)<input id=windows8744>
           <tr>
-            <td>Base64<textarea id=windows8745></textarea>
+            <td>Base64<input id=windows8745>
           <tr>
             <td>
           <tr>
@@ -935,15 +819,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Windows-1250
             <a href="" title="download" id=windows1250DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=windows12501></textarea>
+            <td>Text (compatible glyphs only)<input id=windows12501>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=windows12502></textarea>
+            <td>Interpreted as UTF-8<input id=windows12502>
           <tr>
-            <td>Char codes (decimal)<textarea id=windows12503></textarea>
+            <td>Char codes (decimal)<input id=windows12503>
           <tr>
-            <td>Char codes (hex)<textarea id=windows12504></textarea>
+            <td>Char codes (hex)<input id=windows12504>
           <tr>
-            <td>Base64<textarea id=windows12505></textarea>
+            <td>Base64<input id=windows12505>
           <tr>
             <td>
           <tr>
@@ -964,15 +848,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Windows-1251
             <a href="" title="download" id=windows1251DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=windows12511></textarea>
+            <td>Text (compatible glyphs only)<input id=windows12511>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=windows12512></textarea>
+            <td>Interpreted as UTF-8<input id=windows12512>
           <tr>
-            <td>Char codes (decimal)<textarea id=windows12513></textarea>
+            <td>Char codes (decimal)<input id=windows12513>
           <tr>
-            <td>Char codes (hex)<textarea id=windows12514></textarea>
+            <td>Char codes (hex)<input id=windows12514>
           <tr>
-            <td>Base64<textarea id=windows12515></textarea>
+            <td>Base64<input id=windows12515>
           <tr>
             <td>
           <tr>
@@ -983,31 +867,6 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <td>
         </table>
       
-    <td class=column>
-      
-        <table border>
-          <tr>
-            <th>Windows-1252
-            <a href="" title="download" id=windows1252_DL>⇓</a>
-          <tr>
-            <td>Text (compatible glyphs only)<textarea id=windows1252_1></textarea>
-          <tr>
-            <td>Interpreted as UTF-8<textarea id=windows1252_2></textarea>
-          <tr>
-            <td>Char codes (decimal)<textarea id=windows1252_3></textarea>
-          <tr>
-            <td>Char codes (hex)<textarea id=windows1252_4></textarea>
-          <tr>
-            <td>Base64<textarea id=windows1252_5></textarea>
-          <tr>
-            <td>DataURI + Base64<textarea id=windows1252_6></textarea>
-          <tr>
-            <td>
-          <tr>
-            <td>
-          <tr>
-            <td>
-        </table> 
 
     <td class=column>
       
@@ -1019,15 +878,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Windows-1253
             <a href="" title="download" id=windows1253DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=windows12531></textarea>
+            <td>Text (compatible glyphs only)<input id=windows12531>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=windows12532></textarea>
+            <td>Interpreted as UTF-8<input id=windows12532>
           <tr>
-            <td>Char codes (decimal)<textarea id=windows12533></textarea>
+            <td>Char codes (decimal)<input id=windows12533>
           <tr>
-            <td>Char codes (hex)<textarea id=windows12534></textarea>
+            <td>Char codes (hex)<input id=windows12534>
           <tr>
-            <td>Base64<textarea id=windows12535></textarea>
+            <td>Base64<input id=windows12535>
           <tr>
             <td>
           <tr>
@@ -1048,15 +907,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Windows-1254
             <a href="" title="download" id=windows1254DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=windows12541></textarea>
+            <td>Text (compatible glyphs only)<input id=windows12541>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=windows12542></textarea>
+            <td>Interpreted as UTF-8<input id=windows12542>
           <tr>
-            <td>Char codes (decimal)<textarea id=windows12543></textarea>
+            <td>Char codes (decimal)<input id=windows12543>
           <tr>
-            <td>Char codes (hex)<textarea id=windows12544></textarea>
+            <td>Char codes (hex)<input id=windows12544>
           <tr>
-            <td>Base64<textarea id=windows12545></textarea>
+            <td>Base64<input id=windows12545>
           <tr>
             <td>
           <tr>
@@ -1077,15 +936,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Windows-1255
             <a href="" title="download" id=windows1255DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=windows12551></textarea>
+            <td>Text (compatible glyphs only)<input id=windows12551>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=windows12552></textarea>
+            <td>Interpreted as UTF-8<input id=windows12552>
           <tr>
-            <td>Char codes (decimal)<textarea id=windows12553></textarea>
+            <td>Char codes (decimal)<input id=windows12553>
           <tr>
-            <td>Char codes (hex)<textarea id=windows12554></textarea>
+            <td>Char codes (hex)<input id=windows12554>
           <tr>
-            <td>Base64<textarea id=windows12555></textarea>
+            <td>Base64<input id=windows12555>
           <tr>
             <td>
           <tr>
@@ -1106,15 +965,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Windows-1256
             <a href="" title="download" id=windows1256DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=windows12561></textarea>
+            <td>Text (compatible glyphs only)<input id=windows12561>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=windows12562></textarea>
+            <td>Interpreted as UTF-8<input id=windows12562>
           <tr>
-            <td>Char codes (decimal)<textarea id=windows12563></textarea>
+            <td>Char codes (decimal)<input id=windows12563>
           <tr>
-            <td>Char codes (hex)<textarea id=windows12564></textarea>
+            <td>Char codes (hex)<input id=windows12564>
           <tr>
-            <td>Base64<textarea id=windows12565></textarea>
+            <td>Base64<input id=windows12565>
           <tr>
             <td>
           <tr>
@@ -1135,15 +994,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Windows-1257
             <a href="" title="download" id=windows1257DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=latin21></textarea>
+            <td>Text (compatible glyphs only)<input id=latin21>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=latin22></textarea>
+            <td>Interpreted as UTF-8<input id=latin22>
           <tr>
-            <td>Char codes (decimal)<textarea id=latin23></textarea>
+            <td>Char codes (decimal)<input id=latin23>
           <tr>
-            <td>Char codes (hex)<textarea id=latin24></textarea>
+            <td>Char codes (hex)<input id=latin24>
           <tr>
-            <td>Base64<textarea id=latin25></textarea>
+            <td>Base64<input id=latin25>
           <tr>
             <td>
           <tr>
@@ -1164,15 +1023,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>Windows-1258
             <a href="" title="download" id=windows1258DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=windows12581></textarea>
+            <td>Text (compatible glyphs only)<input id=windows12581>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=windows12582></textarea>
+            <td>Interpreted as UTF-8<input id=windows12582>
           <tr>
-            <td>Char codes (decimal)<textarea id=windows12583></textarea>
+            <td>Char codes (decimal)<input id=windows12583>
           <tr>
-            <td>Char codes (hex)<textarea id=windows12584></textarea>
+            <td>Char codes (hex)<input id=windows12584>
           <tr>
-            <td>Base64<textarea id=windows12585></textarea>
+            <td>Base64<input id=windows12585>
           <tr>
             <td>
           <tr>
@@ -1193,15 +1052,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>x-mac-cyrillic
             <a href="" title="download" id=xmaccyrillicDL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=xmaccyrillic1></textarea>
+            <td>Text (compatible glyphs only)<input id=xmaccyrillic1>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=xmaccyrillic2></textarea>
+            <td>Interpreted as UTF-8<input id=xmaccyrillic2>
           <tr>
-            <td>Char codes (decimal)<textarea id=xmaccyrillic3></textarea>
+            <td>Char codes (decimal)<input id=xmaccyrillic3>
           <tr>
-            <td>Char codes (hex)<textarea id=xmaccyrillic4></textarea>
+            <td>Char codes (hex)<input id=xmaccyrillic4>
           <tr>
-            <td>Base64<textarea id=xmaccyrillic5></textarea>
+            <td>Base64<input id=xmaccyrillic5>
           <tr>
             <td>
           <tr>
@@ -1222,15 +1081,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>macintosh
             <a href="" title="download" id=macintoshDL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=macintosh1></textarea>
+            <td>Text (compatible glyphs only)<input id=macintosh1>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=macintosh2></textarea>
+            <td>Interpreted as UTF-8<input id=macintosh2>
           <tr>
-            <td>Char codes (decimal)<textarea id=macintosh3></textarea>
+            <td>Char codes (decimal)<input id=macintosh3>
           <tr>
-            <td>Char codes (hex)<textarea id=macintosh4></textarea>
+            <td>Char codes (hex)<input id=macintosh4>
           <tr>
-            <td>Base64<textarea id=macintosh5></textarea>
+            <td>Base64<input id=macintosh5>
           <tr>
             <td>
           <tr>
@@ -1251,15 +1110,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>koi8-r
             <a href="" title="download" id=koi8rDL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=koi8r1></textarea>
+            <td>Text (compatible glyphs only)<input id=koi8r1>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=koi8r2></textarea>
+            <td>Interpreted as UTF-8<input id=koi8r2>
           <tr>
-            <td>Char codes (decimal)<textarea id=koi8r3></textarea>
+            <td>Char codes (decimal)<input id=koi8r3>
           <tr>
-            <td>Char codes (hex)<textarea id=koi8r4></textarea>
+            <td>Char codes (hex)<input id=koi8r4>
           <tr>
-            <td>Base64<textarea id=koi8r5></textarea>
+            <td>Base64<input id=koi8r5>
           <tr>
             <td>
           <tr>
@@ -1280,15 +1139,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>koi8-u
             <a href="" title="download" id=koi8uDL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=koi8u1></textarea>
+            <td>Text (compatible glyphs only)<input id=koi8u1>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=koi8u2></textarea>
+            <td>Interpreted as UTF-8<input id=koi8u2>
           <tr>
-            <td>Char codes (decimal)<textarea id=koi8u3></textarea>
+            <td>Char codes (decimal)<input id=koi8u3>
           <tr>
-            <td>Char codes (hex)<textarea id=koi8u4></textarea>
+            <td>Char codes (hex)<input id=koi8u4>
           <tr>
-            <td>Base64<textarea id=koi8u5></textarea>
+            <td>Base64<input id=koi8u5>
           <tr>
             <td>
           <tr>
@@ -1309,15 +1168,15 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
             <th>ibm866
             <a href="" title="download" id=ibm866DL>⇓</a>
           <tr>
-            <td>Text (compatible glyphs only)<textarea id=ibm8661></textarea>
+            <td>Text (compatible glyphs only)<input id=ibm8661>
           <tr>
-            <td>Interpreted as UTF-8<textarea id=ibm8662></textarea>
+            <td>Interpreted as UTF-8<input id=ibm8662>
           <tr>
-            <td>Char codes (decimal)<textarea id=ibm8663></textarea>
+            <td>Char codes (decimal)<input id=ibm8663>
           <tr>
-            <td>Char codes (hex)<textarea id=ibm8664></textarea>
+            <td>Char codes (hex)<input id=ibm8664>
           <tr>
-            <td>Base64<textarea id=ibm8665></textarea>
+            <td>Base64<input id=ibm8665>
           <tr>
             <td>
           <tr>
@@ -1332,9 +1191,11 @@ All the encoding / decoding / escaping features you (n)ever dreamed of, all in o
   </tr>
 </table>
 </div>
+-->
 <br>
-V2.0, WIP ~ 277 conversions and counting ~ &#169; 2016 - <a href=//xem.github.io>xem</a>
+V3.0, WIP ~ &#169; 2017 - <a href=//xem.github.io>xem</a>
 <br>
 <br>
 <script src="unicodenames.js"></script>
 <script src="escape.js"></script>
+<script src="charsets_ranges.js"></script>

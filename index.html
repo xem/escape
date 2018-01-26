@@ -29,15 +29,17 @@ hr { border: none; border-bottom: 1px solid #ddd; }
   <h2>Plain text</h2>
   
   <table>
-    <tr><td style=width:120px;max-width:120px>Plain text<td><textarea id=a1 autofocus>a©€💩</textarea>
+    <tr><td colspan=2 style=background:#ffd>Write anything here<br><br><textarea id=a1 autofocus>a©€💩</textarea>
   </table>
   
-  <br>
-  
-  <h2>Plain text transforms</h2>
+  <h2>JS events</h2>
   
   <table>
-    <tr><td colspan=2>Events<br><textarea id=a2 readonly></textarea>
+    <tr><td colspan=2>Events<br><br><textarea id=a2 readonly></textarea>
+  </table>
+  
+  <h2>Plain text transforms</h2>
+  <table>
     <tr><td style=width:120px;max-width:120px>Unicode canonical names<td><textarea id=utf32be_13></textarea>
     <tr><td>Unicode blocks<td><textarea id=utf32be_14></textarea>
     <tr><td>Unicode code points<td><textarea id=utf32be_6></textarea>
@@ -75,6 +77,7 @@ hr { border: none; border-bottom: 1px solid #ddd; }
     <tr><td>Base64<td><input id=utf16be_3>
     <tr><td>DataURI + Base64<td><input id=utf16be_4>
     <tr><td>JS/C/C++/Java<td><input id=utf16be_5>
+    <tr><td>Win1252 mojibake<td><input id=todo>
   </table>
   
   <h2>UTF-16 LE</h2>
@@ -86,6 +89,7 @@ hr { border: none; border-bottom: 1px solid #ddd; }
     <tr><td>DataURI + Base64<td><input id=utf16le_4>
     <tr><td>Q / Quoted printable<td><input id=utf16le_5>
     <tr><td>MIME + Q<td><input id=utf16le_6>
+    <tr><td>Win1252 mojibake<td><input id=todo>
   </table>
   
   <h2>UTF-32 BE</h2>
@@ -129,6 +133,7 @@ hr { border: none; border-bottom: 1px solid #ddd; }
     <tr><td>DataURI + Base64<td><input id=latin1_6>
     <tr><td>JS hex escape<td><input id=latin1_7>
     <tr><td>JS octal escape<td><input id=latin1_8>
+    <tr><td>Win1252 mojibake<td><input id=todo>
   </table>
   
   <h2>GB18030</h2>
@@ -140,6 +145,7 @@ hr { border: none; border-bottom: 1px solid #ddd; }
     <tr><td>DataURI + Base64<td><input id=gb180304>
     <tr><td>Q / Quoted printable<td><input id=gb180305>
     <tr><td>MIME + Q<td><input id=gb180306>
+    <tr><td>Win1252 mojibake<td><input id=todo>
   </table>
   
   <h3>UTF-7</h3>
